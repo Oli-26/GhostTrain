@@ -20,6 +20,12 @@ TextureImporter:
   - first:
       213: 3028095524763041244
     second: SciFiFurniture1.1_5
+  - first:
+      213: -2500118141994227733
+    second: SciFiFurniture1.1_6
+  - first:
+      213: 7773875062847248248
+    second: SciFiFurniture1.1_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -209,7 +215,7 @@ TextureImporter:
         width: 104
         height: 103
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -230,7 +236,7 @@ TextureImporter:
         width: 39
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -238,6 +244,27 @@ TextureImporter:
       bones: []
       spriteID: cdd737316d4f50a20800000000000000
       internalID: 3028095524763041244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_6
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 681
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be7ace9cbcbcd4dd0800000000000000
+      internalID: -2500118141994227733
       vertices: []
       indices: 
       edges: []

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Grabber : MonoBehaviour
-{
+public class Grabber : TimeEffected{
     public GameObject hand;
     public GameObject arm;
     public Transform touchPoint;
@@ -42,7 +41,7 @@ public class Grabber : MonoBehaviour
             }
 
             if(Mathf.Abs(yDiff) > 0.1f){
-                    float extendBy = Time.deltaTime;
+                    float extendBy = getTimePassed();
                     arm.transform.localScale = arm.transform.localScale + new Vector3(0f, extendBy/4f, 0f);
                     if(isTopSide){
                         arm.transform.position += new Vector3(0f, extendBy/2f, 0f);
@@ -58,7 +57,7 @@ public class Grabber : MonoBehaviour
             }
         }else{
            if(Mathf.Abs(touchPoint.position.y - basePoint.position.y) > 0.55f){
-                float extendBy = Time.deltaTime;
+                float extendBy = getTimePassed();
                 arm.transform.localScale = arm.transform.localScale - new Vector3(0f, extendBy/4f, 0f);
                 if(isTopSide){
                     arm.transform.position -= new Vector3(0f, extendBy/2f, 0f);
@@ -68,7 +67,7 @@ public class Grabber : MonoBehaviour
                     hand.transform.position += new Vector3(0f, extendBy, 0f);
                 }
             }else{
-                _activeCooldown -= Time.deltaTime;
+                _activeCooldown -= getTimePassed();
             } 
 
             if(_activeCooldown <= 0){

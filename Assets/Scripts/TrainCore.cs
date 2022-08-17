@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrainCore : MonoBehaviour
+public class TrainCore : TimeEffected
 {
     Transform _transform;
     float speed = 3f;
@@ -25,12 +25,12 @@ public class TrainCore : MonoBehaviour
     }
 
     public void moveForward(){
-        _transform.position += new Vector3(getActiveSpeed() * Time.deltaTime, 0, 0);
+        _transform.position += new Vector3(getActiveSpeed() * getTimePassed(), 0, 0);
         boostActive = false;
     }
 
     public void moveBackward(){
-        _transform.position += new Vector3(-getActiveSpeed() * Time.deltaTime, 0, 0);
+        _transform.position += new Vector3(-getActiveSpeed() * getTimePassed(), 0, 0);
     }
 
     private float getActiveSpeed(){

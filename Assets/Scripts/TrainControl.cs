@@ -5,11 +5,11 @@ using UnityEngine;
 public class TrainControl : MonoBehaviour
 {
     TrainCore trainCore;
-    BuildingController buildingController;
+    UIController UIController;
     void Start()
     {
         trainCore = GameObject.Find("Train").GetComponent<TrainCore>();
-        buildingController = GetComponent<BuildingController>();
+        UIController = GetComponent<UIController>();
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class TrainControl : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.B)){
-            buildingController.toggleBuildingUI();
+            UIController.toggleBuildingUI();
         }
     }
 }
