@@ -8,6 +8,7 @@ public class Refiner : TimeEffected
     ResourceType refiningType = ResourceType.Stone;
     List<ResourceType> refinableTypes = new List<ResourceType>() {ResourceType.Stone};
     Inventory invent;
+    public GameObject effect;
 
     float cooldown = 5f;
     float _activeCooldown = 5f;
@@ -37,10 +38,7 @@ public class Refiner : TimeEffected
                     invent.LoseResource(ResourceType.Stone, inputAmount);
                     for(int i = 0; i < inputAmount; i++){
                         if(randomChance(stoneRefineSuccessChance)){
-                            Debug.Log("Sucess");
                             invent.GainResource(ResourceType.Metal, 1);
-                        }else{
-                            Debug.Log("Failure");
                         }
                     }
                 }
@@ -54,5 +52,11 @@ public class Refiner : TimeEffected
         float random = Random.Range(0,100f);
         Debug.Log(random);
         return  random < percent;
+    }
+
+    public void Toggle(){
+        refining = !refining;
+
+        effect.SetActive(refining);
     }
 }

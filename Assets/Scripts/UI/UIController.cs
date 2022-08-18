@@ -10,6 +10,8 @@ public class UIController : MonoBehaviour
     public List<GameObject> nonInteractableUIParts = new List<GameObject>();
     public List<GameObject> purchaseButtons = new List<GameObject>();
 
+    public List<GameObject> addOnOptionButtons = new List<GameObject>();
+
     public List<GameObject> allText = new List<GameObject>();
 
     bool buildUIActive = false;
@@ -17,6 +19,9 @@ public class UIController : MonoBehaviour
     public GameObject selectedObject;
     public int selectedSlotId = -1;
     public int selectedExtentionId = -1;
+
+    public GameObject RefinerOptions;
+    public GameObject AddOnShop;
 
     // TEXT
     GameObject woodCountText;
@@ -56,6 +61,13 @@ public class UIController : MonoBehaviour
             foreach(GameObject uiElement in purchaseButtons){
                 if(mouseInsideObject(uiElement)){
                     uiElement.GetComponent<PurchaseAddOnButton>().Interact();
+                    return;
+                }
+            }
+
+            foreach(GameObject uiElement in addOnOptionButtons){
+                if(mouseInsideObject(uiElement)){
+                    uiElement.GetComponent<AddOnOptionButton>().Interact();
                     return;
                 }
             }
@@ -118,10 +130,7 @@ public class UIController : MonoBehaviour
     public void trySelectObject(GameObject selected){
         if(buildUIActive){
             if(selectedObject != null){
-                SelectableTrainPart selectedObjectSelectableTrainPart = selectedObject.GetComponent<SelectableTrainPart>();
-                if(selectedObjectSelectableTrainPart != null){
-                    selectedObjectSelectableTrainPart.DeSelect();
-                }
+                Deselect();
             }
 
             selectedObject = selected;
@@ -131,8 +140,37 @@ public class UIController : MonoBehaviour
                 selectedSlotId = selectableTrainPart.slotId;
                 selectedExtentionId = selectableTrainPart.extentionId;
 
+                LoadCorrectGUI();
             }
         }
+    }
+
+    public void LoadCorrectGUI(){
+        List<GameObject> extentions = GameObject.Find("Train").GetComponent<TrainCore>().Extentions;
+                GameObject slot = extentions[selectedExtentionId-1].GetComponent<Extention>().GetSlot(selectedSlotId);
+                GameObject addOn = slot.GetComponent<Slot>().GetAddOn();
+
+                if(addOn != null){
+                    if(addOn.GetComponent<Grabber>() != null){
+                        RefinerOptions.SetActive(false);
+                        AddOnShop.SetActive(true);
+                    }
+
+                    if(addOn.GetComponent<Refiner>() != null){
+                        RefinerOptions.SetActive(true);
+                        AddOnShop.SetActive(false);
+                    }
+                }else{
+                    RefinerOptions.SetActive(false);
+                    AddOnShop.SetActive(true);
+                }
+    }
+
+    public void Deselect(){
+         SelectableTrainPart selectedObjectSelectableTrainPart = selectedObject.GetComponent<SelectableTrainPart>();
+         if(selectedObjectSelectableTrainPart != null){
+            selectedObjectSelectableTrainPart.DeSelect();
+         }
     }
 
     public void UpdateResourceValues(int wood, int stone, int metal){

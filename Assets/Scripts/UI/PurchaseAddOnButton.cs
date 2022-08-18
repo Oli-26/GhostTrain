@@ -24,6 +24,7 @@ public class PurchaseAddOnButton : UIElement
         UIController UI = gameController.GetComponent<UIController>();
         if(UI.selectedSlotId != -1 && UI.selectedExtentionId != -1){
             gameController.GetComponent<BuildingController>().ConstructAddOn(type, UI.selectedExtentionId, UI.selectedSlotId);
+            gameController.GetComponent<UIController>().LoadCorrectGUI();
         }
         
     }

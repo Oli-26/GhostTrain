@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Slot : MonoBehaviour
 {
-    GameObject addOn;
+    public GameObject addOn;
     public int id;
 
     void Start()
@@ -12,7 +12,6 @@ public class Slot : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
