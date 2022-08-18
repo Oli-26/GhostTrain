@@ -6,6 +6,7 @@ using System.Linq;
 public class Grabber : TimeEffected{
     GameObject Controller;
     Environment environmentController;
+    Inventory invent;
     public GameObject hand;
     public GameObject arm;
     public Vector3 armSize;
@@ -26,6 +27,7 @@ public class Grabber : TimeEffected{
     {
         Controller = GameObject.Find("Controller");
         environmentController = Controller.GetComponent<Environment>();
+        invent = Controller.GetComponent<Inventory>();
         armSize = arm.GetComponent<SpriteRenderer>().bounds.size;
     }
 
@@ -57,7 +59,7 @@ public class Grabber : TimeEffected{
             }else if(Mathf.Abs(xDiff) < 0.2f){
                 environmentController.DeTargetResource(target);
                 Resource r = target.GetComponent<Resource>();
-                Controller.GetComponent<Inventory>().GainResource(r.type, r.amount);
+                invent.GainResource(r.type, r.amount);
                 Destroy(target);
                 disableGrabbing();
                 return;

@@ -30,9 +30,9 @@ public class UIController : MonoBehaviour
             uiElement.GetComponent<MeshRenderer>().sortingOrder = 15;
         }
 
-        woodCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "WoodCount").ToList()[0];
-        stoneCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "StoneCount").ToList()[0];
-        metalCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "MetalCount").ToList()[0];
+       woodCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "WoodCount").ToList().FirstOrDefault();
+        stoneCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "StoneCount").ToList().First();
+        metalCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "MetalCount").ToList().First();
     }
 
     void Update()

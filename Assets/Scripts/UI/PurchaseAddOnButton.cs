@@ -5,8 +5,6 @@ using UnityEngine;
 public class PurchaseAddOnButton : UIElement
 {
     public AddOnType type;
-    public int extentionNumber = 1;
-    public int slotNumber = 0;
     GameObject gameController;
     int metalCost = 0;
     int woodCost = 10;
