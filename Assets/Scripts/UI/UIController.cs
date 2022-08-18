@@ -1,20 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class UIController : MonoBehaviour
 {
 
     public List<GameObject> selectableTrainParts = new List<GameObject>();
     public List<GameObject> nonInteractableUIParts = new List<GameObject>();
+    public List<GameObject> purchaseButtons = new List<GameObject>();
 
     public List<GameObject> allText = new List<GameObject>();
 
     bool buildUIActive = false;
 
     public GameObject selectedObject;
+    public int selectedSlotId = -1;
+    public int selectedExtentionId = -1;
 
-    public GameObject clickDecal;
+    // TEXT
+    GameObject woodCountText;
+    GameObject stoneCountText;
+    GameObject metalCountText;
 
 
     void Start()
@@ -22,6 +29,10 @@ public class UIController : MonoBehaviour
          foreach(GameObject uiElement in allText){
             uiElement.GetComponent<MeshRenderer>().sortingOrder = 15;
         }
+
+        woodCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "WoodCount").ToList()[0];
+        stoneCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "StoneCount").ToList()[0];
+        metalCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "MetalCount").ToList()[0];
     }
 
     void Update()
@@ -35,10 +46,14 @@ public class UIController : MonoBehaviour
             foreach(GameObject uiElement in selectableTrainParts){
                 if(mouseInsideObject(uiElement)){
                     //Instantiate(clickDecal, mouseToWorld(), Quaternion.identity);
-                    SelectableTrainPart selectableTrainPart = uiElement.GetComponent<SelectableTrainPart>();
-                    if(selectableTrainPart != null){
-                        selectableTrainPart.Interact();
-                    }
+                    uiElement.GetComponent<SelectableTrainPart>().Interact();
+                }
+            }
+
+            foreach(GameObject uiElement in purchaseButtons){
+                if(mouseInsideObject(uiElement)){
+                    Debug.Log("Clicked a button!");
+                    uiElement.GetComponent<PurchaseAddOnButton>().Interact();
                 }
             }
         }
@@ -49,10 +64,7 @@ public class UIController : MonoBehaviour
         if (buildUIActive && !Input.GetMouseButtonDown(0)){
             foreach(GameObject uiElement in selectableTrainParts){
                 if(mouseInsideObject(uiElement)){
-                    SelectableTrainPart selectableTrainPart = uiElement.GetComponent<SelectableTrainPart>();
-                    if(selectableTrainPart != null){
-                        selectableTrainPart.HighLight();
-                    }
+                    uiElement.GetComponent<SelectableTrainPart>().HighLight();
                 }
             }
         }
@@ -113,7 +125,16 @@ public class UIController : MonoBehaviour
             SelectableTrainPart selectableTrainPart = selectedObject.GetComponent<SelectableTrainPart>();
             if(selectableTrainPart != null){
                 selectableTrainPart.Select();
+                selectedSlotId = selectableTrainPart.slotId;
+                selectedExtentionId = selectableTrainPart.extentionId;
+
             }
         }
+    }
+
+    public void UpdateResourceValues(int wood, int stone, int metal){
+        woodCountText.GetComponent<TextMesh>().text = wood.ToString();
+        stoneCountText.GetComponent<TextMesh>().text = stone.ToString();
+        metalCountText.GetComponent<TextMesh>().text = metal.ToString();
     }
 }

@@ -9,6 +9,7 @@ public class TrainCore : TimeEffected
     bool boostActive = false;
     float boostAmount = 1.5f;
 
+    public List<GameObject> Extentions = new List<GameObject>();
     void Start()
     {
         _transform = transform;

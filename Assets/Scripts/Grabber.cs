@@ -4,8 +4,11 @@ using UnityEngine;
 using System.Linq;
 
 public class Grabber : TimeEffected{
+    GameObject Controller;
+    Environment environmentController;
     public GameObject hand;
     public GameObject arm;
+    public Vector3 armSize;
     public Transform touchPoint;
     public Transform basePoint;
 
@@ -18,11 +21,12 @@ public class Grabber : TimeEffected{
     public Vector3 targetPoint;
     public GameObject target;
     bool isGrabbing = false;
-    Transform _transform;
 
     void Start()
     {
-        _transform = transform;
+        Controller = GameObject.Find("Controller");
+        environmentController = Controller.GetComponent<Environment>();
+        armSize = arm.GetComponent<SpriteRenderer>().bounds.size;
     }
 
     void Update()
@@ -42,28 +46,33 @@ public class Grabber : TimeEffected{
 
             if(Mathf.Abs(yDiff) > 0.1f){
                     float extendBy = getTimePassed();
-                    arm.transform.localScale = arm.transform.localScale + new Vector3(0f, extendBy/4f, 0f);
+                    arm.transform.localScale = arm.transform.localScale + new Vector3(0f, extendBy/armSize.y, 0f);
                     if(isTopSide){
-                        arm.transform.position += new Vector3(0f, extendBy/2f, 0f);
+                       arm.transform.position += new Vector3(0f, extendBy/(2f), 0f);
                         hand.transform.position += new Vector3(0f, extendBy, 0f);
                     }else{
-                        arm.transform.position -= new Vector3(0f, extendBy/2f, 0f);
+                        arm.transform.position -= new Vector3(0f, extendBy/(2f), 0f);
                         hand.transform.position -= new Vector3(0f, extendBy, 0f);
                     }
             }else if(Mathf.Abs(xDiff) < 0.2f){
+                environmentController.DeTargetResource(target);
+                Resource r = target.GetComponent<Resource>();
+                Controller.GetComponent<Inventory>().GainResource(r.type, r.amount);
                 Destroy(target);
                 disableGrabbing();
                 return;
             }
         }else{
-           if(Mathf.Abs(touchPoint.position.y - basePoint.position.y) > 0.55f){
+           if(Mathf.Abs(touchPoint.position.y - basePoint.position.y) > 0.1f){
                 float extendBy = getTimePassed();
-                arm.transform.localScale = arm.transform.localScale - new Vector3(0f, extendBy/4f, 0f);
+
+                
+                arm.transform.localScale = arm.transform.localScale - new Vector3(0f, extendBy/armSize.y, 0f);
                 if(isTopSide){
-                    arm.transform.position -= new Vector3(0f, extendBy/2f, 0f);
+                    arm.transform.position -= new Vector3(0f, extendBy/(2f), 0f);
                     hand.transform.position -= new Vector3(0f, extendBy, 0f);
                 }else{
-                    arm.transform.position += new Vector3(0f, extendBy/2f, 0f);
+                    arm.transform.position += new Vector3(0f, extendBy/(2f), 0f);
                     hand.transform.position += new Vector3(0f, extendBy, 0f);
                 }
             }else{
@@ -76,6 +85,7 @@ public class Grabber : TimeEffected{
 
                 if(target != null){
                     targetPoint = target.transform.position;
+                    environmentController.TargetResource(target);
                     enableGrabbing();
                 }else{
                     _activeCooldown = 0.5f;
@@ -96,7 +106,10 @@ public class Grabber : TimeEffected{
     }
 
     public GameObject FindObjectToGrab(){
-        List<GameObject> resources = GameObject.FindGameObjectsWithTag("Resource").Where(resource => resource.transform.position.x > basePoint.position.x).ToList();
+        List<GameObject> resources = GameObject.FindGameObjectsWithTag("Resource").Where(resource => 
+                                                    resource.transform.position.x + 4f > basePoint.position.x 
+                                                    && !environmentController.IsResourceTargeted(resource)
+                                                    ).ToList();
         List<GameObject> reachableResources;
         if(isTopSide){
             reachableResources = resources.Where(

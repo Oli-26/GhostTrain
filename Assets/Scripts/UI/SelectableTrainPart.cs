@@ -6,9 +6,14 @@ public class SelectableTrainPart : UIElement
 {
     GameObject gameController;
     Color baseColor;
+    Color inUseColor = new Color(0f, 0f, 0f, 0.8f);
     bool selected = false;
     bool highLighted = false;
     int highLightTick = 0;
+    bool beingUsed = false;
+
+    public int slotId = -1;
+    public int extentionId = -1;
     void Start()
     {
         gameController = GameObject.Find("Controller");
@@ -22,7 +27,7 @@ public class SelectableTrainPart : UIElement
         }
         if(highLighted && highLightTick == 0){
             highLighted = false;
-            GetComponent<SpriteRenderer>().color = baseColor;
+            GetComponent<SpriteRenderer>().color = beingUsed ? inUseColor : baseColor;;
         }
         
     }
@@ -39,7 +44,7 @@ public class SelectableTrainPart : UIElement
     }
 
     public void DeSelect(){
-        GetComponent<SpriteRenderer>().color = baseColor;
+        GetComponent<SpriteRenderer>().color = beingUsed ? inUseColor : baseColor;
         selected = false;
     }
 
@@ -49,5 +54,10 @@ public class SelectableTrainPart : UIElement
             highLightTick = 15;
             highLighted = true;
         } 
+    }
+
+    public void InUse(){
+        GetComponent<SpriteRenderer>().color = inUseColor;
+        beingUsed = true;
     }
 }

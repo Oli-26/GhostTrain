@@ -6,6 +6,7 @@ public class TerrainGenerator : MonoBehaviour
 {
     public List<GameObject> TreePrefabs;
     public List<GameObject> GlassDetailPrefabs;
+    public List<GameObject> StonePrefabs;
     public GameObject coreGroundPrefab;
 
     public List<GameObject> spawnedObjects = new List<GameObject>();
@@ -33,6 +34,14 @@ public class TerrainGenerator : MonoBehaviour
             GameObject tree = Instantiate(TreePrefabs[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(1f, 4.5f), 0), Quaternion.identity);
             tree.transform.parent = terrainHolder.transform;
             spawnedObjects.Add(tree);
+        }
+
+         for(int i = 0; i<22; i++){
+            int index = Random.Range(0,StonePrefabs.Count-1);
+
+            GameObject stone = Instantiate(StonePrefabs[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(1.5f, 4.5f), 0), Quaternion.identity);
+            stone.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(stone);
         }
 
         for(int i = 0; i<150; i++){

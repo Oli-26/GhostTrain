@@ -17,6 +17,8 @@ public class Environment : MonoBehaviour
 
     TerrainGenerator terrainGenerator;
 
+    List<GameObject> targetedResources = new List<GameObject>();
+
     void Start()
     {
         trainTransform = GameObject.Find("Train").transform;
@@ -81,5 +83,17 @@ public class Environment : MonoBehaviour
             Destroy(allTerrains[0]);
             allTerrains.RemoveAt(0);
         }
+    }
+
+    public void TargetResource(GameObject resource){
+        targetedResources.Add(resource);
+    }
+
+    public void DeTargetResource(GameObject resource){
+        targetedResources.Remove(resource);
+    }
+
+    public bool IsResourceTargeted(GameObject resource){
+        return targetedResources.Contains(resource);
     }
 }
