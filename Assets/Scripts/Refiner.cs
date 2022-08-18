@@ -37,7 +37,10 @@ public class Refiner : TimeEffected
                     invent.LoseResource(ResourceType.Stone, inputAmount);
                     for(int i = 0; i < inputAmount; i++){
                         if(randomChance(stoneRefineSuccessChance)){
+                            Debug.Log("Sucess");
                             invent.GainResource(ResourceType.Metal, 1);
+                        }else{
+                            Debug.Log("Failure");
                         }
                     }
                 }
@@ -48,6 +51,8 @@ public class Refiner : TimeEffected
     }
 
     bool randomChance(float percent){
-        return Random.Range(0,100f) < percent;
+        float random = Random.Range(0,100f);
+        Debug.Log(random);
+        return  random < percent;
     }
 }

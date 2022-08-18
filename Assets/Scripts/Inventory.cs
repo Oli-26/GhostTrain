@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    static int woodCount = 15;
-    static int stoneCount = 0;
-    static int metalCount = 0;
+    public int woodCount = 15;
+    public int stoneCount = 10;
+    public int metalCount = 0;
 
+    void Start(){
+        
+    }
 
     public void GainResource(ResourceType type, int amount){
         switch(type){
@@ -18,7 +21,7 @@ public class Inventory : MonoBehaviour
                 stoneCount+=amount;
                 break;
             case ResourceType.Metal:
-                metalCount=+amount;
+                metalCount+=amount;
                 break;
             default:
                 Debug.Log("Resource " + type + " is not recognised");
@@ -37,7 +40,7 @@ public class Inventory : MonoBehaviour
                 stoneCount-=amount;
                 break;
             case ResourceType.Metal:
-                metalCount=-amount;
+                metalCount-=amount;
                 break;
             default:
                 Debug.Log("Resource " + type + " is not recognised");
