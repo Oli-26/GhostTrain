@@ -109,19 +109,17 @@ public class Grabber : TimeEffected{
 
     public GameObject FindObjectToGrab(){
         List<GameObject> resources = GameObject.FindGameObjectsWithTag("Resource").Where(resource => 
-                                                    resource.transform.position.x + 4f > basePoint.position.x 
+                                                    resource.transform.position.x> basePoint.position.x + 4f 
                                                     && !environmentController.IsResourceTargeted(resource)
                                                     ).ToList();
         List<GameObject> reachableResources;
         if(isTopSide){
-            reachableResources = resources.Where(
-                resource => 
+            reachableResources = resources.Where(resource => 
                     resource.transform.position.y - basePoint.position.y > 0 
                     && resource.transform.position.y - basePoint.position.y < maxRange)
                     .ToList();
         }else{
-            reachableResources = resources.Where(
-                resource => 
+            reachableResources = resources.Where(resource => 
                     resource.transform.position.y - basePoint.position.y < 0 
                     && basePoint.position.y - resource.transform.position.y < maxRange)
                     .ToList();

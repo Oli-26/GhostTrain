@@ -5,6 +5,7 @@ using UnityEngine;
 public class Extention : MonoBehaviour
 {
     public List<GameObject> slots = new List<GameObject>();
+    public List<GameObject> interactableUISlots = new List<GameObject>();
     public GameObject baseObject;
     void Start()
     {
@@ -26,5 +27,12 @@ public class Extention : MonoBehaviour
 
     public void CreateAddon(int index, GameObject addon){
         slots[index].GetComponent<Slot>().CreateAddOn(addon);
+    }
+
+    public void SetSlotExtensionId(int id){
+        foreach(GameObject UIElement in interactableUISlots){
+            UIElement.GetComponent<SelectableTrainPart>().extentionId = id;
+        }
+
     }
 }

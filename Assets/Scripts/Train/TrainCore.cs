@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrainCore : TimeEffected
 {
     Transform _transform;
+    public GameObject trainFront;
     float speed = 3f;
     bool boostActive = false;
     float boostAmount = 1.5f;

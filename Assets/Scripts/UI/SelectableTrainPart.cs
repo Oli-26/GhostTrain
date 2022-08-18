@@ -6,7 +6,7 @@ public class SelectableTrainPart : UIElement
 {
     GameObject gameController;
     Color baseColor;
-    Color inUseColor = new Color(0f, 0f, 0f, 0.8f);
+    Color inUseColor = new Color(0f, 0f, 0f, 0.6f);
     bool selected = false;
     bool highLighted = false;
     int highLightTick = 0;
@@ -33,7 +33,6 @@ public class SelectableTrainPart : UIElement
     }
 
     public void Interact(){
-        Debug.Log("ui clicked: " + gameObject);
         gameController.GetComponent<UIController>().trySelectObject(gameObject);
     }
 

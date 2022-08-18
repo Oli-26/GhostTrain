@@ -248,6 +248,11 @@ MonoBehaviour:
   - {fileID: 678168929550313826}
   - {fileID: 678168929618536707}
   - {fileID: 678168930086581058}
+  interactableUISlots:
+  - {fileID: 678168929134595690}
+  - {fileID: 678168928524101031}
+  - {fileID: 678168928808284178}
+  - {fileID: 678168929847674792}
   baseObject: {fileID: 678168929412086366}
 --- !u!1 &678168929134595690
 GameObject:
@@ -470,6 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f25d9cd1cccc345a47e4ea7d70230e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOn: {fileID: 0}
   id: 0
 --- !u!1 &678168929550313826
 GameObject:
@@ -514,6 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f25d9cd1cccc345a47e4ea7d70230e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOn: {fileID: 0}
   id: 1
 --- !u!1 &678168929618536707
 GameObject:
@@ -558,6 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f25d9cd1cccc345a47e4ea7d70230e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOn: {fileID: 0}
   id: 2
 --- !u!1 &678168929847674792
 GameObject:
@@ -733,4 +741,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f25d9cd1cccc345a47e4ea7d70230e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOn: {fileID: 0}
   id: 3

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public int woodCount = 15;
-    public int stoneCount = 10;
-    public int metalCount = 0;
+    public int woodCount = 25;
+    public int stoneCount = 15;
+    public int metalCount = 15;
 
     void Start(){
         
@@ -60,6 +60,19 @@ public class Inventory : MonoBehaviour
                 return metalCount;
             default:
                 return 0;
+        }
+    }
+
+      public bool HasResource(ResourceType type, int amount){
+        switch(type){
+            case ResourceType.Wood:
+                return woodCount >= amount;
+            case ResourceType.Stone:
+                return stoneCount >= amount;
+            case ResourceType.Metal:
+                return metalCount >= amount;
+            default:
+                return false;
         }
     }
 }

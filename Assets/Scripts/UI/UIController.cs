@@ -9,17 +9,12 @@ public class UIController : MonoBehaviour
     public List<GameObject> selectableTrainParts = new List<GameObject>();
     public List<GameObject> nonInteractableUIParts = new List<GameObject>();
     public List<GameObject> purchaseButtons = new List<GameObject>();
-
     public List<GameObject> addOnOptionButtons = new List<GameObject>();
-
     public List<GameObject> allText = new List<GameObject>();
-
     bool buildUIActive = false;
-
     public GameObject selectedObject;
     public int selectedSlotId = -1;
     public int selectedExtentionId = -1;
-
     public GameObject RefinerOptions;
     public GameObject AddOnShop;
 
@@ -52,21 +47,21 @@ public class UIController : MonoBehaviour
     void TryClick(){
         if (buildUIActive && Input.GetMouseButtonDown(0)){
             foreach(GameObject uiElement in selectableTrainParts){
-                if(mouseInsideObject(uiElement)){
+                if(uiElement.active && mouseInsideObject(uiElement)){
                     uiElement.GetComponent<SelectableTrainPart>().Interact();
                     return;
                 }
             }
 
             foreach(GameObject uiElement in purchaseButtons){
-                if(mouseInsideObject(uiElement)){
-                    uiElement.GetComponent<PurchaseAddOnButton>().Interact();
+                if(uiElement.active && mouseInsideObject(uiElement)){
+                    uiElement.GetComponent<PurchaseButton>().Interact();
                     return;
                 }
             }
 
             foreach(GameObject uiElement in addOnOptionButtons){
-                if(mouseInsideObject(uiElement)){
+                if(uiElement.active && mouseInsideObject(uiElement)){
                     uiElement.GetComponent<AddOnOptionButton>().Interact();
                     return;
                 }
@@ -146,24 +141,30 @@ public class UIController : MonoBehaviour
     }
 
     public void LoadCorrectGUI(){
+        if(selectedExtentionId == -1 || selectedSlotId == -1){
+            RefinerOptions.SetActive(false);
+            AddOnShop.SetActive(true);
+            return;
+        }
+
         List<GameObject> extentions = GameObject.Find("Train").GetComponent<TrainCore>().Extentions;
-                GameObject slot = extentions[selectedExtentionId-1].GetComponent<Extention>().GetSlot(selectedSlotId);
-                GameObject addOn = slot.GetComponent<Slot>().GetAddOn();
+        GameObject slot = extentions[selectedExtentionId-1].GetComponent<Extention>().GetSlot(selectedSlotId);
+        GameObject addOn = slot.GetComponent<Slot>().GetAddOn();
 
-                if(addOn != null){
-                    if(addOn.GetComponent<Grabber>() != null){
-                        RefinerOptions.SetActive(false);
-                        AddOnShop.SetActive(true);
-                    }
+        if(addOn != null){
+            if(addOn.GetComponent<Grabber>() != null){
+                RefinerOptions.SetActive(false);
+                AddOnShop.SetActive(true);
+            }
 
-                    if(addOn.GetComponent<Refiner>() != null){
-                        RefinerOptions.SetActive(true);
-                        AddOnShop.SetActive(false);
-                    }
-                }else{
-                    RefinerOptions.SetActive(false);
-                    AddOnShop.SetActive(true);
-                }
+            if(addOn.GetComponent<Refiner>() != null){
+                RefinerOptions.SetActive(true);
+                AddOnShop.SetActive(false);
+            }
+        }else{
+            RefinerOptions.SetActive(false);
+            AddOnShop.SetActive(true);
+        }
     }
 
     public void Deselect(){
