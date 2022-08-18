@@ -30,9 +30,12 @@ public class UIController : MonoBehaviour
             uiElement.GetComponent<MeshRenderer>().sortingOrder = 15;
         }
 
-       woodCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "WoodCount").ToList().FirstOrDefault();
+        woodCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "WoodCount").ToList().FirstOrDefault();
         stoneCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "StoneCount").ToList().First();
         metalCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "MetalCount").ToList().First();
+
+        Inventory invent = GetComponent<Inventory>();
+        UpdateResourceValues(invent.woodCount, invent.stoneCount, invent.metalCount);
     }
 
     void Update()
@@ -45,15 +48,15 @@ public class UIController : MonoBehaviour
         if (buildUIActive && Input.GetMouseButtonDown(0)){
             foreach(GameObject uiElement in selectableTrainParts){
                 if(mouseInsideObject(uiElement)){
-                    //Instantiate(clickDecal, mouseToWorld(), Quaternion.identity);
                     uiElement.GetComponent<SelectableTrainPart>().Interact();
+                    return;
                 }
             }
 
             foreach(GameObject uiElement in purchaseButtons){
                 if(mouseInsideObject(uiElement)){
-                    Debug.Log("Clicked a button!");
                     uiElement.GetComponent<PurchaseAddOnButton>().Interact();
+                    return;
                 }
             }
         }
@@ -73,7 +76,7 @@ public class UIController : MonoBehaviour
     
     bool mouseInsideObject(GameObject obj){
         Vector3 objectPosition = obj.transform.position;
-        Vector3 localScale = obj.transform.localScale;
+        Vector3 localScale = obj.GetComponent<SpriteRenderer>().bounds.size;
 
         Vector3 bottomLeftCorner = new Vector3(objectPosition.x - localScale.x, objectPosition.y - localScale.y, 0f);
         Vector3 topRightCorder = new Vector3(objectPosition.x + localScale.x, objectPosition.y + localScale.y, 0f);
