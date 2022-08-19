@@ -62,6 +62,9 @@ public class TrainCore : TimeEffected
             Extentions.Add(extension);
             extension.SetSlotExtensionId(Extentions.Count);
             
+            extension.interactableUISlots
+                .ForEach(slot => slot.SetActive(true));
+            
             if (CanAddExtension()) ShowGhostExtension(true);
         }
     }
