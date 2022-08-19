@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TrainCore : TimeEffected
 {
-    private const int MAX_EXTENSIONS = 5;
+    private const int MaxExtensions = 5;
+    private const float Speed = 3f;
+    private const float BoostAmount = 1.5f;
+    
+    private bool _boostActive;
 
     public GameObject extensionPrefab;
+    public GameObject ghostExtensionPrefab;
 
     Transform _transform;
     public GameObject trainFront;
-    float speed = 3f;
-    bool boostActive = false;
-    float boostAmount = 1.5f;
+    private Extention _ghostExtension;
+
 
     public List<Extention> Extentions { get; } = new List<Extention>();
 
@@ -29,13 +34,13 @@ public class TrainCore : TimeEffected
 
     public void boost()
     {
-        boostActive = true;
+        _boostActive = true;
     }
 
     public void moveForward()
     {
         _transform.position += new Vector3(getActiveSpeed() * getTimePassed(), 0, 0);
-        boostActive = false;
+        _boostActive = false;
     }
 
     public void moveBackward()
@@ -45,20 +50,52 @@ public class TrainCore : TimeEffected
 
     private float getActiveSpeed()
     {
-        return speed + (boostActive ? boostAmount : 0f);
+        return Speed + (_boostActive ? BoostAmount : 0f);
     }
 
     public void AddExtension()
     {
-        if (Extentions.Count < MAX_EXTENSIONS)
+        if (CanAddExtension())
         {
-            Extention extension = Instantiate(extensionPrefab, trainFront.transform.position, Quaternion.identity).GetComponent<Extention>();
-            extension.transform.position -= new Vector3((extension.GetComponent<Extention>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x - 0.2f) * Extentions.Count, 0f, 0f);
-            extension.transform.position -= new Vector3(1.88f, 0.82f, 0f);
-            extension.transform.parent = gameObject.transform;
-            
+            var extension = CreateExtension(extensionPrefab);
+
             Extentions.Add(extension);
             extension.SetSlotExtensionId(Extentions.Count);
+            
+            if (CanAddExtension()) ShowGhostExtension(true);
         }
     }
+
+    public void ShowGhostExtension(bool show)
+    {
+        if (_ghostExtension != null)
+        {
+            Destroy(_ghostExtension.gameObject);
+        }
+
+        if (show && CanAddExtension())
+        {
+            _ghostExtension = CreateExtension(ghostExtensionPrefab);
+        }
+    }
+
+    private Extention CreateExtension(GameObject prefab)
+    {
+        Extention extension = Instantiate(prefab, trainFront.transform.position, Quaternion.identity)
+            .GetComponent<Extention>();
+        extension.transform.position -=
+            new Vector3(
+                (extension.GetComponent<Extention>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x - 0.2f) *
+                Extentions.Count, 0f, 0f);
+        extension.transform.position -= new Vector3(1.88f, 0.82f, 0f);
+        extension.transform.parent = gameObject.transform;
+        
+        return extension;
+    }
+    
+    private bool CanAddExtension()
+    {
+        return Extentions.Count < MaxExtensions;
+    }
+
 }

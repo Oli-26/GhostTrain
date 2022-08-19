@@ -5,7 +5,6 @@ using System.Linq;
 
 public class UIController : MonoBehaviour
 {
-    public List<GameObject> selectableTrainParts = new List<GameObject>();
     public List<GameObject> baseUIParts = new List<GameObject>();
     public List<GameObject> allText = new List<GameObject>();
     
@@ -59,6 +58,8 @@ public class UIController : MonoBehaviour
         {
             TimeController.Paused = false;
         }
+        
+        trainCore.ShowGhostExtension(buildUIActive);
 
         RefreshUiElements();
     }

@@ -26,13 +26,6 @@ public class BuildingController : MonoBehaviour
         return slot.GetComponent<Slot>().GetAddOn() == null;
     }
     public void ConstructAddOn(PurchaseType type, int extentionNumber, int slotNumber){
-        
-        if(type == PurchaseType.Extension){
-            trainCore.AddExtension();
-            uiController.RefreshUiElements();
-            return;
-        }
-
         Extention extention = trainCore.Extentions[extentionNumber-1];
         GameObject slot = extention.GetComponent<Extention>().GetSlot(slotNumber);
 

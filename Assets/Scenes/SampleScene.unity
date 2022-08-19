@@ -4365,6 +4365,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extensionPrefab: {fileID: 678168928933231339, guid: 35b7246d35e461741919f10b14a82519,
     type: 3}
+  ghostExtensionPrefab: {fileID: 5601114180845547563, guid: d85b47b080707034096dd9834ae40121,
+    type: 3}
   trainFront: {fileID: 188731248}
 --- !u!4 &2038458524
 Transform:
