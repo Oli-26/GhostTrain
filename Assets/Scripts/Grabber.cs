@@ -22,6 +22,7 @@ public class Grabber : TimeEffected{
     public Vector3 targetPoint;
     public GameObject target;
     bool isGrabbing = false;
+    bool isReturning = false;
 
     void Start()
     {
@@ -39,43 +40,29 @@ public class Grabber : TimeEffected{
                 return;
             }
 
-            float yDiff = targetPoint.y - touchPoint.position.y;
+            
             float xDiff = targetPoint.x - touchPoint.position.x;
+
             if(xDiff < 0){
                 disableGrabbing();
                 return;
             }
 
+            float yDiff = targetPoint.y - touchPoint.position.y;
+
             if(Mathf.Abs(yDiff) > 0.1f){
-                    float extendBy = getTimePassed();
-                    arm.transform.localScale = arm.transform.localScale + new Vector3(0f, extendBy/armSize.y, 0f);
-                    if(isTopSide){
-                       arm.transform.position += new Vector3(0f, extendBy/(2f), 0f);
-                        hand.transform.position += new Vector3(0f, extendBy, 0f);
-                    }else{
-                        arm.transform.position -= new Vector3(0f, extendBy/(2f), 0f);
-                        hand.transform.position -= new Vector3(0f, extendBy, 0f);
-                    }
+                    MoveWithRespectToTarget();
             }else if(Mathf.Abs(xDiff) < 0.2f){
-                environmentController.DeTargetResource(target);
-                Resource r = target.GetComponent<Resource>();
-                invent.GainResource(r.type, r.amount);
-                Destroy(target);
+                consumeResource();
                 disableGrabbing();
                 return;
             }
         }else{
-           if(Mathf.Abs(touchPoint.position.y - basePoint.position.y) > 0.1f){
-                float extendBy = getTimePassed();
-
-                
-                arm.transform.localScale = arm.transform.localScale - new Vector3(0f, extendBy/armSize.y, 0f);
-                if(isTopSide){
-                    arm.transform.position -= new Vector3(0f, extendBy/(2f), 0f);
-                    hand.transform.position -= new Vector3(0f, extendBy, 0f);
+           if(isReturning){
+                if(Mathf.Abs(touchPoint.position.y - basePoint.position.y) > 0.1f){
+                    MoveWithRespectToTarget();
                 }else{
-                    arm.transform.position += new Vector3(0f, extendBy/(2f), 0f);
-                    hand.transform.position += new Vector3(0f, extendBy, 0f);
+                    isReturning = false;
                 }
             }else{
                 _activeCooldown -= getTimePassed();
@@ -83,17 +70,21 @@ public class Grabber : TimeEffected{
 
             if(_activeCooldown <= 0){
                 _activeCooldown = cooldown;
-                target = FindObjectToGrab();
-
-                if(target != null){
-                    targetPoint = target.transform.position;
-                    environmentController.TargetResource(target);
-                    enableGrabbing();
-                }else{
-                    _activeCooldown = 0.5f;
-                }
+                FindObjectToGrab();
             }
         }
+        
+    }
+
+    void MoveWithRespectToTarget(){
+        int signMultiplier = isGrabbing ? 1 : -1;
+        int orientationMultiplier = isTopSide ? 1 : -1;
+
+        Vector3 movementVector = new Vector3(0f, getTimePassed()*signMultiplier*orientationMultiplier, 0f);
+
+        arm.transform.localScale -= movementVector/armSize.y;
+        arm.transform.position -= movementVector/2f;
+        hand.transform.position -= movementVector;
         
     }
 
@@ -107,30 +98,33 @@ public class Grabber : TimeEffected{
         isGrabbing = true;
     }
 
-    public GameObject FindObjectToGrab(){
-        List<GameObject> resources = GameObject.FindGameObjectsWithTag("Resource").Where(resource => 
-                                                    resource.transform.position.x> basePoint.position.x + 4f 
-                                                    && !environmentController.IsResourceTargeted(resource)
-                                                    ).ToList();
-        List<GameObject> reachableResources;
-        if(isTopSide){
-            reachableResources = resources.Where(resource => 
-                    resource.transform.position.y - basePoint.position.y > 0 
-                    && resource.transform.position.y - basePoint.position.y < maxRange)
-                    .ToList();
-        }else{
-            reachableResources = resources.Where(resource => 
-                    resource.transform.position.y - basePoint.position.y < 0 
-                    && basePoint.position.y - resource.transform.position.y < maxRange)
-                    .ToList();
-        }
-        List<GameObject> orderedReachableList = reachableResources.OrderBy(resource => resource.transform.position.x).ToList();
+    void consumeResource(){
+        environmentController.DeTargetResource(target);
+        Resource r = target.GetComponent<Resource>();
+        invent.GainResource(r.type, r.amount);
+        Destroy(target);
+    }
 
-        if(orderedReachableList.Count >= 1){
-            return orderedReachableList[0];
+    void FindObjectToGrab(){
+        List<GameObject> resources = GameObject.FindGameObjectsWithTag("Resource").Where(resource => IsTargetable(resource)).OrderBy(resource => resource.transform.position.x).ToList();
+
+        if(resources.Count >= 1){
+            
+            target = resources[0];
+            
+            targetPoint = target.transform.position;
+            environmentController.TargetResource(target);
+            enableGrabbing();
         }else{
-            return null;
+            _activeCooldown = 0.5f;
         }
         
+    }
+
+    bool IsTargetable(GameObject resource){
+        return resource.transform.position.x> basePoint.position.x + 4f 
+            && !environmentController.IsResourceTargeted(resource)
+            && isTopSide ? resource.transform.position.y - basePoint.position.y > 0 : resource.transform.position.y - basePoint.position.y < 0
+            && isTopSide ? resource.transform.position.y - basePoint.position.y < maxRange : basePoint.position.y - resource.transform.position.y < maxRange;                               
     }
 }
