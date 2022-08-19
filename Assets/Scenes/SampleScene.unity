@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 44070264}
   m_Layer: 0
   m_Name: Name
-  m_TagString: Untagged
+  m_TagString: UIText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 121797514}
   m_Layer: 0
   m_Name: Cost (1)
-  m_TagString: Untagged
+  m_TagString: UIText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 214325783}
   m_Layer: 0
   m_Name: Name
-  m_TagString: Untagged
+  m_TagString: UIText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 239333475}
   m_Layer: 0
   m_Name: Amount
-  m_TagString: Untagged
+  m_TagString: UIText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1694,7 +1694,7 @@ GameObject:
   - component: {fileID: 655944871}
   m_Layer: 0
   m_Name: Amount (1)
-  m_TagString: Untagged
+  m_TagString: UIText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1883,7 +1883,7 @@ GameObject:
   - component: {fileID: 721800886}
   m_Layer: 0
   m_Name: Name
-  m_TagString: Untagged
+  m_TagString: UIText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2654,7 +2654,7 @@ GameObject:
   - component: {fileID: 1193041010}
   m_Layer: 0
   m_Name: Name
-  m_TagString: Untagged
+  m_TagString: UIText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3008,7 +3008,7 @@ GameObject:
   - component: {fileID: 1282528201}
   m_Layer: 0
   m_Name: Amount (2)
-  m_TagString: Untagged
+  m_TagString: UIText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3313,8 +3313,8 @@ MonoBehaviour:
     type: 3}
   refinerPrefab: {fileID: 4880325908690141259, guid: 7cb57449267a0e844b1aa39597f18c5f,
     type: 3}
-  extensionPrefab: {fileID: 678168928933231339, guid: 35b7246d35e461741919f10b14a82519,
-    type: 3}
+  trainCore: {fileID: 2038458523}
+  uiController: {fileID: 1426132485}
 --- !u!114 &1426132485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3614,7 +3614,7 @@ GameObject:
   - component: {fileID: 1515095283}
   m_Layer: 0
   m_Name: Cost
-  m_TagString: Untagged
+  m_TagString: UIText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4206,7 +4206,7 @@ GameObject:
   - component: {fileID: 1927057015}
   m_Layer: 0
   m_Name: Name
-  m_TagString: Untagged
+  m_TagString: UIText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4363,8 +4363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf8d6bea8ac31e4bbc8c81ad33476a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extensionPrefab: {fileID: 678168928933231339, guid: 35b7246d35e461741919f10b14a82519,
+    type: 3}
   trainFront: {fileID: 188731248}
-  Extentions: []
 --- !u!4 &2038458524
 Transform:
   m_ObjectHideFlags: 0
