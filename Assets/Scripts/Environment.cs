@@ -75,7 +75,7 @@ public class Environment : MonoBehaviour
     }
 
     void spawnNextTerrain(){
-        allTerrains.Add(terrainGenerator.GenerateTerrain(nextTerrainSpawn));
+        allTerrains.Add(terrainGenerator.GenerateRandomTerrain(nextTerrainSpawn));
 
         nextTerrainSpawn += new Vector3(100f, 0f, 0f);
 

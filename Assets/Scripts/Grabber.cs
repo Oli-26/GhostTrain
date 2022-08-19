@@ -9,6 +9,7 @@ public class Grabber : TimeEffected{
     Inventory invent;
     public GameObject hand;
     public GameObject arm;
+    public GameObject spinner;
     public Vector3 armSize;
     public Transform touchPoint;
     public Transform basePoint;
@@ -74,26 +75,30 @@ public class Grabber : TimeEffected{
         
     }
 
+    void Spin(int direction){
+        spinner.transform.Rotate (direction * Vector3.forward * -90 * getTimePassed());
+    }
+
     void MoveWithRespectToTarget(){
         int signMultiplier = isGrabbing ? 1 : -1;
         int orientationMultiplier = isTopSide ? 1 : -1;
 
+        Spin(signMultiplier);
+
         Vector3 movementVector = new Vector3(0f, getTimePassed()*signMultiplier*orientationMultiplier, 0f);
 
-        arm.transform.localScale += movementVector/armSize.y;
+        arm.transform.localScale += orientationMultiplier*movementVector/armSize.y;
         arm.transform.position += movementVector/2f;
         hand.transform.position += movementVector;
         
     }
 
     void disableGrabbing(){
-        hand.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         isGrabbing = false;
         isReturning = true;
     }
 
     void enableGrabbing(){
-        hand.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0f, 1f);
         isGrabbing = true;
         isReturning = false;
     }
@@ -120,7 +125,10 @@ public class Grabber : TimeEffected{
             Debug.Log("Target " + target.transform.position);
             Debug.Log("Grabber " + basePoint.position);
             
-            targetPoint = target.transform.position;
+            Vector3 size = target.GetComponent<SpriteRenderer>().bounds.size;
+            int orientationMultiplier = isTopSide ? 1 : -1;
+
+            targetPoint = target.transform.position + new Vector3(0f, size.y/2f, 0f)*orientationMultiplier;
             environmentController.TargetResource(target);
             enableGrabbing();
         }else{
