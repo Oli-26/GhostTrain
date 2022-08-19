@@ -48,16 +48,16 @@ public class Grabber : TimeEffected{
                 return;
             }
 
-            if(Mathf.Abs(differences.y) > 0.1f){
+            if(Mathf.Abs(differences.y) > 0.07f){
                     MoveWithRespectToTarget();
-            }else if(Mathf.Abs(differences.x) < 0.2f){
+            }else if(Mathf.Abs(differences.x) < 0.07f){
                 grabResource();
                 disableGrabbing();
                 return;
             }
         }else{
            if(isReturning){
-                if(Mathf.Abs(touchPoint.position.y - basePoint.position.y) > 0.1f){
+                if(Mathf.Abs(touchPoint.position.y - basePoint.position.y) > 0.07f){
                     MoveWithRespectToTarget();
                 }else{
                     consumeResource();
@@ -119,16 +119,12 @@ public class Grabber : TimeEffected{
         List<GameObject> orderedResources = resources.OrderBy(resource => resource.transform.position.x).ToList();
 
         if(orderedResources.Count >= 1){
-            Debug.Log("Targeting resource");
             target = orderedResources[0];
-
-            Debug.Log("Target " + target.transform.position);
-            Debug.Log("Grabber " + basePoint.position);
             
             Vector3 size = target.GetComponent<SpriteRenderer>().bounds.size;
             int orientationMultiplier = isTopSide ? 1 : -1;
 
-            targetPoint = target.transform.position + new Vector3(0f, size.y/2f, 0f)*orientationMultiplier;
+            targetPoint = target.transform.position ;//+ new Vector3(0f, size.y/2f, 0f)*orientationMultiplier;
             environmentController.TargetResource(target);
             enableGrabbing();
         }else{
