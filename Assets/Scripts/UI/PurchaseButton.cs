@@ -18,6 +18,11 @@ public class PurchaseButton : UIElement
     {
         
     }
+    
+    private void OnMouseUpAsButton()
+    {
+        Interact();
+    }
 
     public void Interact(){
         Debug.Log("purchase addon button clicked: " + type);

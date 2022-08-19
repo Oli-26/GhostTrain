@@ -10,6 +10,11 @@ public class AddOnOptionButton : UIElement
     {
         gameController = GameObject.Find("Controller");
     }
+    
+    private void OnMouseUpAsButton()
+    {
+        Interact();
+    }
 
     public void Interact(){
         UIController UI = gameController.GetComponent<UIController>();

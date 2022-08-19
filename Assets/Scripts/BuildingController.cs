@@ -8,10 +8,15 @@ public class BuildingController : MonoBehaviour
     public GameObject grabberPrefabBotSide;
     public GameObject refinerPrefab;
     public GameObject extensionPrefab;
+    
+    private UIController uiController;
+    private TrainCore trainCore;
 
     void Start()
     {
-        
+        uiController = GetComponent<UIController>();
+        trainCore = GameObject.Find("Train").GetComponent<TrainCore>();
+
     }
 
     void Update()
@@ -20,28 +25,31 @@ public class BuildingController : MonoBehaviour
     }
 
     public bool CheckBuildIsPossible(int extentionNumber, int slotNumber){
-        List<GameObject> extentions = GameObject.Find("Train").GetComponent<TrainCore>().Extentions;
-        GameObject slot = extentions[extentionNumber-1].GetComponent<Extention>().GetSlot(slotNumber);
+        GameObject slot = trainCore.Extentions[extentionNumber-1].GetComponent<Extention>().GetSlot(slotNumber);
         return slot.GetComponent<Slot>().GetAddOn() == null;
     }
     public void ConstructAddOn(PurchaseType type, int extentionNumber, int slotNumber){
+        
         if(type == PurchaseType.Extension){
             CreateExtension();
+            uiController.RefreshUiElements();
             return;
         }
-        
-        List<GameObject> extentions = GameObject.Find("Train").GetComponent<TrainCore>().Extentions;
-        GameObject slot = extentions[extentionNumber-1].GetComponent<Extention>().GetSlot(slotNumber);
+
+        var extention = trainCore.Extentions[extentionNumber-1];
+        GameObject slot = extention.GetComponent<Extention>().GetSlot(slotNumber);
 
         if(type == PurchaseType.Grabber){
-            CreateGrabber(extentions[extentionNumber-1], slot, slotNumber <= 1);
-            GetComponent<UIController>().selectedObject.GetComponent<SelectableTrainPart>().InUse();
+            CreateGrabber(extention, slot, slotNumber <= 1);
+            uiController.selectedObject.GetComponent<SelectableTrainPart>().InUse();
         }
 
         if(type == PurchaseType.Refiner){
-            CreateRefiner(extentions[extentionNumber-1], slot, slotNumber <= 1);
-            GetComponent<UIController>().selectedObject.GetComponent<SelectableTrainPart>().InUse();
+            CreateRefiner(extention, slot, slotNumber <= 1);
+            uiController.selectedObject.GetComponent<SelectableTrainPart>().InUse();
         }
+        
+        uiController.RefreshUiElements();
 
     }
 
@@ -75,7 +83,7 @@ public class BuildingController : MonoBehaviour
         extension.transform.parent = train.transform;
         trainScript.Extentions.Add(extension);
 
-        GetComponent<UIController>().selectableTrainParts.AddRange(extension.GetComponent<Extention>().interactableUISlots);
+        uiController.selectableTrainParts.AddRange(extension.GetComponent<Extention>().interactableUISlots);
         extension.GetComponent<Extention>().SetSlotExtensionId(trainScript.Extentions.Count);
 
     }

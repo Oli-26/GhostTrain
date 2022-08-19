@@ -10,13 +10,16 @@ public class UIController : MonoBehaviour
     public List<GameObject> purchaseButtons = new List<GameObject>();
     public List<GameObject> addOnOptionButtons = new List<GameObject>();
     public List<GameObject> allText = new List<GameObject>();
-    bool buildUIActive = false;
-    public SelectableTrainPart selectedObject;
-    public int selectedSlotId = -1;
-    public int selectedExtentionId = -1;
+    
+    bool buildUIActive;
+    
     public GameObject RefinerOptions;
     public GameObject AddOnShop;
 
+    public SelectableTrainPart selectedObject;
+    public int selectedSlotId = -1;
+    public int selectedExtentionId = -1;
+    
     // TEXT
     GameObject woodCountText;
     GameObject stoneCountText;
@@ -41,34 +44,7 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        TryClick();
-        // TryHighlight();
     }
-
-    void TryClick()
-    {
-        if (buildUIActive && Input.GetMouseButtonDown(0))
-        {
-            foreach (GameObject uiElement in purchaseButtons)
-            {
-                if (uiElement.active && mouseInsideObject(uiElement))
-                {
-                    uiElement.GetComponent<PurchaseButton>().Interact();
-                    return;
-                }
-            }
-
-            foreach (GameObject uiElement in addOnOptionButtons)
-            {
-                if (uiElement.active && mouseInsideObject(uiElement))
-                {
-                    uiElement.GetComponent<AddOnOptionButton>().Interact();
-                    return;
-                }
-            }
-        }
-    }
-
 
     bool mouseInsideObject(GameObject obj)
     {
@@ -111,15 +87,13 @@ public class UIController : MonoBehaviour
             TimeController.Paused = false;
         }
 
-        foreach (GameObject uiElement in selectableTrainParts)
-        {
-            uiElement.SetActive(buildUIActive);
-        }
+        RefreshUiElements();
+    }
 
-        foreach (GameObject uiElement in nonInteractableUIParts)
-        {
-            uiElement.SetActive(buildUIActive);
-        }
+    public void RefreshUiElements()
+    {
+        selectableTrainParts.ForEach(part => part.SetActive(buildUIActive));
+        nonInteractableUIParts.ForEach(part => part.SetActive(buildUIActive));
     }
 
     public void SelectObject(SelectableTrainPart selected)
