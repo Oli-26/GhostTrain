@@ -8,16 +8,14 @@ public class BuildingController : MonoBehaviour
     public GameObject grabberPrefabBotSide;
     public GameObject refinerPrefab;
     public GameObject extensionPrefab;
-    
-    private UIController uiController;
-    private TrainCore trainCore;
+    public TrainCore trainCore;
+    public UIController uiController;
 
     void Start()
     {
-        uiController = GetComponent<UIController>();
-        trainCore = GameObject.Find("Train").GetComponent<TrainCore>();
-
     }
+    
+    
 
     void Update()
     {
@@ -36,7 +34,7 @@ public class BuildingController : MonoBehaviour
             return;
         }
 
-        var extention = trainCore.Extentions[extentionNumber-1];
+        Extention extention = trainCore.Extentions[extentionNumber-1];
         GameObject slot = extention.GetComponent<Extention>().GetSlot(slotNumber);
 
         if(type == PurchaseType.Grabber){
@@ -53,7 +51,7 @@ public class BuildingController : MonoBehaviour
 
     }
 
-    public void CreateGrabber(GameObject extention, GameObject slot, bool isTop){
+    public void CreateGrabber(Extention extention, GameObject slot, bool isTop){
         GameObject grabber;
         if(isTop){
             grabber = Instantiate(grabberPrefabTopSide, slot.transform.position, Quaternion.identity);
@@ -66,7 +64,7 @@ public class BuildingController : MonoBehaviour
         grabber.GetComponent<Grabber>().isTopSide = isTop;
     }
 
-    public void CreateRefiner(GameObject extention, GameObject slot, bool isTop){
+    public void CreateRefiner(Extention extention, GameObject slot, bool isTop){
         GameObject refiner;
         refiner = Instantiate(refinerPrefab, slot.transform.position, Quaternion.identity);
         slot.GetComponent<Slot>().CreateAddOn(refiner);
@@ -75,16 +73,14 @@ public class BuildingController : MonoBehaviour
 
 
     public void CreateExtension(){
-        GameObject train = GameObject.Find("Train");
-        TrainCore trainScript = train.GetComponent<TrainCore>();
-        GameObject extension = Instantiate(extensionPrefab, trainScript.trainFront.transform.position, Quaternion.identity);
-        extension.transform.position -= new Vector3((extension.GetComponent<Extention>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x -0.2f) * trainScript.Extentions.Count, 0f, 0f);
+        Extention extension = Instantiate(extensionPrefab, trainCore.trainFront.transform.position, Quaternion.identity).GetComponent<Extention>();
+        extension.transform.position -= new Vector3((extension.GetComponent<Extention>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x -0.2f) * trainCore.Extentions.Count, 0f, 0f);
         extension.transform.position -= new Vector3(1.88f, 0.82f, 0f);
-        extension.transform.parent = train.transform;
-        trainScript.Extentions.Add(extension);
+        extension.transform.parent = trainCore.gameObject.transform;
+        trainCore.Extentions.Add(extension);
 
         uiController.selectableTrainParts.AddRange(extension.GetComponent<Extention>().interactableUISlots);
-        extension.GetComponent<Extention>().SetSlotExtensionId(trainScript.Extentions.Count);
+        extension.GetComponent<Extention>().SetSlotExtensionId(trainCore.Extentions.Count);
 
     }
 

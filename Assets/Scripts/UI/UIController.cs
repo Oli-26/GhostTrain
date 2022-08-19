@@ -6,15 +6,14 @@ using System.Linq;
 public class UIController : MonoBehaviour
 {
     public List<GameObject> selectableTrainParts = new List<GameObject>();
-    public List<GameObject> nonInteractableUIParts = new List<GameObject>();
-    public List<GameObject> purchaseButtons = new List<GameObject>();
-    public List<GameObject> addOnOptionButtons = new List<GameObject>();
+    public List<GameObject> baseUIParts = new List<GameObject>();
     public List<GameObject> allText = new List<GameObject>();
     
     bool buildUIActive;
     
     public GameObject RefinerOptions;
     public GameObject AddOnShop;
+    public TrainCore trainCore;
 
     public SelectableTrainPart selectedObject;
     public int selectedSlotId = -1;
@@ -28,11 +27,9 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        foreach (GameObject uiElement in allText)
-        {
-            uiElement.GetComponent<MeshRenderer>().sortingOrder = 15;
-        }
-
+        CollectAllSceneText();
+        allText.ForEach(uiElement => uiElement.GetComponent<MeshRenderer>().sortingOrder = 15);
+        
         woodCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "WoodCount").ToList()
             .FirstOrDefault();
         stoneCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "StoneCount").ToList().First();
@@ -45,35 +42,11 @@ public class UIController : MonoBehaviour
     void Update()
     {
     }
-
-    bool mouseInsideObject(GameObject obj)
-    {
-        Vector3 objectPosition = obj.transform.position;
-        Vector3 localScale = obj.GetComponent<SpriteRenderer>().bounds.size;
-
-        Vector3 bottomLeftCorner = new Vector3(objectPosition.x - localScale.x, objectPosition.y - localScale.y, 0f);
-        Vector3 topRightCorder = new Vector3(objectPosition.x + localScale.x, objectPosition.y + localScale.y, 0f);
-
-
-        return pointInsideRectangle(mouseToWorld(), bottomLeftCorner, topRightCorder);
+    
+    private void CollectAllSceneText(){
+        allText = Resources.FindObjectsOfTypeAll<GameObject>().Where(text => text.tag == "UIText").ToList();
     }
-
-    Vector3 mouseToWorld()
-    {
-        Vector3 mousePositionWithZ = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return new Vector3(mousePositionWithZ.x, mousePositionWithZ.y, 0f);
-    }
-
-    bool pointInsideRectangle(Vector3 point, Vector3 lowCorner, Vector3 highCorner)
-    {
-        if (point.x > lowCorner.x && point.x < highCorner.x && point.y > lowCorner.y && point.y < highCorner.y)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
+    
     public void toggleBuildingUI()
     {
         buildUIActive = !buildUIActive;
@@ -92,8 +65,10 @@ public class UIController : MonoBehaviour
 
     public void RefreshUiElements()
     {
-        selectableTrainParts.ForEach(part => part.SetActive(buildUIActive));
-        nonInteractableUIParts.ForEach(part => part.SetActive(buildUIActive));
+        trainCore.Extentions
+            .SelectMany(ext => ext.interactableUISlots).ToList()
+            .ForEach(slot => slot.SetActive(buildUIActive));
+        baseUIParts.ForEach(part => part.SetActive(buildUIActive));
     }
 
     public void SelectObject(SelectableTrainPart selected)
@@ -121,8 +96,7 @@ public class UIController : MonoBehaviour
             return;
         }
 
-        List<GameObject> extentions = GameObject.Find("Train").GetComponent<TrainCore>().Extentions;
-        GameObject slot = extentions[selectedExtentionId - 1].GetComponent<Extention>().GetSlot(selectedSlotId);
+        GameObject slot = trainCore.Extentions[selectedExtentionId - 1].GetComponent<Extention>().GetSlot(selectedSlotId);
         GameObject addOn = slot.GetComponent<Slot>().GetAddOn();
 
         if (addOn != null)

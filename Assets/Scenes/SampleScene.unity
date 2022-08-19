@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 99069753}
   - component: {fileID: 99069754}
   m_Layer: 0
-  m_Name: SidePanel
+  m_Name: SidePanelTop
   m_TagString: BuildUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2180,6 +2180,7 @@ GameObject:
   - component: {fileID: 815726007}
   - component: {fileID: 815726008}
   - component: {fileID: 815726009}
+  - component: {fileID: 815726010}
   m_Layer: 0
   m_Name: BuyButton
   m_TagString: Untagged
@@ -2276,6 +2277,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+--- !u!58 &815726010
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815726005}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000047683716, y: 0.00000023841858}
+  serializedVersion: 2
+  m_Radius: 0.16
 --- !u!1 &1015605465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2450,6 +2467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1020247273}
   - component: {fileID: 1020247274}
+  - component: {fileID: 1020247275}
   m_Layer: 0
   m_Name: BuyButton
   m_TagString: Untagged
@@ -2521,6 +2539,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1020247275
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020247272}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000009536743, y: -0.00000011920929}
+  serializedVersion: 2
+  m_Radius: 0.16000004
 --- !u!1 &1076011413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2889,7 +2923,7 @@ GameObject:
   - component: {fileID: 1246433320}
   - component: {fileID: 1246433321}
   m_Layer: 0
-  m_Name: SidePanel
+  m_Name: SidePanelBottom
   m_TagString: BuildUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3077,6 +3111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1363207564}
   - component: {fileID: 1363207565}
+  - component: {fileID: 1363207566}
   m_Layer: 0
   m_Name: BuyButton
   m_TagString: Untagged
@@ -3148,6 +3183,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1363207566
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363207563}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000047683716, y: -0.000000029802322}
+  serializedVersion: 2
+  m_Radius: 0.16
 --- !u!1 &1426132479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3277,15 +3328,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectableTrainParts: []
-  nonInteractableUIParts:
-  - {fileID: 2104305597}
+  baseUIParts:
   - {fileID: 422932035}
-  purchaseButtons:
-  - {fileID: 1724166969}
-  - {fileID: 815726005}
-  - {fileID: 1472525535}
-  addOnOptionButtons:
-  - {fileID: 1434318549}
+  - {fileID: 2104305597}
   allText:
   - {fileID: 721800882}
   - {fileID: 214325779}
@@ -3298,11 +3343,12 @@ MonoBehaviour:
   - {fileID: 1515095279}
   - {fileID: 121797510}
   - {fileID: 121797510}
+  RefinerOptions: {fileID: 417199395}
+  AddOnShop: {fileID: 1966102924}
+  trainCore: {fileID: 2038458523}
   selectedObject: {fileID: 0}
   selectedSlotId: -1
   selectedExtentionId: -1
-  RefinerOptions: {fileID: 417199395}
-  AddOnShop: {fileID: 1966102924}
 --- !u!114 &1426132486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3341,6 +3387,7 @@ GameObject:
   - component: {fileID: 1434318550}
   - component: {fileID: 1434318552}
   - component: {fileID: 1434318551}
+  - component: {fileID: 1434318553}
   m_Layer: 0
   m_Name: ToggleRefiner
   m_TagString: Untagged
@@ -3425,6 +3472,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1434318553
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434318549}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.0000000018626451}
+  serializedVersion: 2
+  m_Radius: 0.16000001
 --- !u!1 &1472525535
 GameObject:
   m_ObjectHideFlags: 0
@@ -3436,6 +3499,7 @@ GameObject:
   - component: {fileID: 1472525536}
   - component: {fileID: 1472525537}
   - component: {fileID: 1472525538}
+  - component: {fileID: 1472525539}
   m_Layer: 0
   m_Name: BuyButton
   m_TagString: Untagged
@@ -3520,6 +3584,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+--- !u!58 &1472525539
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472525535}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000047683716, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.16
 --- !u!1 &1515095279
 GameObject:
   m_ObjectHideFlags: 0
@@ -3805,6 +3885,7 @@ GameObject:
   - component: {fileID: 1724166971}
   - component: {fileID: 1724166972}
   - component: {fileID: 1724166973}
+  - component: {fileID: 1724166974}
   m_Layer: 0
   m_Name: BuyButton
   m_TagString: Untagged
@@ -3901,6 +3982,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+--- !u!58 &1724166974
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724166969}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000047683716, y: 0.00000023841858}
+  serializedVersion: 2
+  m_Radius: 0.16
 --- !u!1 &1794445190
 GameObject:
   m_ObjectHideFlags: 0
