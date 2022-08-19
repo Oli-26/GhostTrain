@@ -9,6 +9,7 @@ TagManager:
   - UI
   - Resource
   - InteractableUI
+  - UIText
   layers:
   - Default
   - TransparentFX
