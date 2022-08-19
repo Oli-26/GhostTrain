@@ -444,7 +444,7 @@ MonoBehaviour:
   armSize: {x: 0, y: 0, z: 0}
   touchPoint: {fileID: 2091067929609188815}
   basePoint: {fileID: 2091067928437632135}
-  cooldown: 8
+  cooldown: 4.5
   maxRange: 2
   isTopSide: 1
   targetPoint: {x: 0, y: 0, z: 0}

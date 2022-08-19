@@ -3332,6 +3332,9 @@ MonoBehaviour:
     type: 3}
   WaterTrackSupport: {fileID: 3168655172780319218, guid: cb786d0836338294ab0621439bdc2f58,
     type: 3}
+  Boat: {fileID: 8371304888681252052, guid: 08afd330ea494764ba825dc76c815ba5, type: 3}
+  Fishes:
+  - {fileID: 579250044107053513, guid: a4e9eac74901ce4438302b6c858f7735, type: 3}
   spawnedObjects: []
 --- !u!114 &1426132484
 MonoBehaviour:
@@ -3401,6 +3404,7 @@ MonoBehaviour:
   woodCount: 75
   stoneCount: 25
   metalCount: 35
+  fishCount: 0
 --- !u!114 &1426132487
 MonoBehaviour:
   m_ObjectHideFlags: 0

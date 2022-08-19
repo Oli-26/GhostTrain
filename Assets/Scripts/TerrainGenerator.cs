@@ -19,6 +19,8 @@ public class TerrainGenerator : MonoBehaviour
 
     public GameObject WaterGroundPrefab;
     public GameObject WaterTrackSupport;
+    public GameObject Boat;
+    public List<GameObject> Fishes;
     
     public List<GameObject> spawnedObjects = new List<GameObject>();
     void Start()
@@ -169,26 +171,18 @@ public class TerrainGenerator : MonoBehaviour
         path.transform.parent = terrainHolder.transform;
         spawnedObjects.Add(path);
 
+        GameObject boat = Instantiate(Boat, center + new Vector3(generateRandomNumber(0f,35f), generateRandomNumber(2f, 4f), 0f), Quaternion.identity);
 
-        /*
+
+        
         for(int i = 0; i<20; i++){
-            int index = Random.Range(0,DesertTreePrefabs.Count-1);
+            int index = Random.Range(0,Fishes.Count-1);
 
-            GameObject tree = Instantiate(DesertTreePrefabs[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(1f, 4.5f), 0), Quaternion.identity);
-            tree.transform.parent = terrainHolder.transform;
-            spawnedObjects.Add(tree);
+            GameObject fish = Instantiate(Fishes[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(1f, 4.5f), 0), Quaternion.identity);
+            fish.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(fish);
         }
 
-
-
-        for(int i = 0; i<70; i++){
-            int index = Random.Range(0,DesertDetailPrefabs.Count-1);
-
-            GameObject glassDetail = Instantiate(DesertDetailPrefabs[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(0.7f, 4.5f), 0), Quaternion.identity);
-            glassDetail.transform.parent = terrainHolder.transform;
-            spawnedObjects.Add(glassDetail);
-        }
-        */
 
         return terrainHolder;
     }

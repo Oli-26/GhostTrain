@@ -24,6 +24,7 @@ public class Grabber : TimeEffected{
     public GameObject target;
     bool isGrabbing = false;
     bool isReturning = false;
+    bool hasGrabbedResource = false;
 
     void Start()
     {
@@ -105,12 +106,18 @@ public class Grabber : TimeEffected{
 
     void consumeResource(){
         environmentController.DeTargetResource(target);
+        
+        if(hasGrabbedResource == false){
+            return;
+        }
+        
         Resource r = target.GetComponent<Resource>();
         invent.GainResource(r.type, r.amount);
         Destroy(target);
     }
 
     void grabResource(){
+        hasGrabbedResource = true;
         target.transform.parent = touchPoint;
     }
 
@@ -127,6 +134,7 @@ public class Grabber : TimeEffected{
             targetPoint = target.transform.position ;//+ new Vector3(0f, size.y/2f, 0f)*orientationMultiplier;
             environmentController.TargetResource(target);
             enableGrabbing();
+            hasGrabbedResource = false;
         }else{
             _activeCooldown = 0.5f;
         }

@@ -58,8 +58,6 @@ public class SelectableTrainPart : UIElement
     
     void OnMouseOver()
     {
-        Debug.Log("Mouse is over GameObject.");
-
         HighLight();
     }
 

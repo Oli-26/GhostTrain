@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
     public int woodCount = 25;
     public int stoneCount = 15;
     public int metalCount = 15;
+    public int fishCount = 0;
 
     void Start(){
         
@@ -22,6 +23,9 @@ public class Inventory : MonoBehaviour
                 break;
             case ResourceType.Metal:
                 metalCount+=amount;
+                break;
+            case ResourceType.Fish:
+                fishCount+=amount;
                 break;
             default:
                 Debug.Log("Resource " + type + " is not recognised");
@@ -42,6 +46,9 @@ public class Inventory : MonoBehaviour
             case ResourceType.Metal:
                 metalCount-=amount;
                 break;
+             case ResourceType.Fish:
+                fishCount-=amount;
+                break;
             default:
                 Debug.Log("Resource " + type + " is not recognised");
                 break;
@@ -58,6 +65,8 @@ public class Inventory : MonoBehaviour
                 return stoneCount;
             case ResourceType.Metal:
                 return metalCount;
+            case ResourceType.Fish:
+                return fishCount;
             default:
                 return 0;
         }
@@ -71,9 +80,11 @@ public class Inventory : MonoBehaviour
                 return stoneCount >= amount;
             case ResourceType.Metal:
                 return metalCount >= amount;
+            case ResourceType.Fish:
+                return fishCount >= amount;
             default:
                 return false;
         }
     }
 }
-public enum ResourceType {Wood, Stone, Metal}
+public enum ResourceType {Wood, Stone, Metal, Fish}
