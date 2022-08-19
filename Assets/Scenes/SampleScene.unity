@@ -1491,7 +1491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &422932036
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2312,11 +2312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae0fc596e60d494bac440bab9ce6465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  gameController: {fileID: 0}
-  metalCost: 0
-  woodCost: 10
-  stoneCost: 0
 --- !u!114 &815726009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3953,11 +3948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae0fc596e60d494bac440bab9ce6465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  gameController: {fileID: 0}
-  metalCost: 0
-  woodCost: 10
-  stoneCost: 0
 --- !u!114 &1724166973
 MonoBehaviour:
   m_ObjectHideFlags: 0
