@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 678168928524100184}
   - component: {fileID: 678168928524100185}
   - component: {fileID: 678168928524100186}
+  - component: {fileID: 7486389439498012478}
   m_Layer: 0
   m_Name: SlotUIEffectT1
   m_TagString: InteractableUI
@@ -97,6 +98,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotId: 1
   extentionId: 1
+--- !u!65 &7486389439498012478
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678168928524101031}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.2, y: 4.7000003, z: 0.2}
+  m_Center: {x: 0.0000019073486, y: 0, z: 0}
 --- !u!1 &678168928808284178
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +122,7 @@ GameObject:
   - component: {fileID: 678168928808284179}
   - component: {fileID: 678168928808284180}
   - component: {fileID: 678168928808284181}
+  - component: {fileID: 6888656853110223874}
   m_Layer: 0
   m_Name: SlotUIEffectB0
   m_TagString: InteractableUI
@@ -194,6 +209,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotId: 2
   extentionId: 1
+--- !u!65 &6888656853110223874
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678168928808284178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.2, y: 4.6999993, z: 0.2}
+  m_Center: {x: 0.0000009536743, y: 0.0000009536743, z: 0}
 --- !u!1 &678168928933231339
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,6 +293,7 @@ GameObject:
   - component: {fileID: 678168929134595691}
   - component: {fileID: 678168929134595692}
   - component: {fileID: 678168929134595693}
+  - component: {fileID: 7430624550771719399}
   m_Layer: 0
   m_Name: SlotUIEffectT0
   m_TagString: InteractableUI
@@ -351,6 +380,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotId: 0
   extentionId: 1
+--- !u!65 &7430624550771719399
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678168929134595690}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.2, y: 4.6999993, z: 0.2}
+  m_Center: {x: 0.0000009536743, y: -0.00000166893, z: 0}
 --- !u!1 &678168929412086366
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,6 +620,7 @@ GameObject:
   - component: {fileID: 678168929847674793}
   - component: {fileID: 678168929847674794}
   - component: {fileID: 678168929847674795}
+  - component: {fileID: 7861620062749986770}
   m_Layer: 0
   m_Name: SlotUIEffectB1
   m_TagString: InteractableUI
@@ -664,6 +707,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotId: 3
   extentionId: 1
+--- !u!65 &7861620062749986770
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678168929847674792}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.2000012, y: 4.700001, z: 0.2}
+  m_Center: {x: -0.0000009536743, y: 0, z: 0}
 --- !u!1 &678168929920196253
 GameObject:
   m_ObjectHideFlags: 0

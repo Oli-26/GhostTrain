@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,9 +15,12 @@ public class SelectableTrainPart : UIElement
 
     public int slotId = -1;
     public int extentionId = -1;
+    private UIController uiController;
+
     void Start()
     {
         gameController = GameObject.Find("Controller");
+        uiController = gameController.GetComponent<UIController>();
         baseColor = GetComponent<SpriteRenderer>().color;
     }
 
@@ -32,17 +36,14 @@ public class SelectableTrainPart : UIElement
         
     }
 
-    public void Interact(){
-        gameController.GetComponent<UIController>().trySelectObject(gameObject);
-    }
-
     public void Select(){
         GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0f, 1f);
         selected = true;
         highLighted = false;
+        uiController.SelectObject(this);
     }
 
-    public void DeSelect(){
+    public void Deselect(){
         GetComponent<SpriteRenderer>().color = beingUsed ? inUseColor : baseColor;
         selected = false;
     }
@@ -53,6 +54,18 @@ public class SelectableTrainPart : UIElement
             highLightTick = 15;
             highLighted = true;
         } 
+    }
+    
+    void OnMouseOver()
+    {
+        Debug.Log("Mouse is over GameObject.");
+
+        HighLight();
+    }
+
+    private void OnMouseUpAsButton()
+    {
+        Select();
     }
 
     public void InUse(){
