@@ -8,14 +8,17 @@ public class TerrainGenerator : MonoBehaviour
     public List<GameObject> GlassDetailPrefabs;
     public List<GameObject> StonePrefabs;
     public GameObject coreGroundPrefab;
+    public List<gameObject> GrassLandLoot;
 
 
     public List<GameObject> DesertTreePrefabs;
     public List<GameObject> DesertDetailPrefabs;
     public List<GameObject> DesertStonePrefabs;
     public GameObject DesertGroundPrefab;
+    public List<gameObject> DesertLoot;
 
     public GameObject SnowGroundPrefab;
+    public List<gameObject> SnowLoot;
 
     public GameObject WaterGroundPrefab;
     public GameObject WaterTrackSupport;
