@@ -7,7 +7,6 @@ public class BuildingController : MonoBehaviour
     public GameObject grabberPrefabTopSide;
     public GameObject grabberPrefabBotSide;
     public GameObject refinerPrefab;
-    public GameObject extensionPrefab;
     public TrainCore trainCore;
     public UIController uiController;
 
@@ -29,7 +28,7 @@ public class BuildingController : MonoBehaviour
     public void ConstructAddOn(PurchaseType type, int extentionNumber, int slotNumber){
         
         if(type == PurchaseType.Extension){
-            CreateExtension();
+            trainCore.AddExtension();
             uiController.RefreshUiElements();
             return;
         }
@@ -38,12 +37,12 @@ public class BuildingController : MonoBehaviour
         GameObject slot = extention.GetComponent<Extention>().GetSlot(slotNumber);
 
         if(type == PurchaseType.Grabber){
-            CreateGrabber(extention, slot, slotNumber <= 1);
+            CreateGrabber(slot, slotNumber <= 1);
             uiController.selectedObject.GetComponent<SelectableTrainPart>().InUse();
         }
 
         if(type == PurchaseType.Refiner){
-            CreateRefiner(extention, slot, slotNumber <= 1);
+            CreateRefiner(slot, slotNumber <= 1);
             uiController.selectedObject.GetComponent<SelectableTrainPart>().InUse();
         }
         
@@ -51,7 +50,7 @@ public class BuildingController : MonoBehaviour
 
     }
 
-    public void CreateGrabber(Extention extention, GameObject slot, bool isTop){
+    public void CreateGrabber(GameObject slot, bool isTop){
         GameObject grabber;
         if(isTop){
             grabber = Instantiate(grabberPrefabTopSide, slot.transform.position, Quaternion.identity);
@@ -64,27 +63,11 @@ public class BuildingController : MonoBehaviour
         grabber.GetComponent<Grabber>().isTopSide = isTop;
     }
 
-    public void CreateRefiner(Extention extention, GameObject slot, bool isTop){
+    public void CreateRefiner(GameObject slot, bool isTop){
         GameObject refiner;
         refiner = Instantiate(refinerPrefab, slot.transform.position, Quaternion.identity);
         slot.GetComponent<Slot>().CreateAddOn(refiner);
         refiner.transform.parent = slot.transform;
     }
-
-
-    public void CreateExtension(){
-        Extention extension = Instantiate(extensionPrefab, trainCore.trainFront.transform.position, Quaternion.identity).GetComponent<Extention>();
-        extension.transform.position -= new Vector3((extension.GetComponent<Extention>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x -0.2f) * trainCore.Extentions.Count, 0f, 0f);
-        extension.transform.position -= new Vector3(1.88f, 0.82f, 0f);
-        extension.transform.parent = trainCore.gameObject.transform;
-        trainCore.Extentions.Add(extension);
-
-        uiController.selectableTrainParts.AddRange(extension.GetComponent<Extention>().interactableUISlots);
-        extension.GetComponent<Extention>().SetSlotExtensionId(trainCore.Extentions.Count);
-
-    }
-
-
-
 
 }
