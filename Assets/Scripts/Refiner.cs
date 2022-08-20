@@ -5,8 +5,8 @@ using UnityEngine;
 public class Refiner : TimeEffected
 {
     bool refining = true;
-    ResourceType refiningType = ResourceType.Stone;
-    List<ResourceType> refinableTypes = new List<ResourceType>() {ResourceType.Stone};
+    ResourceType refiningType = ResourceType.Metal;
+    List<ResourceType> refinableTypes = new List<ResourceType>() {ResourceType.Metal};
     Inventory invent;
     public GameObject effect;
 
@@ -33,7 +33,7 @@ public class Refiner : TimeEffected
 
     void Refine(){
         switch(refiningType){
-            case ResourceType.Stone:
+            case ResourceType.Metal:
                 if(invent.GetResourceAmount(ResourceType.Stone) >= inputAmount){
                     invent.LoseResource(ResourceType.Stone, inputAmount);
                     for(int i = 0; i < inputAmount; i++){
@@ -58,5 +58,17 @@ public class Refiner : TimeEffected
         refining = !refining;
 
         effect.SetActive(refining);
+    }
+
+    public bool IsOn(){
+        return refining;
+    }
+
+    public void SetRefiningType(ResourceType type){
+        refiningType = type;
+    }
+
+    public ResourceType GetRefineType(){
+        return refiningType;
     }
 }

@@ -8,17 +8,17 @@ public class TerrainGenerator : MonoBehaviour
     public List<GameObject> GlassDetailPrefabs;
     public List<GameObject> StonePrefabs;
     public GameObject coreGroundPrefab;
-    public List<gameObject> GrassLandLoot;
+    public List<GameObject> GrassLandLoot;
 
 
     public List<GameObject> DesertTreePrefabs;
     public List<GameObject> DesertDetailPrefabs;
     public List<GameObject> DesertStonePrefabs;
     public GameObject DesertGroundPrefab;
-    public List<gameObject> DesertLoot;
+    public List<GameObject> DesertLoot;
 
     public GameObject SnowGroundPrefab;
-    public List<gameObject> SnowLoot;
+    public List<GameObject> SnowLoot;
 
     public GameObject WaterGroundPrefab;
     public GameObject WaterTrackSupport;
@@ -57,6 +57,7 @@ public class TerrainGenerator : MonoBehaviour
 
     public GameObject GenerateGrassTerrain(Vector3 center){
         GameObject terrainHolder = new GameObject();
+        terrainHolder.name = "GrassBiome";
         
         GameObject ground = Instantiate(coreGroundPrefab, center, Quaternion.identity);
         ground.transform.parent = terrainHolder.transform;
@@ -81,10 +82,19 @@ public class TerrainGenerator : MonoBehaviour
         for(int i = 0; i<150; i++){
             int index = Random.Range(0,TreePrefabs.Count-1);
 
-            GameObject glassDetail = Instantiate(GlassDetailPrefabs[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(0.7f, 4.5f), 0), Quaternion.identity);
-            glassDetail.transform.parent = terrainHolder.transform;
-            spawnedObjects.Add(glassDetail);
+            GameObject grassDetail = Instantiate(GlassDetailPrefabs[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(0.7f, 4.5f), 0), Quaternion.identity);
+            grassDetail.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(grassDetail);
         }
+
+        for(int i = 0; i<Random.Range(0, 3); i++){
+            int index = Random.Range(0,GrassLandLoot.Count-1);
+
+            GameObject loot = Instantiate(GrassLandLoot[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(0.7f, 4.5f), 0), Quaternion.identity);
+            loot.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(loot);
+        }
+        
 
         return terrainHolder;
 
@@ -93,7 +103,8 @@ public class TerrainGenerator : MonoBehaviour
 
     public GameObject GenerateDesertTerrain(Vector3 center){
         GameObject terrainHolder = new GameObject();
-        
+        terrainHolder.name = "DesertBiome";
+
         GameObject ground = Instantiate(DesertGroundPrefab, center, Quaternion.identity);
         ground.transform.parent = terrainHolder.transform;
         spawnedObjects.Add(ground);
@@ -122,12 +133,22 @@ public class TerrainGenerator : MonoBehaviour
             spawnedObjects.Add(glassDetail);
         }
 
+        for(int i = 0; i<Random.Range(0, 3); i++){
+            int index = Random.Range(0,DesertLoot.Count-1);
+
+            GameObject loot = Instantiate(DesertLoot[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(0.7f, 4.5f), 0), Quaternion.identity);
+            loot.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(loot);
+        }
+        
+
         return terrainHolder;
     }
 
     public GameObject GenerateSnowTerrain(Vector3 center){
         GameObject terrainHolder = new GameObject();
-        
+        terrainHolder.name = "SnowTerrain";
+
         GameObject ground = Instantiate(SnowGroundPrefab, center, Quaternion.identity);
         ground.transform.parent = terrainHolder.transform;
         spawnedObjects.Add(ground);
@@ -165,6 +186,7 @@ public class TerrainGenerator : MonoBehaviour
 
     public GameObject GenerateWaterTerrain(Vector3 center){
         GameObject terrainHolder = new GameObject();
+        terrainHolder.name = "WaterTerrain";
         
         GameObject ground = Instantiate(WaterGroundPrefab, center, Quaternion.identity);
         ground.transform.parent = terrainHolder.transform;

@@ -22,13 +22,40 @@ public class AddOnOptionButton : UIElement
             
             TrainCore train = GameObject.Find("Train").GetComponent<TrainCore>();
             GameObject slot = train.Extentions[UI.selectedExtentionId-1].GetComponent<Extention>().GetSlot(UI.selectedSlotId); 
+            Refiner refiner;
+            Grabber grabber;
+
             switch(type){
                 case AddOnOption.refinerToggle:
-                    slot.GetComponent<Slot>().GetAddOn().GetComponent<Refiner>().Toggle();
+                    refiner = slot.GetComponent<Slot>().GetAddOn().GetComponent<Refiner>();
+                    refiner.Toggle();
+                    gameController.GetComponent<UIController>().SetUpRefinerOptions(refiner);
+                    break;
+                case AddOnOption.refinerMakeMetal:
+                    refiner = slot.GetComponent<Slot>().GetAddOn().GetComponent<Refiner>();
+                    refiner.SetRefiningType(ResourceType.Metal);
+                    gameController.GetComponent<UIController>().SetUpRefinerOptions(refiner);
+                    break;
+                case AddOnOption.grabberFocusStone:
+                    grabber = slot.GetComponent<Slot>().GetAddOn().GetComponent<Grabber>();
+                    grabber.FocusResource(ResourceType.Stone);
+                    gameController.GetComponent<UIController>().SetUpGrabberOptions(grabber);
+                    break;
+                case AddOnOption.grabberFocusWood:
+                    grabber = slot.GetComponent<Slot>().GetAddOn().GetComponent<Grabber>();
+                    grabber.FocusResource(ResourceType.Wood);
+                    gameController.GetComponent<UIController>().SetUpGrabberOptions(grabber);
+                    break;
+                case AddOnOption.grabberFocusNone:
+                    grabber = slot.GetComponent<Slot>().GetAddOn().GetComponent<Grabber>();
+                    grabber.SetFocusActive(false);
+                    gameController.GetComponent<UIController>().SetUpGrabberOptions(grabber);
                     break;
                 default:
                     break;
             }
+
+            
         }
         
     }
@@ -42,4 +69,4 @@ public class AddOnOptionButton : UIElement
     }
 }
 
-public enum AddOnOption {refinerToggle}
+public enum AddOnOption {refinerToggle, grabberFocusWood, grabberFocusStone, grabberFocusNone, refinerMakeMetal};

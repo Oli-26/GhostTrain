@@ -21,7 +21,6 @@ public class GhostExtension : Extention
 
     private void OnMouseUpAsButton()
     {
-        Debug.Log("Clicked");
         if (_purchaser.AttemptPurchase(PurchaseType.Extension))
         {
             _trainCore.AddExtension();

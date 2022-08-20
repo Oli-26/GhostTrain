@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     bool buildUIActive;
     
     public GameObject RefinerOptions;
+    public GameObject GrabberOptions;
     public GameObject AddOnShop;
     public TrainCore trainCore;
 
@@ -102,22 +103,23 @@ public class UIController : MonoBehaviour
 
         if (addOn != null)
         {
-            if (addOn.GetComponent<Grabber>() != null)
+            Grabber grabber = addOn.GetComponent<Grabber>();
+            if (grabber != null)
             {
-                RefinerOptions.SetActive(false);
-                AddOnShop.SetActive(true);
+                SetUpGrabberOptions(grabber);
             }
 
-            if (addOn.GetComponent<Refiner>() != null)
+            Refiner refiner = addOn.GetComponent<Refiner>();
+            if (refiner != null)
             {
-                RefinerOptions.SetActive(true);
-                AddOnShop.SetActive(false);
+                SetUpRefinerOptions(refiner);
             }
         }
         else
         {
             RefinerOptions.SetActive(false);
             AddOnShop.SetActive(true);
+            GrabberOptions.SetActive(false);
         }
     }
 
@@ -126,5 +128,66 @@ public class UIController : MonoBehaviour
         woodCountText.GetComponent<TextMesh>().text = wood.ToString();
         stoneCountText.GetComponent<TextMesh>().text = stone.ToString();
         metalCountText.GetComponent<TextMesh>().text = metal.ToString();
+    }
+
+    public void SetUpRefinerOptions(Refiner refiner){
+        RefinerOptions.SetActive(true);
+        AddOnShop.SetActive(false);
+        GrabberOptions.SetActive(false);
+
+        SpriteRenderer metalOption = GetNestedChild(RefinerOptions, new string[]{"Metal option", "Option"}).GetComponent<SpriteRenderer>();
+        SpriteRenderer toggleOption = GetNestedChild(RefinerOptions, new string[]{"ToggleRefiner"}).GetComponent<SpriteRenderer>();
+
+        metalOption.color = new Color(1f, 1f, 1f, 1f);
+        toggleOption.color = new Color(1f, 1f, 1f, 1f);
+
+        if(!refiner.IsOn()){ 
+            toggleOption.color = new Color(0f, 0f, 0f, 1f);
+        }
+
+        if(refiner.GetRefineType() == ResourceType.Metal){
+            metalOption.color = new Color(0f, 0f, 0f, 1f);
+        }
+    }
+
+    public void SetUpGrabberOptions(Grabber grabber){
+        RefinerOptions.SetActive(false);
+        AddOnShop.SetActive(false);
+        GrabberOptions.SetActive(true);
+
+        SpriteRenderer woodOption = GetNestedChild(GrabberOptions, new string[]{"Wood option", "Option"}).GetComponent<SpriteRenderer>();
+        SpriteRenderer stoneOption = GetNestedChild(GrabberOptions, new string[]{"Stone option", "Option"}).GetComponent<SpriteRenderer>();
+        SpriteRenderer noneOption = GetNestedChild(GrabberOptions, new string[]{"None option", "Option"}).GetComponent<SpriteRenderer>();
+
+        woodOption.color = new Color(1f, 1f, 1f, 1f);
+        stoneOption.color = new Color(1f, 1f, 1f, 1f);
+        noneOption.color = new Color(1f, 1f, 1f, 1f);
+        Debug.Log(grabber.GetFocusActive());
+        if(grabber.GetFocusActive()){
+            switch(grabber.GetFocus()){
+                case ResourceType.Wood:
+                    woodOption.color = new Color(0f, 0f, 0f, 1f);
+                    break;
+                case ResourceType.Stone:
+                    stoneOption.color = new Color(0f, 0f, 0f, 1f);
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            noneOption.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 1f);
+        }
+        
+
+    }
+
+
+    GameObject GetNestedChild(GameObject baseObject, string[] names){
+        Transform latest = baseObject.transform.Find(names[0]);
+        for(int i = 1; i < names.Length; i++){
+            latest = latest.Find(names[i]);
+        }
+
+        return latest.gameObject;
     }
 }

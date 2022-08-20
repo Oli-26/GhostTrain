@@ -25,18 +25,16 @@ public class PurchaseButton : UIElement
     }
 
     public void Interact(){
-        Debug.Log("purchase addon button clicked: " + type);
         UIController UI = gameController.GetComponent<UIController>();
         if(type == PurchaseType.Extension){
             if(gameController.GetComponent<Purchaser>().AttemptPurchase(type)){
                 gameController.GetComponent<BuildingController>().ConstructAddOn(type, UI.selectedExtentionId, UI.selectedSlotId);
                 gameController.GetComponent<UIController>().LoadCorrectGUI();
-                Debug.Log("Created");
             } 
             return;
         }
         
-        Debug.Log("selectedSlot: " + UI.selectedSlotId + " selectedExtensionId: " + UI.selectedExtentionId);
+        //Debug.Log("selectedSlot: " + UI.selectedSlotId + " selectedExtensionId: " + UI.selectedExtentionId);
 
         if(UI.selectedSlotId != -1 && UI.selectedExtentionId != -1){
             if(!gameController.GetComponent<BuildingController>().CheckBuildIsPossible(UI.selectedExtentionId, UI.selectedSlotId)){

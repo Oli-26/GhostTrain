@@ -26,6 +26,9 @@ public class Grabber : TimeEffected{
     bool isReturning = false;
     bool hasGrabbedResource = false;
 
+    ResourceType focus;
+    bool focusSet = false;
+
     void Start()
     {
         Controller = GameObject.Find("Controller");
@@ -106,7 +109,7 @@ public class Grabber : TimeEffected{
 
     void consumeResource(){
         environmentController.DeTargetResource(target);
-        
+
         if(hasGrabbedResource == false){
             return;
         }
@@ -142,17 +145,55 @@ public class Grabber : TimeEffected{
     }
 
     bool IsTargetable(GameObject resource){
-        bool result = (resource.transform.position.x > basePoint.position.x + 4f) 
-            && (!environmentController.IsResourceTargeted(resource));
+        if(resource.transform.position.x < basePoint.position.x + 4f){
+            return false;
+        } 
+        if(environmentController.IsResourceTargeted(resource)){
+            return false;
+        }
             
             if(isTopSide){
-                result &= resource.transform.position.y - basePoint.position.y > 0;
-                result &= resource.transform.position.y - basePoint.position.y < maxRange;  
+                if(resource.transform.position.y - basePoint.position.y < 0){
+                    return false;
+                }
+                
+                if(resource.transform.position.y - basePoint.position.y > maxRange){
+                    return false;
+                };  
             }else{
-                result &= resource.transform.position.y - basePoint.position.y < 0;
-                result &= basePoint.position.y - resource.transform.position.y < maxRange; 
+                if(resource.transform.position.y - basePoint.position.y > 0){
+                    return false;
+                };
+                if(basePoint.position.y - resource.transform.position.y > maxRange){
+                    return false;
+                }; 
+            }
+
+            if(focusSet && focus != null){
+                if(resource.GetComponent<Resource>().type == focus){
+                    return true;
+                }
+            }else{
+                return true;
             }
        
-            return result;                           
+            return false;                         
+    }
+
+    public void FocusResource(ResourceType type){
+        focus = type;
+        SetFocusActive(true);
+    }
+
+    public ResourceType GetFocus(){
+        return focus;
+    }
+
+    public bool GetFocusActive(){
+        return focusSet;
+    }
+
+    public void SetFocusActive(bool active){
+        focusSet = active;
     }
 }
