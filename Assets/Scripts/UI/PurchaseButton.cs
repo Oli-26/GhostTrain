@@ -9,9 +9,13 @@ public class PurchaseButton : UIElement
     int metalCost = 0;
     int woodCost = 10;
     int stoneCost = 0;
+    Purchaser _purchaser;
+    TrainCore _trainCore;
     void Start()
     {
         gameController = GameObject.Find("Controller");
+        _purchaser = gameController.GetComponent<Purchaser>();
+        _trainCore = GameObject.Find("Train").GetComponent<TrainCore>();
     }
 
     void Update()
@@ -27,10 +31,19 @@ public class PurchaseButton : UIElement
     public void Interact(){
         UIController UI = gameController.GetComponent<UIController>();
         if(type == PurchaseType.Extension){
-            if(gameController.GetComponent<Purchaser>().AttemptPurchase(type)){
-                gameController.GetComponent<BuildingController>().ConstructAddOn(type, UI.selectedExtentionId, UI.selectedSlotId);
-                gameController.GetComponent<UIController>().LoadCorrectGUI();
-            } 
+            if (_purchaser.AttemptPurchase(type))
+            {
+                _trainCore.AddExtension(type);
+            }
+            
+            return;
+        }
+
+        if(type == PurchaseType.StorageExtension){
+            if (_purchaser.AttemptPurchase(type))
+            {
+                _trainCore.AddExtension(type);
+            }
             return;
         }
         
@@ -56,4 +69,4 @@ public class PurchaseButton : UIElement
     }
 }
 
-public enum PurchaseType {Grabber, Refiner, Extension}
+public enum PurchaseType {Grabber, Refiner, Extension, StorageExtension}

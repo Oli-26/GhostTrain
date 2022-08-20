@@ -8,9 +8,11 @@ public class GhostExtension : Extension
 
     private TrainCore _trainCore;
     private Purchaser _purchaser;
+    private UIController _uiController;
     void Start()
     {
         _purchaser = FindObjectOfType<Purchaser>();
+        _uiController = FindObjectOfType<UIController>();
         _trainCore = FindObjectOfType<TrainCore>();
     }
 
@@ -21,10 +23,11 @@ public class GhostExtension : Extension
 
     private void OnMouseUpAsButton()
     {
-        if (_purchaser.AttemptPurchase(PurchaseType.Extension))
-        {
-            _trainCore.AddExtension();
-        }
+        _uiController.LoadCorrectGUI(true);
+        //if (_purchaser.AttemptPurchase(PurchaseType.Extension))
+        //{
+            //_trainCore.AddExtension();
+        //}
     }
 
     public GameObject GetSlot(int index){

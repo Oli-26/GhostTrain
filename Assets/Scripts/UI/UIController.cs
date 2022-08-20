@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     public GameObject RefinerOptions;
     public GameObject GrabberOptions;
     public GameObject AddOnShop;
+    public GameObject ExtensionShop;
     public TrainCore trainCore;
 
     public SelectableTrainPart selectedObject;
@@ -89,12 +90,19 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void LoadCorrectGUI()
+    public void LoadCorrectGUI(bool loadExtensionShop = false)
     {
+        if(loadExtensionShop){
+            SetUpExtensionShop();
+            return;
+        }
+
         if (selectedExtentionId == -1 || selectedSlotId == -1)
         {
             RefinerOptions.SetActive(false);
             AddOnShop.SetActive(true);
+            ExtensionShop.SetActive(false);
+            GrabberOptions.SetActive(false);
             return;
         }
 
@@ -120,6 +128,7 @@ public class UIController : MonoBehaviour
             RefinerOptions.SetActive(false);
             AddOnShop.SetActive(true);
             GrabberOptions.SetActive(false);
+            ExtensionShop.SetActive(false);
         }
     }
 
@@ -134,6 +143,7 @@ public class UIController : MonoBehaviour
         RefinerOptions.SetActive(true);
         AddOnShop.SetActive(false);
         GrabberOptions.SetActive(false);
+        ExtensionShop.SetActive(false);
 
         SpriteRenderer metalOption = GetNestedChild(RefinerOptions, new string[]{"Metal option", "Option"}).GetComponent<SpriteRenderer>();
         SpriteRenderer toggleOption = GetNestedChild(RefinerOptions, new string[]{"ToggleRefiner"}).GetComponent<SpriteRenderer>();
@@ -154,6 +164,7 @@ public class UIController : MonoBehaviour
         RefinerOptions.SetActive(false);
         AddOnShop.SetActive(false);
         GrabberOptions.SetActive(true);
+        ExtensionShop.SetActive(false);
 
         SpriteRenderer woodOption = GetNestedChild(GrabberOptions, new string[]{"Wood option", "Option"}).GetComponent<SpriteRenderer>();
         SpriteRenderer stoneOption = GetNestedChild(GrabberOptions, new string[]{"Stone option", "Option"}).GetComponent<SpriteRenderer>();
@@ -162,7 +173,7 @@ public class UIController : MonoBehaviour
         woodOption.color = new Color(1f, 1f, 1f, 1f);
         stoneOption.color = new Color(1f, 1f, 1f, 1f);
         noneOption.color = new Color(1f, 1f, 1f, 1f);
-        
+
         if(grabber.GetFocusActive()){
             switch(grabber.GetFocus()){
                 case ResourceType.Wood:
@@ -177,8 +188,13 @@ public class UIController : MonoBehaviour
         }else{
             noneOption.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 1f);
         }
-        
+    }
 
+    public void SetUpExtensionShop(){
+        RefinerOptions.SetActive(false);
+        AddOnShop.SetActive(false);
+        GrabberOptions.SetActive(false);
+        ExtensionShop.SetActive(true);
     }
 
 

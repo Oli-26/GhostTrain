@@ -13,6 +13,7 @@ public class TrainCore : TimeEffected
 
     public GameObject extensionPrefab;
     public GameObject ghostExtensionPrefab;
+    public GameObject storageExtensionPrefab;
 
     Transform _transform;
     public GameObject trainFront;
@@ -26,7 +27,6 @@ public class TrainCore : TimeEffected
         _transform = transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         moveForward();
@@ -53,11 +53,11 @@ public class TrainCore : TimeEffected
         return Speed + (_boostActive ? BoostAmount : 0f);
     }
 
-    public void AddExtension()
+    public void AddExtension(PurchaseType extensionType)
     {
         if (CanAddExtension())
         {
-            var extension = CreateExtension(extensionPrefab);
+            var extension = CreateExtension(GetExtensionPrefab(extensionType));
 
             Extensions.Add(extension);
             extension.SetSlotExtensionId(Extensions.Count);
@@ -99,6 +99,17 @@ public class TrainCore : TimeEffected
     private bool CanAddExtension()
     {
         return Extensions.Count < MaxExtensions;
+    }
+
+    public GameObject GetExtensionPrefab(PurchaseType type){
+        switch(type){
+            case PurchaseType.Extension:
+                return extensionPrefab;
+            case PurchaseType.StorageExtension:
+                return storageExtensionPrefab;
+            default:
+                return null;
+        }
     }
 
 }

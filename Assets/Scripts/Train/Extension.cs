@@ -36,3 +36,5 @@ public class Extension : MonoBehaviour
 
     }
 }
+
+public enum ExtensionType {Base, Storage}

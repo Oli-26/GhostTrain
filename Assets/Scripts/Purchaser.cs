@@ -23,6 +23,8 @@ public class Purchaser : MonoBehaviour
                 return AttemptRefinerPurchase();
             case PurchaseType.Extension:
                 return AttemptExtensionPurchase();
+            case PurchaseType.StorageExtension:
+                return AttemptStorageExtensionPurchase();
             default:
                 return false;
         }
@@ -59,6 +61,25 @@ public class Purchaser : MonoBehaviour
     }
 
     public bool AttemptExtensionPurchase(){
+        Inventory invent = GetComponent<Inventory>();
+
+        if(!invent.HasResource(ResourceType.Wood, 50)){
+            return false;
+        }
+        if(!invent.HasResource(ResourceType.Stone, 25)){
+            return false;
+        }
+        if(!invent.HasResource(ResourceType.Metal, 20)){
+            return false;
+        }
+
+        invent.LoseResource(ResourceType.Wood, 50);
+        invent.LoseResource(ResourceType.Stone, 25);
+        invent.LoseResource(ResourceType.Metal, 20);
+        return true;
+    }
+
+    public bool AttemptStorageExtensionPurchase(){
         Inventory invent = GetComponent<Inventory>();
 
         if(!invent.HasResource(ResourceType.Wood, 50)){
