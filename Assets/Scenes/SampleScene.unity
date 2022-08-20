@@ -4484,16 +4484,20 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869192200}
-  m_Text: '15 metal
+  m_Text: '50 wood
 
-    25 wood'
+    25 stone
+
+    15 metal
+
+'
   m_OffsetZ: 150
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 5
+  m_FontSize: 4
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -8050,9 +8054,11 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825295884}
-  m_Text: '20 wood
+  m_Text: '50 wood
 
-    20 stone
+    25 stone
+
+    15 metal
 
 '
   m_OffsetZ: 150
@@ -8061,7 +8067,7 @@ TextMesh:
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 5
+  m_FontSize: 4
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}

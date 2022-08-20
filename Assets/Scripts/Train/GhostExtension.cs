@@ -24,10 +24,6 @@ public class GhostExtension : Extension
     private void OnMouseUpAsButton()
     {
         _uiController.LoadCorrectGUI(true);
-        //if (_purchaser.AttemptPurchase(PurchaseType.Extension))
-        //{
-            //_trainCore.AddExtension();
-        //}
     }
 
     public GameObject GetSlot(int index){

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 363656065961350168}
   m_Layer: 0
   m_Name: Fish1
-  m_TagString: Resource
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4c3c0c3415d134a93161ba3036e7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 3
   amount: 2
 --- !u!114 &363656065961350168
 MonoBehaviour:

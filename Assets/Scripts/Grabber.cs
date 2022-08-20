@@ -113,8 +113,15 @@ public class Grabber : TimeEffected{
         if(hasGrabbedResource == false){
             return;
         }
+        if(target == null){
+            return;
+        }
         
         Resource r = target.GetComponent<Resource>();
+
+        if(r == null){
+            return;
+        }
         invent.GainResource(r.type, r.amount);
         Destroy(target);
     }
@@ -145,6 +152,9 @@ public class Grabber : TimeEffected{
     }
 
     bool IsTargetable(GameObject resource){
+        if(resource == null){
+            return false;
+        }
         if(resource.transform.position.x < basePoint.position.x + 4f){
             return false;
         } 
