@@ -6147,6 +6147,8 @@ MonoBehaviour:
   SnowGroundPrefab: {fileID: 8593864216081026398, guid: 949e86f6361c568498b34bd244a3ddef,
     type: 3}
   SnowLoot: []
+  SnowTrees:
+  - {fileID: 5373156735363566201, guid: 2a4c27548edbf8549950e3f5e1a40f04, type: 3}
   WaterGroundPrefab: {fileID: 4356450168452520193, guid: bd688f3731cd64b4f938ea22e63948fb,
     type: 3}
   WaterTrackSupport: {fileID: 3168655172780319218, guid: cb786d0836338294ab0621439bdc2f58,
@@ -6154,6 +6156,14 @@ MonoBehaviour:
   Boat: {fileID: 8371304888681252052, guid: 08afd330ea494764ba825dc76c815ba5, type: 3}
   Fishes:
   - {fileID: 579250044107053513, guid: a4e9eac74901ce4438302b6c858f7735, type: 3}
+  SpookyGroundPrefab: {fileID: 6403592505668185823, guid: 6071a3f066724254ba2123078ea0a400,
+    type: 3}
+  GraveStones:
+  - {fileID: 3677158472707995024, guid: c6122097bc908a74a9a5a519c087d779, type: 3}
+  - {fileID: 2953164575225827143, guid: 1c3e8f46f58540a4dba55025ca5ad702, type: 3}
+  - {fileID: 8527125615904788103, guid: dd6931954b689414db30f567e284b47c, type: 3}
+  - {fileID: 1205130334041227893, guid: e30ea966014310b4d86744dad9498d99, type: 3}
+  - {fileID: 3714659618451393004, guid: 51063ee1e489cf245a4586b565676f7d, type: 3}
   spawnedObjects: []
 --- !u!114 &1426132484
 MonoBehaviour:

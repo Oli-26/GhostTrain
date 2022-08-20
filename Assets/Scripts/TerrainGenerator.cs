@@ -19,11 +19,15 @@ public class TerrainGenerator : MonoBehaviour
 
     public GameObject SnowGroundPrefab;
     public List<GameObject> SnowLoot;
+    public List<GameObject> SnowTrees;
 
     public GameObject WaterGroundPrefab;
     public GameObject WaterTrackSupport;
     public GameObject Boat;
     public List<GameObject> Fishes;
+
+    public GameObject SpookyGroundPrefab;
+    public List<GameObject> GraveStones;
     
     public List<GameObject> spawnedObjects = new List<GameObject>();
     void Start()
@@ -50,6 +54,8 @@ public class TerrainGenerator : MonoBehaviour
                 return GenerateSnowTerrain(center);
             case BiomeType.Water:
                 return GenerateWaterTerrain(center);
+            case BiomeType.Spooky:
+                return GenerateSpookyTerrain(center);
             default:
                 return null;
         }
@@ -153,25 +159,15 @@ public class TerrainGenerator : MonoBehaviour
         ground.transform.parent = terrainHolder.transform;
         spawnedObjects.Add(ground);
 
-        /*
+        
         for(int i = 0; i<20; i++){
-            int index = Random.Range(0,DesertTreePrefabs.Count-1);
+            int index = Random.Range(0,SnowTrees.Count-1);
 
-            GameObject tree = Instantiate(DesertTreePrefabs[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(1f, 4.5f), 0), Quaternion.identity);
+            GameObject tree = Instantiate(SnowTrees[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(1f, 4.5f), 0), Quaternion.identity);
             tree.transform.parent = terrainHolder.transform;
             spawnedObjects.Add(tree);
         }
 
-
-
-        for(int i = 0; i<70; i++){
-            int index = Random.Range(0,DesertDetailPrefabs.Count-1);
-
-            GameObject glassDetail = Instantiate(DesertDetailPrefabs[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(0.7f, 4.5f), 0), Quaternion.identity);
-            glassDetail.transform.parent = terrainHolder.transform;
-            spawnedObjects.Add(glassDetail);
-        }
-        */
 
         for(int i = 0; i<45; i++){
             int index = Random.Range(0,DesertStonePrefabs.Count-1);
@@ -212,6 +208,27 @@ public class TerrainGenerator : MonoBehaviour
         return terrainHolder;
     }
 
+    public GameObject GenerateSpookyTerrain(Vector3 center){
+        GameObject terrainHolder = new GameObject();
+        terrainHolder.name = "SpookyTerrain";
+        
+        GameObject ground = Instantiate(SpookyGroundPrefab, center, Quaternion.identity);
+        ground.transform.parent = terrainHolder.transform;
+        spawnedObjects.Add(ground);
+
+
+        for(int i = 0; i<23; i++){
+            int index = Random.Range(0,GraveStones.Count-1);
+
+            GameObject grave = Instantiate(GraveStones[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(1f, 4.5f), 0), Quaternion.identity);
+            grave.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(grave);
+        }
+
+
+        return terrainHolder;
+    }
+
     private float generateRandomNumber(float minimum, float maximum){
         float randomNumber = Random.Range(minimum, maximum);
 
@@ -219,4 +236,4 @@ public class TerrainGenerator : MonoBehaviour
     }
 }
 
-public enum BiomeType {Grass, Desert, Snow, Water}
+public enum BiomeType {Grass, Desert, Snow, Water, Spooky}
