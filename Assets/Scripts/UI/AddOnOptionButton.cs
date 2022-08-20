@@ -21,7 +21,7 @@ public class AddOnOptionButton : UIElement
         if(UI.selectedSlotId != -1 && UI.selectedExtentionId != -1){
             
             TrainCore train = GameObject.Find("Train").GetComponent<TrainCore>();
-            GameObject slot = train.Extentions[UI.selectedExtentionId-1].GetComponent<Extention>().GetSlot(UI.selectedSlotId); 
+            GameObject slot = train.Extensions[UI.selectedExtentionId-1].GetComponent<Extension>().GetSlot(UI.selectedSlotId); 
             Refiner refiner;
             Grabber grabber;
 

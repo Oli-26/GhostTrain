@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Extention : MonoBehaviour
+public class Extension : MonoBehaviour
 {
     public List<GameObject> slots = new List<GameObject>();
     public List<GameObject> interactableUISlots = new List<GameObject>();

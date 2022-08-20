@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 678168928933231340}
-  - component: {fileID: 678168928933231342}
+  - component: {fileID: 5082754486103334862}
   m_Layer: 0
   m_Name: Extention
   m_TagString: Untagged
@@ -259,7 +259,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &678168928933231342
+--- !u!114 &5082754486103334862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 678168928933231339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4625325a21f75964db3bd593502bd3ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 521805ac119f68f4fb6d4a1dec4303a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slots:
@@ -277,10 +277,10 @@ MonoBehaviour:
   - {fileID: 678168929618536707}
   - {fileID: 678168930086581058}
   interactableUISlots:
+  - {fileID: 678168929847674792}
   - {fileID: 678168929134595690}
   - {fileID: 678168928524101031}
   - {fileID: 678168928808284178}
-  - {fileID: 678168929847674792}
   baseObject: {fileID: 678168929412086366}
 --- !u!1 &678168929134595690
 GameObject:

@@ -16,10 +16,10 @@ public class TrainCore : TimeEffected
 
     Transform _transform;
     public GameObject trainFront;
-    private Extention _ghostExtension;
+    private Extension _ghostExtension;
 
 
-    public List<Extention> Extentions { get; } = new List<Extention>();
+    public List<Extension> Extensions { get; } = new List<Extension>();
 
     void Start()
     {
@@ -59,8 +59,8 @@ public class TrainCore : TimeEffected
         {
             var extension = CreateExtension(extensionPrefab);
 
-            Extentions.Add(extension);
-            extension.SetSlotExtensionId(Extentions.Count);
+            Extensions.Add(extension);
+            extension.SetSlotExtensionId(Extensions.Count);
             
             extension.interactableUISlots
                 .ForEach(slot => slot.SetActive(true));
@@ -82,14 +82,14 @@ public class TrainCore : TimeEffected
         }
     }
 
-    private Extention CreateExtension(GameObject prefab)
+    private Extension CreateExtension(GameObject prefab)
     {
-        Extention extension = Instantiate(prefab, trainFront.transform.position, Quaternion.identity)
-            .GetComponent<Extention>();
+        Extension extension = Instantiate(prefab, trainFront.transform.position, Quaternion.identity)
+            .GetComponent<Extension>();
         extension.transform.position -=
             new Vector3(
-                (extension.GetComponent<Extention>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x - 0.2f) *
-                Extentions.Count, 0f, 0f);
+                (extension.GetComponent<Extension>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x - 0.2f) *
+                Extensions.Count, 0f, 0f);
         extension.transform.position -= new Vector3(1.88f, 0.82f, 0f);
         extension.transform.parent = gameObject.transform;
         
@@ -98,7 +98,7 @@ public class TrainCore : TimeEffected
     
     private bool CanAddExtension()
     {
-        return Extentions.Count < MaxExtensions;
+        return Extensions.Count < MaxExtensions;
     }
 
 }

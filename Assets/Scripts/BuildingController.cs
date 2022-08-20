@@ -22,12 +22,12 @@ public class BuildingController : MonoBehaviour
     }
 
     public bool CheckBuildIsPossible(int extentionNumber, int slotNumber){
-        GameObject slot = trainCore.Extentions[extentionNumber-1].GetComponent<Extention>().GetSlot(slotNumber);
+        GameObject slot = trainCore.Extensions[extentionNumber-1].GetComponent<Extension>().GetSlot(slotNumber);
         return slot.GetComponent<Slot>().GetAddOn() == null;
     }
     public void ConstructAddOn(PurchaseType type, int extentionNumber, int slotNumber){
-        Extention extention = trainCore.Extentions[extentionNumber-1];
-        GameObject slot = extention.GetComponent<Extention>().GetSlot(slotNumber);
+        Extension extention = trainCore.Extensions[extentionNumber-1];
+        GameObject slot = extention.GetComponent<Extension>().GetSlot(slotNumber);
 
         if(type == PurchaseType.Grabber){
             CreateGrabber(slot, slotNumber <= 1);

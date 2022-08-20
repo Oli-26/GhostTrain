@@ -67,7 +67,7 @@ public class UIController : MonoBehaviour
 
     public void RefreshUiElements()
     {
-        trainCore.Extentions
+        trainCore.Extensions
             .SelectMany(ext => ext.interactableUISlots).ToList()
             .ForEach(slot => slot.SetActive(buildUIActive));
         baseUIParts.ForEach(part => part.SetActive(buildUIActive));
@@ -98,7 +98,7 @@ public class UIController : MonoBehaviour
             return;
         }
 
-        GameObject slot = trainCore.Extentions[selectedExtentionId - 1].GetComponent<Extention>().GetSlot(selectedSlotId);
+        GameObject slot = trainCore.Extensions[selectedExtentionId - 1].GetComponent<Extension>().GetSlot(selectedSlotId);
         GameObject addOn = slot.GetComponent<Slot>().GetAddOn();
 
         if (addOn != null)
@@ -162,7 +162,7 @@ public class UIController : MonoBehaviour
         woodOption.color = new Color(1f, 1f, 1f, 1f);
         stoneOption.color = new Color(1f, 1f, 1f, 1f);
         noneOption.color = new Color(1f, 1f, 1f, 1f);
-        Debug.Log(grabber.GetFocusActive());
+        
         if(grabber.GetFocusActive()){
             switch(grabber.GetFocus()){
                 case ResourceType.Wood:

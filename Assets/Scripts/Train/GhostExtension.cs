@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostExtension : Extention
+public class GhostExtension : Extension
 {
 
     private TrainCore _trainCore;
