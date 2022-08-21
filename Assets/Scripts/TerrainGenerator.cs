@@ -9,6 +9,7 @@ public class TerrainGenerator : MonoBehaviour
     public List<GameObject> StonePrefabs;
     public GameObject coreGroundPrefab;
     public List<GameObject> GrassLandLoot;
+    public List<GameObject> Gardens;
 
 
     public List<GameObject> DesertTreePrefabs;
@@ -16,6 +17,7 @@ public class TerrainGenerator : MonoBehaviour
     public List<GameObject> DesertStonePrefabs;
     public GameObject DesertGroundPrefab;
     public List<GameObject> DesertLoot;
+    public List<GameObject> DesertOasis;
 
     public GameObject SnowGroundPrefab;
     public List<GameObject> SnowLoot;
@@ -25,10 +27,12 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject WaterTrackSupport;
     public GameObject Boat;
     public List<GameObject> Fishes;
+    public GameObject SmallConcreteIsland;
 
     public GameObject SpookyGroundPrefab;
     public List<GameObject> GraveStones;
     public List<GameObject> GraveYards;
+    public GameObject SpookyTree;
     
     public List<GameObject> spawnedObjects = new List<GameObject>();
     void Start()
@@ -101,6 +105,14 @@ public class TerrainGenerator : MonoBehaviour
             loot.transform.parent = terrainHolder.transform;
             spawnedObjects.Add(loot);
         }
+
+        for(int i = 0; i<Random.Range(0, 2); i++){
+            int index = Random.Range(0,Gardens.Count-1);
+
+            GameObject garden = Instantiate(Gardens[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(0.7f, 4.5f), 0), Quaternion.identity);
+            garden.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(garden);
+        }
         
 
         return terrainHolder;
@@ -146,6 +158,14 @@ public class TerrainGenerator : MonoBehaviour
             GameObject loot = Instantiate(DesertLoot[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(0.7f, 4.5f), 0), Quaternion.identity);
             loot.transform.parent = terrainHolder.transform;
             spawnedObjects.Add(loot);
+        }
+
+        for(int i = 0; i<Random.Range(0, 2); i++){
+            int index = Random.Range(0,DesertOasis.Count-1);
+
+            GameObject oasis = Instantiate(DesertOasis[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(0.7f, 4.5f), 0), Quaternion.identity);
+            oasis.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(oasis);
         }
         
 
@@ -205,6 +225,13 @@ public class TerrainGenerator : MonoBehaviour
             spawnedObjects.Add(fish);
         }
 
+        for(int i = 0; i < Random.Range(0, 2); i++){
+            GameObject island = Instantiate(SmallConcreteIsland, center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(2f, 4.5f), 0), Quaternion.identity);
+            island.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(island);
+            
+        }
+
 
         return terrainHolder;
     }
@@ -232,6 +259,12 @@ public class TerrainGenerator : MonoBehaviour
             GameObject graveYard = Instantiate(GraveYards[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(2.5f, 3.5f), 0), Quaternion.identity);
             graveYard.transform.parent = terrainHolder.transform;
             spawnedObjects.Add(graveYard);
+        }
+
+        for(int i = 0; i < 15; i++){
+            GameObject tree = Instantiate(SpookyTree, center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(2.5f, 3.5f), 0), Quaternion.identity);
+            tree.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(tree);
             
         }
 

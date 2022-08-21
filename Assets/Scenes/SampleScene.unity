@@ -6168,6 +6168,8 @@ MonoBehaviour:
     type: 3}
   GrassLandLoot:
   - {fileID: 3146207160710319941, guid: f5348ca05a46fb641a0e768fd47b6c83, type: 3}
+  Gardens:
+  - {fileID: 4266860769097866190, guid: 9d7f49f97c8e59c4c8666f45797f8e76, type: 3}
   DesertTreePrefabs:
   - {fileID: 3744390696570865690, guid: 688c423887bfb5446b9593432a5af76d, type: 3}
   - {fileID: 8427308175659527020, guid: 98bbefb0e2e1b1e4689567c4b967240d, type: 3}
@@ -6189,6 +6191,8 @@ MonoBehaviour:
     type: 3}
   DesertLoot:
   - {fileID: 3146207160710319941, guid: f5348ca05a46fb641a0e768fd47b6c83, type: 3}
+  DesertOasis:
+  - {fileID: 3676781338070006302, guid: 41f5aaeb988ed3144a9b11fe3eedd684, type: 3}
   SnowGroundPrefab: {fileID: 8593864216081026398, guid: 949e86f6361c568498b34bd244a3ddef,
     type: 3}
   SnowLoot: []
@@ -6201,6 +6205,8 @@ MonoBehaviour:
   Boat: {fileID: 8371304888681252052, guid: 08afd330ea494764ba825dc76c815ba5, type: 3}
   Fishes:
   - {fileID: 579250044107053513, guid: a4e9eac74901ce4438302b6c858f7735, type: 3}
+  SmallConcreteIsland: {fileID: 269590839184714569, guid: 513cbc4a29d45f54da783d07bdac891e,
+    type: 3}
   SpookyGroundPrefab: {fileID: 6403592505668185823, guid: 6071a3f066724254ba2123078ea0a400,
     type: 3}
   GraveStones:
@@ -6211,6 +6217,8 @@ MonoBehaviour:
   - {fileID: 3714659618451393004, guid: 51063ee1e489cf245a4586b565676f7d, type: 3}
   GraveYards:
   - {fileID: 6463612925999049814, guid: 6cdea9f035fd39c48b659c0b736ff490, type: 3}
+  SpookyTree: {fileID: 6490676515098336980, guid: 3105fb0e40b8c4b45a8a63fbbb2dfcb4,
+    type: 3}
   spawnedObjects: []
 --- !u!114 &1426132484
 MonoBehaviour:
@@ -6309,7 +6317,7 @@ GameObject:
   - component: {fileID: 1430199552}
   - component: {fileID: 1430199553}
   m_Layer: 0
-  m_Name: Fish
+  m_Name: Food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6369,7 +6377,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 14
-  m_Sprite: {fileID: -8913009752900401969, guid: 3825f56772a9cbc4a93e1db69cd6b3c1,
+  m_Sprite: {fileID: 8123832373966212598, guid: 3825f56772a9cbc4a93e1db69cd6b3c1,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
