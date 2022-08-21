@@ -71,6 +71,9 @@ public class UIController : MonoBehaviour
         trainCore.Extensions
             .SelectMany(ext => ext.interactableUISlots).ToList()
             .ForEach(slot => slot.SetActive(buildUIActive));
+        trainCore.Extensions
+            .SelectMany(ext => ext.otherInteractables).ToList()
+            .ForEach(slot => slot.SetActive(buildUIActive));
         baseUIParts.ForEach(part => part.SetActive(buildUIActive));
     }
 

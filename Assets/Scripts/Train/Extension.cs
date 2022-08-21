@@ -6,6 +6,7 @@ public class Extension : MonoBehaviour
 {
     public List<GameObject> slots = new List<GameObject>();
     public List<GameObject> interactableUISlots = new List<GameObject>();
+    public List<GameObject> otherInteractables = new List<GameObject>();
     public GameObject baseObject;
     void Start()
     {
@@ -37,4 +38,4 @@ public class Extension : MonoBehaviour
     }
 }
 
-public enum ExtensionType {Base, Storage}
+public enum ExtensionType {Base, Storage, Living, Research}

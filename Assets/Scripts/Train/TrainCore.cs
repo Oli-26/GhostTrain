@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TrainCore : TimeEffected
 {
-    private const int MaxExtensions = 5;
+    private const int MaxExtensions = 7;
     private const float Speed = 3f;
     private const float BoostAmount = 1.5f;
     
@@ -14,6 +14,8 @@ public class TrainCore : TimeEffected
     public GameObject extensionPrefab;
     public GameObject ghostExtensionPrefab;
     public GameObject storageExtensionPrefab;
+    public GameObject livingExtensionPrefab;
+    public GameObject researchExtensionPrefab;
 
     Transform _transform;
     public GameObject trainFront;
@@ -64,6 +66,9 @@ public class TrainCore : TimeEffected
             
             extension.interactableUISlots
                 .ForEach(slot => slot.SetActive(true));
+
+            extension.otherInteractables
+                .ForEach(interactable => interactable.SetActive(true));
             
             if (CanAddExtension()) ShowGhostExtension(true);
         }
@@ -86,12 +91,15 @@ public class TrainCore : TimeEffected
     {
         Extension extension = Instantiate(prefab, trainFront.transform.position, Quaternion.identity)
             .GetComponent<Extension>();
-        extension.transform.position -=
-            new Vector3(
-                (extension.GetComponent<Extension>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x - 0.2f) *
-                Extensions.Count, 0f, 0f);
-        extension.transform.position -= new Vector3(1.88f, 0.82f, 0f);
-        extension.transform.parent = gameObject.transform;
+
+        Vector3 extensionPosition = new Vector3(0f, 0f, 0f);
+        foreach(Extension ext in Extensions){
+            extensionPosition += new Vector3(ext.GetComponent<Extension>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x, 0f, 0f);
+        }
+
+
+        extension.gameObject.transform.position -= (extensionPosition + new Vector3(1.88f, 0f, 0f));
+        extension.gameObject.transform.parent = gameObject.transform;
         
         return extension;
     }
@@ -107,6 +115,10 @@ public class TrainCore : TimeEffected
                 return extensionPrefab;
             case PurchaseType.StorageExtension:
                 return storageExtensionPrefab;
+            case PurchaseType.LivingExtension:
+                return livingExtensionPrefab;
+            case PurchaseType.ResearchExtension:
+                return researchExtensionPrefab;
             default:
                 return null;
         }

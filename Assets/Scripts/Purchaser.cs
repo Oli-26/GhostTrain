@@ -25,6 +25,10 @@ public class Purchaser : MonoBehaviour
                 return AttemptExtensionPurchase();
             case PurchaseType.StorageExtension:
                 return AttemptStorageExtensionPurchase();
+            case PurchaseType.LivingExtension:
+                return AttemptLivingExtensionPurchase();
+            case PurchaseType.ResearchExtension:
+                return AttemptResearchExtensionPurchase();
             default:
                 return false;
         }
@@ -80,6 +84,44 @@ public class Purchaser : MonoBehaviour
     }
 
     public bool AttemptStorageExtensionPurchase(){
+        Inventory invent = GetComponent<Inventory>();
+
+        if(!invent.HasResource(ResourceType.Wood, 50)){
+            return false;
+        }
+        if(!invent.HasResource(ResourceType.Stone, 25)){
+            return false;
+        }
+        if(!invent.HasResource(ResourceType.Metal, 20)){
+            return false;
+        }
+
+        invent.LoseResource(ResourceType.Wood, 50);
+        invent.LoseResource(ResourceType.Stone, 25);
+        invent.LoseResource(ResourceType.Metal, 20);
+        return true;
+    }
+
+    public bool AttemptLivingExtensionPurchase(){
+        Inventory invent = GetComponent<Inventory>();
+
+        if(!invent.HasResource(ResourceType.Wood, 50)){
+            return false;
+        }
+        if(!invent.HasResource(ResourceType.Stone, 25)){
+            return false;
+        }
+        if(!invent.HasResource(ResourceType.Metal, 20)){
+            return false;
+        }
+
+        invent.LoseResource(ResourceType.Wood, 50);
+        invent.LoseResource(ResourceType.Stone, 25);
+        invent.LoseResource(ResourceType.Metal, 20);
+        return true;
+    }
+
+    public bool AttemptResearchExtensionPurchase(){
         Inventory invent = GetComponent<Inventory>();
 
         if(!invent.HasResource(ResourceType.Wood, 50)){

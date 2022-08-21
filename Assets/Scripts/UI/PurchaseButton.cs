@@ -30,7 +30,7 @@ public class PurchaseButton : UIElement
 
     public void Interact(){
         UIController UI = gameController.GetComponent<UIController>();
-        if(type == PurchaseType.Extension){
+        if(type == PurchaseType.Extension || type == PurchaseType.StorageExtension || type == PurchaseType.LivingExtension || type == PurchaseType.ResearchExtension){
             if (_purchaser.AttemptPurchase(type))
             {
                 _trainCore.AddExtension(type);
@@ -38,16 +38,6 @@ public class PurchaseButton : UIElement
             
             return;
         }
-
-        if(type == PurchaseType.StorageExtension){
-            if (_purchaser.AttemptPurchase(type))
-            {
-                _trainCore.AddExtension(type);
-            }
-            return;
-        }
-        
-        //Debug.Log("selectedSlot: " + UI.selectedSlotId + " selectedExtensionId: " + UI.selectedExtentionId);
 
         if(UI.selectedSlotId != -1 && UI.selectedExtentionId != -1){
             if(!gameController.GetComponent<BuildingController>().CheckBuildIsPossible(UI.selectedExtentionId, UI.selectedSlotId)){
@@ -69,4 +59,4 @@ public class PurchaseButton : UIElement
     }
 }
 
-public enum PurchaseType {Grabber, Refiner, Extension, StorageExtension}
+public enum PurchaseType {Grabber, Refiner, Extension, StorageExtension, LivingExtension, ResearchExtension}
