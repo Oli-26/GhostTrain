@@ -23,7 +23,6 @@ public class GhostExtension : Extension
 
     private void OnMouseUpAsButton()
     {
-        Debug.Log("Ghost train clicked");
         _uiController.LoadCorrectGUI(true);
     }
 

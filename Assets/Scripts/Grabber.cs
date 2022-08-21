@@ -29,12 +29,17 @@ public class Grabber : TimeEffected{
     ResourceType focus;
     bool focusSet = false;
 
+    public GameObject bonusObject;
+    GrabberBonus bonus;
+    float bonusChance = 25f;
+
     void Start()
     {
         Controller = GameObject.Find("Controller");
         environmentController = Controller.GetComponent<Environment>();
         invent = Controller.GetComponent<Inventory>();
         armSize = arm.GetComponent<SpriteRenderer>().bounds.size;
+        bonus = bonusObject.GetComponent<GrabberBonus>();
     }
 
     void Update()
@@ -122,8 +127,13 @@ public class Grabber : TimeEffected{
         if(r == null){
             return;
         }
-        invent.GainResource(r.type, r.amount);
+
+        invent.GainResource(r.type, r.amount, transform.position);
         Destroy(target);
+
+        if(randomChance(bonusChance)){
+            bonus.SetUpBonus(2.5f);
+        }
     }
 
     void grabResource(){
@@ -205,5 +215,9 @@ public class Grabber : TimeEffected{
 
     public void SetFocusActive(bool active){
         focusSet = active;
+    }
+
+    public void GrantBonus(){
+        _activeCooldown = 0.01f;
     }
 }

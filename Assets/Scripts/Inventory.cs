@@ -9,11 +9,15 @@ public class Inventory : MonoBehaviour
     public int metalCount = 15;
     public int fishCount = 0;
 
+    public GameObject ResourceGainedEffect;
+
     void Start(){
         
     }
 
-    public void GainResource(ResourceType type, int amount){
+    public void GainResource(ResourceType type, int amount, Vector3 positionForEffect){
+        Instantiate(ResourceGainedEffect, positionForEffect, Quaternion.identity).GetComponent<ResourceGainedEffect>().SetResource(type);
+        
         switch(type){
             case ResourceType.Wood:
                 woodCount+=amount;

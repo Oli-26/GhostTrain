@@ -11,4 +11,9 @@ public class TimeEffected : MonoBehaviour
             return Time.deltaTime;
         }
     }
+
+    protected bool randomChance(float percent){
+        float random = Random.Range(0,100f);
+        return  random < percent;
+    }
 }

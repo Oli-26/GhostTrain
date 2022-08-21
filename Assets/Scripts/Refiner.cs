@@ -9,16 +9,21 @@ public class Refiner : TimeEffected
     List<ResourceType> refinableTypes = new List<ResourceType>() {ResourceType.Metal};
     Inventory invent;
     public GameObject effect;
+    public GameObject bonusObject;
+    RefinerBonus bonus;
 
     float cooldown = 5f;
     float _activeCooldown = 5f;
 
     int inputAmount = 1;
 
-    float stoneRefineSuccessChance = 50f;
+    float metalRefineSuccessChance = 50f;
+    float bonusChance = 20f;
+
     void Start()
     {
         invent = GameObject.Find("Controller").GetComponent<Inventory>();
+        bonus = bonusObject.GetComponent<RefinerBonus>();
     }
 
     void Update()
@@ -37,21 +42,19 @@ public class Refiner : TimeEffected
                 if(invent.GetResourceAmount(ResourceType.Stone) >= inputAmount){
                     invent.LoseResource(ResourceType.Stone, inputAmount);
                     for(int i = 0; i < inputAmount; i++){
-                        if(randomChance(stoneRefineSuccessChance)){
-                            invent.GainResource(ResourceType.Metal, 1);
+                        if(randomChance(metalRefineSuccessChance)){
+                            invent.GainResource(ResourceType.Metal, 1, transform.position);
+                            if(randomChance(bonusChance)){
+                                bonus.SetUpBonus(2.5f);
+                            }
                         }
+                        
                     }
                 }
                 break;
             default:
                 return;
         }
-    }
-
-    bool randomChance(float percent){
-        float random = Random.Range(0,100f);
-        Debug.Log(random);
-        return  random < percent;
     }
 
     public void Toggle(){
@@ -70,5 +73,15 @@ public class Refiner : TimeEffected
 
     public ResourceType GetRefineType(){
         return refiningType;
+    }
+
+    public void GrantBonus(){
+        switch(refiningType){
+            case ResourceType.Metal:
+                invent.GainResource(ResourceType.Metal, inputAmount, transform.position);
+                break;
+            default:
+                return;
+        }
     }
 }
