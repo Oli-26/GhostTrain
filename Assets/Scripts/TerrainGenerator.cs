@@ -28,6 +28,7 @@ public class TerrainGenerator : MonoBehaviour
 
     public GameObject SpookyGroundPrefab;
     public List<GameObject> GraveStones;
+    public List<GameObject> GraveYards;
     
     public List<GameObject> spawnedObjects = new List<GameObject>();
     void Start()
@@ -217,12 +218,21 @@ public class TerrainGenerator : MonoBehaviour
         spawnedObjects.Add(ground);
 
 
-        for(int i = 0; i<23; i++){
+        for(int i = 0; i<10; i++){
             int index = Random.Range(0,GraveStones.Count-1);
 
             GameObject grave = Instantiate(GraveStones[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(1f, 4.5f), 0), Quaternion.identity);
             grave.transform.parent = terrainHolder.transform;
             spawnedObjects.Add(grave);
+        }
+
+        for(int i = 0; i < 2; i++){
+            int index = Random.Range(0,GraveYards.Count-1);
+
+            GameObject graveYard = Instantiate(GraveYards[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(2.5f, 3.5f), 0), Quaternion.identity);
+            graveYard.transform.parent = terrainHolder.transform;
+            spawnedObjects.Add(graveYard);
+            
         }
 
 

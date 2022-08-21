@@ -6209,6 +6209,8 @@ MonoBehaviour:
   - {fileID: 8527125615904788103, guid: dd6931954b689414db30f567e284b47c, type: 3}
   - {fileID: 1205130334041227893, guid: e30ea966014310b4d86744dad9498d99, type: 3}
   - {fileID: 3714659618451393004, guid: 51063ee1e489cf245a4586b565676f7d, type: 3}
+  GraveYards:
+  - {fileID: 6463612925999049814, guid: 6cdea9f035fd39c48b659c0b736ff490, type: 3}
   spawnedObjects: []
 --- !u!114 &1426132484
 MonoBehaviour:
@@ -6228,6 +6230,7 @@ MonoBehaviour:
     type: 3}
   refinerPrefab: {fileID: 4880325908690141259, guid: 7cb57449267a0e844b1aa39597f18c5f,
     type: 3}
+  NPCPrefab: {fileID: 0}
   trainCore: {fileID: 2038458523}
   uiController: {fileID: 1426132485}
 --- !u!114 &1426132485

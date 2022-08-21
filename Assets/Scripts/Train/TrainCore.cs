@@ -21,12 +21,16 @@ public class TrainCore : TimeEffected
     public GameObject trainFront;
     private Extension _ghostExtension;
 
+    private Vector3 walkAreaBottomLeft;
+    private Vector3 walkAreaTopRight;
 
     public List<Extension> Extensions { get; } = new List<Extension>();
 
     void Start()
     {
         _transform = transform;
+        walkAreaTopRight = new Vector3(0.6f, 0.15f, 0f);
+        walkAreaBottomLeft = new Vector3(-0.6f, -0.15f, 0f);
     }
 
     void Update()
@@ -92,6 +96,8 @@ public class TrainCore : TimeEffected
         Extension extension = Instantiate(prefab, trainFront.transform.position, Quaternion.identity)
             .GetComponent<Extension>();
 
+        walkAreaBottomLeft -= new Vector3(extension.GetComponent<Extension>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x/2f, 0f, 0f);
+
         Vector3 extensionPosition = new Vector3(0f, 0f, 0f);
         foreach(Extension ext in Extensions){
             extensionPosition += new Vector3(ext.GetComponent<Extension>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x, 0f, 0f);
@@ -122,6 +128,18 @@ public class TrainCore : TimeEffected
             default:
                 return null;
         }
+    }
+
+    public Vector3 GetTopPoint(){
+        return walkAreaTopRight;
+    }
+
+    public Vector3 GetBottomPoint(){
+        return walkAreaBottomLeft;
+    }
+
+    public Vector3 GetWorldTopPoint(){
+        return _transform.position + walkAreaTopRight;
     }
 
 }

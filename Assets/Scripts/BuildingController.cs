@@ -7,6 +7,8 @@ public class BuildingController : MonoBehaviour
     public GameObject grabberPrefabTopSide;
     public GameObject grabberPrefabBotSide;
     public GameObject refinerPrefab;
+    public GameObject NPCPrefab;
+    
     public TrainCore trainCore;
     public UIController uiController;
 
@@ -25,6 +27,7 @@ public class BuildingController : MonoBehaviour
         GameObject slot = trainCore.Extensions[extentionNumber-1].GetComponent<Extension>().GetSlot(slotNumber);
         return slot.GetComponent<Slot>().GetAddOn() == null;
     }
+
     public void ConstructAddOn(PurchaseType type, int extentionNumber, int slotNumber){
         Extension extention = trainCore.Extensions[extentionNumber-1];
         GameObject slot = extention.GetComponent<Extension>().GetSlot(slotNumber);

@@ -35,6 +35,63 @@ TextureImporter:
   - first:
       213: -1168321075244957893
     second: SciFiFurniture1.1_10
+  - first:
+      213: 8286675308567212593
+    second: SciFiFurniture1.1_11
+  - first:
+      213: 3333845862038781818
+    second: SciFiFurniture1.1_12
+  - first:
+      213: -3414558708927063914
+    second: SciFiFurniture1.1_13
+  - first:
+      213: -559608754643248596
+    second: SciFiFurniture1.1_14
+  - first:
+      213: 744622336150303174
+    second: SciFiFurniture1.1_15
+  - first:
+      213: 6805600841348329287
+    second: SciFiFurniture1.1_16
+  - first:
+      213: 727253694634859880
+    second: SciFiFurniture1.1_17
+  - first:
+      213: -6691421106367855794
+    second: SciFiFurniture1.1_18
+  - first:
+      213: 186904358058348739
+    second: SciFiFurniture1.1_19
+  - first:
+      213: -4984782509860468080
+    second: SciFiFurniture1.1_20
+  - first:
+      213: -3027045966242685916
+    second: SciFiFurniture1.1_21
+  - first:
+      213: -2901475373655329746
+    second: SciFiFurniture1.1_22
+  - first:
+      213: -2723048078725837247
+    second: SciFiFurniture1.1_23
+  - first:
+      213: -8702192211329520086
+    second: SciFiFurniture1.1_24
+  - first:
+      213: 7343342252077352786
+    second: SciFiFurniture1.1_25
+  - first:
+      213: 888338300446657012
+    second: SciFiFurniture1.1_26
+  - first:
+      213: -3716084708676055516
+    second: SciFiFurniture1.1_27
+  - first:
+      213: 5636480350133419254
+    second: SciFiFurniture1.1_28
+  - first:
+      213: -6797001341905074934
+    second: SciFiFurniture1.1_29
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -287,7 +344,7 @@ TextureImporter:
         width: 87
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -308,7 +365,7 @@ TextureImporter:
         width: 86
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -329,7 +386,7 @@ TextureImporter:
         width: 64
         height: 75
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -350,7 +407,7 @@ TextureImporter:
         width: 146
         height: 91
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -358,6 +415,405 @@ TextureImporter:
       bones: []
       spriteID: b3ffb6e0c2a49cfe0800000000000000
       internalID: -1168321075244957893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_11
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 0
+        width: 90
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1323628d94f200370800000000000000
+      internalID: 8286675308567212593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_12
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 62
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7f3ab6e523344e20800000000000000
+      internalID: 3333845862038781818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_13
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 0
+        width: 141
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6989fa102fc0d90d0800000000000000
+      internalID: -3414558708927063914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_14
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0
+        width: 42
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2a5a467dcedb38f0800000000000000
+      internalID: -559608754643248596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c17f0ec11e655a00800000000000000
+      internalID: 744622336150303174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 49
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74faaa758e9527e50800000000000000
+      internalID: 6805600841348329287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_17
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 261
+        width: 33
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86d1d42d169b71a00800000000000000
+      internalID: 727253694634859880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_18
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 344
+        width: 44
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e438468d4fb4323a0800000000000000
+      internalID: -6691421106367855794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_19
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 486
+        width: 177
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c05a0df584089200800000000000000
+      internalID: 186904358058348739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_20
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 487
+        width: 182
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09acf21c7be72dab0800000000000000
+      internalID: -4984782509860468080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_21
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 672
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42c535f4bb5cdf5d0800000000000000
+      internalID: -3027045966242685916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_22
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 392
+        width: 86
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e24fab43583ebb7d0800000000000000
+      internalID: -2901475373655329746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_23
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 182
+        width: 158
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14e8c31233ac53ad0800000000000000
+      internalID: -2723048078725837247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_24
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 381
+        width: 143
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2e688c3a4a9b3780800000000000000
+      internalID: -8702192211329520086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_25
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 0
+        width: 85
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257003f1fdac8e560800000000000000
+      internalID: 7343342252077352786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_26
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 0
+        width: 86
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f94f764af2045c00800000000000000
+      internalID: 888338300446657012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_27
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 0
+        width: 90
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42e4a1865a0dd6cc0800000000000000
+      internalID: -3716084708676055516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_28
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 0
+        width: 38
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fcfb2dd30dc83e40800000000000000
+      internalID: 5636480350133419254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SciFiFurniture1.1_29
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 62
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0505e5aa433ca1a0800000000000000
+      internalID: -6797001341905074934
       vertices: []
       indices: 
       edges: []
