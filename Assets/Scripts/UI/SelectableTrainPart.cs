@@ -8,6 +8,7 @@ public class SelectableTrainPart : UIElement
     GameObject gameController;
     Color baseColor;
     Color inUseColor = new Color(0f, 0f, 0f, 0.6f);
+    Color selectedColor = new Color(1f, 1f, 0f, 1f);
     bool selected = false;
     bool highLighted = false;
     int highLightTick = 0;
@@ -31,7 +32,12 @@ public class SelectableTrainPart : UIElement
         }
         if(highLighted && highLightTick == 0){
             highLighted = false;
-            GetComponent<SpriteRenderer>().color = beingUsed ? inUseColor : baseColor;;
+            if(selected){
+                GetComponent<SpriteRenderer>().color = selectedColor;
+                return;
+            }
+            
+            GetComponent<SpriteRenderer>().color = beingUsed ? inUseColor : baseColor;
         }
         
     }

@@ -10,6 +10,7 @@ TagManager:
   - Resource
   - InteractableUI
   - UIText
+  - Loot
   layers:
   - Default
   - TransparentFX

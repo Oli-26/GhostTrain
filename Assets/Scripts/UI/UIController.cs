@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
     public List<GameObject> baseUIParts = new List<GameObject>();
     public List<GameObject> allText = new List<GameObject>();
     
-    bool buildUIActive;
+    public bool buildUIActive;
     
     public GameObject RefinerOptions;
     public GameObject GrabberOptions;
