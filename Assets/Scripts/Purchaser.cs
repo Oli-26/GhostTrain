@@ -29,6 +29,8 @@ public class Purchaser : MonoBehaviour
                 return AttemptLivingExtensionPurchase();
             case PurchaseType.ResearchExtension:
                 return AttemptResearchExtensionPurchase();
+            case PurchaseType.CropPlot:
+                return AttemptCropPlotPurchase();
             default:
                 return false;
         }
@@ -60,6 +62,21 @@ public class Purchaser : MonoBehaviour
         }
 
         invent.LoseResource(ResourceType.Wood, 20);
+        invent.LoseResource(ResourceType.Stone, 20);
+        return true;
+    }
+
+    public bool AttemptCropPlotPurchase(){
+        Inventory invent = GetComponent<Inventory>();
+
+        if(!invent.HasResource(ResourceType.Wood, 25)){
+            return false;
+        }
+        if(!invent.HasResource(ResourceType.Stone, 20)){
+            return false;
+        }
+
+        invent.LoseResource(ResourceType.Wood, 25);
         invent.LoseResource(ResourceType.Stone, 20);
         return true;
     }

@@ -7,6 +7,7 @@ public class BuildingController : MonoBehaviour
     public GameObject grabberPrefabTopSide;
     public GameObject grabberPrefabBotSide;
     public GameObject refinerPrefab;
+    public GameObject cropPlotPrefab;
     public GameObject NPCPrefab;
     
     public TrainCore trainCore;
@@ -42,6 +43,11 @@ public class BuildingController : MonoBehaviour
             uiController.selectedObject.GetComponent<SelectableTrainPart>().InUse();
         }
         
+        if(type == PurchaseType.CropPlot){
+            CreateCropPlot(slot, slotNumber <=1);
+            uiController.selectedObject.GetComponent<SelectableTrainPart>().InUse();
+        }
+        
         uiController.RefreshUiElements();
 
     }
@@ -64,6 +70,13 @@ public class BuildingController : MonoBehaviour
         refiner = Instantiate(refinerPrefab, slot.transform.position, Quaternion.identity);
         slot.GetComponent<Slot>().CreateAddOn(refiner);
         refiner.transform.parent = slot.transform;
+    }
+
+    public void CreateCropPlot(GameObject slot, bool isTop){
+        GameObject plot;
+        plot = Instantiate(cropPlotPrefab, slot.transform.position, Quaternion.identity);
+        slot.GetComponent<Slot>().CreateAddOn(plot);
+        plot.transform.parent = slot.transform;
     }
 
 }

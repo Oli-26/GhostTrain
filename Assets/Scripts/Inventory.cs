@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     public int woodCount = 25;
     public int stoneCount = 15;
     public int metalCount = 15;
-    public int fishCount = 0;
+    public int foodCount = 0;
 
     public GameObject ResourceGainedEffect;
 
@@ -28,15 +28,15 @@ public class Inventory : MonoBehaviour
             case ResourceType.Metal:
                 metalCount+=amount;
                 break;
-            case ResourceType.Fish:
-                fishCount+=amount;
+            case ResourceType.Food:
+                foodCount+=amount;
                 break;
             default:
                 Debug.Log("Resource " + type + " is not recognised");
                 break;
         }
 
-        GetComponent<UIController>().UpdateResourceValues(woodCount, stoneCount, metalCount);
+        GetComponent<UIController>().UpdateResourceValues(woodCount, stoneCount, metalCount, foodCount);
     }
 
     private void NewMethod(ResourceType type, Vector3 positionForEffect, int amount)
@@ -57,15 +57,15 @@ public class Inventory : MonoBehaviour
             case ResourceType.Metal:
                 metalCount-=amount;
                 break;
-             case ResourceType.Fish:
-                fishCount-=amount;
+             case ResourceType.Food:
+                foodCount-=amount;
                 break;
             default:
                 Debug.Log("Resource " + type + " is not recognised");
                 break;
         }
 
-        GetComponent<UIController>().UpdateResourceValues(woodCount, stoneCount, metalCount);
+        GetComponent<UIController>().UpdateResourceValues(woodCount, stoneCount, metalCount, foodCount);
     }
 
     public int GetResourceAmount(ResourceType type){
@@ -76,8 +76,8 @@ public class Inventory : MonoBehaviour
                 return stoneCount;
             case ResourceType.Metal:
                 return metalCount;
-            case ResourceType.Fish:
-                return fishCount;
+            case ResourceType.Food:
+                return foodCount;
             default:
                 return 0;
         }
@@ -91,11 +91,11 @@ public class Inventory : MonoBehaviour
                 return stoneCount >= amount;
             case ResourceType.Metal:
                 return metalCount >= amount;
-            case ResourceType.Fish:
-                return fishCount >= amount;
+            case ResourceType.Food:
+                return foodCount >= amount;
             default:
                 return false;
         }
     }
 }
-public enum ResourceType {Wood, Stone, Metal, Fish}
+public enum ResourceType {Wood, Stone, Metal, Food}

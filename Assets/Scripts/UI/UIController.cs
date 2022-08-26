@@ -24,20 +24,20 @@ public class UIController : MonoBehaviour
     GameObject woodCountText;
     GameObject stoneCountText;
     GameObject metalCountText;
-
+    GameObject foodCountText;
 
     void Start()
     {
         CollectAllSceneText();
         allText.ForEach(uiElement => uiElement.GetComponent<MeshRenderer>().sortingOrder = 15);
         
-        woodCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "WoodCount").ToList()
-            .FirstOrDefault();
+        woodCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "WoodCount").ToList().First();
         stoneCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "StoneCount").ToList().First();
         metalCountText = allText.Where(text => text.GetComponent<UIText>().UITag == "MetalCount").ToList().First();
+        foodCountText =  allText.Where(text => text.GetComponent<UIText>().UITag == "FoodCount").ToList().First();
 
         Inventory invent = GetComponent<Inventory>();
-        UpdateResourceValues(invent.woodCount, invent.stoneCount, invent.metalCount);
+        UpdateResourceValues(invent.woodCount, invent.stoneCount, invent.metalCount, invent.foodCount);
     }
 
     void Update()
@@ -135,11 +135,13 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void UpdateResourceValues(int wood, int stone, int metal)
+    public void UpdateResourceValues(int wood, int stone, int metal, int food)
     {
         woodCountText.GetComponent<TextMesh>().text = wood.ToString();
         stoneCountText.GetComponent<TextMesh>().text = stone.ToString();
         metalCountText.GetComponent<TextMesh>().text = metal.ToString();
+        
+        foodCountText.GetComponent<TextMesh>().text = food.ToString();
     }
 
     public void SetUpRefinerOptions(Refiner refiner){

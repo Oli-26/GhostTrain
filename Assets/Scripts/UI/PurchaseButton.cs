@@ -39,7 +39,7 @@ public class PurchaseButton : UIElement
         if (e.isKey)
         {
             Debug.Log("KeyDown:" + e.keyCode);
-            if (shortcuts[e.keyCode] == type)
+            if (shortcuts.ContainsKey(e.keyCode) && shortcuts[e.keyCode] == type)
             {
                 Interact();
             }
@@ -87,4 +87,4 @@ public class PurchaseButton : UIElement
     }
     }
 
-public enum PurchaseType {Grabber, Refiner, Extension, StorageExtension, LivingExtension, ResearchExtension}
+public enum PurchaseType {Grabber, Refiner, Extension, StorageExtension, LivingExtension, ResearchExtension, CropPlot}

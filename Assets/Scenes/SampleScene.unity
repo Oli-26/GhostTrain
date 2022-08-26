@@ -1775,7 +1775,7 @@ GameObject:
   - component: {fileID: 297310880}
   - component: {fileID: 297310881}
   m_Layer: 0
-  m_Name: Card-Example (1)
+  m_Name: Card-CropPlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1795,6 +1795,7 @@ Transform:
   - {fileID: 1927057012}
   - {fileID: 326065814}
   - {fileID: 1472525536}
+  - {fileID: 2067932052}
   m_Father: {fileID: 1966102925}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2143,7 +2144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ed3fdd45c622548bc00c4948b4bf19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UITag: FishCount
+  UITag: FoodCount
 --- !u!102 &362938287
 TextMesh:
   serializedVersion: 3
@@ -6238,6 +6239,8 @@ MonoBehaviour:
     type: 3}
   refinerPrefab: {fileID: 4880325908690141259, guid: 7cb57449267a0e844b1aa39597f18c5f,
     type: 3}
+  cropPlotPrefab: {fileID: 2392938394100765122, guid: d557f39093e94774f88e0df3b22b7723,
+    type: 3}
   NPCPrefab: {fileID: 0}
   trainCore: {fileID: 2038458523}
   uiController: {fileID: 1426132485}
@@ -6292,7 +6295,7 @@ MonoBehaviour:
   woodCount: 1000
   stoneCount: 1000
   metalCount: 1000
-  fishCount: 0
+  foodCount: 0
   ResourceGainedEffect: {fileID: 2557850116698329383, guid: 58783727e97370b4da7a7607328a2c2b,
     type: 3}
 --- !u!114 &1426132487
@@ -6707,6 +6710,7 @@ GameObject:
   - component: {fileID: 1472525536}
   - component: {fileID: 1472525537}
   - component: {fileID: 1472525539}
+  - component: {fileID: 1472525538}
   m_Layer: 0
   m_Name: BuyButton
   m_TagString: Untagged
@@ -6778,6 +6782,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1472525538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472525535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70bc2ebcc20329438d9cc8a9c39e2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 6
 --- !u!58 &1472525539
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7325,8 +7342,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622059451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.002, y: 0.0016419, z: 0}
-  m_LocalScale: {x: 0.28709835, y: 0.29564092, z: 1}
+  m_LocalPosition: {x: 0.002, y: 0.01, z: 0}
+  m_LocalScale: {x: 0.700585, y: 0.8194385, z: 1}
   m_Children: []
   m_Father: {fileID: 326065814}
   m_RootOrder: 0
@@ -7370,7 +7387,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: 4134312588122982443, guid: fa86cad1780ba98488eed7fd9a8b5064,
+  m_Sprite: {fileID: -5276360145562772558, guid: 3d204657df2946141b44d36b515c6ff3,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8431,7 +8448,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927057011}
-  m_Text: Locked
+  m_Text: Crop plot
   m_OffsetZ: 150
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -8936,6 +8953,117 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2067932051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2067932052}
+  - component: {fileID: 2067932055}
+  - component: {fileID: 2067932054}
+  - component: {fileID: 2067932053}
+  m_Layer: 0
+  m_Name: Cost (1)
+  m_TagString: UIText
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2067932052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067932051}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.85760343, y: 0.055295292, z: 10}
+  m_LocalScale: {x: 0.0100030005, y: 0.009997522, z: 1}
+  m_Children: []
+  m_Father: {fileID: 297310880}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2067932053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067932051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ed3fdd45c622548bc00c4948b4bf19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UITag: None
+--- !u!102 &2067932054
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067932051}
+  m_Text: '25 wood
+
+    20 stone
+
+'
+  m_OffsetZ: 150
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 150
+  m_FontStyle: 1
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+--- !u!23 &2067932055
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067932051}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &2070299281
 GameObject:
   m_ObjectHideFlags: 0

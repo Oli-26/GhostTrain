@@ -11,7 +11,7 @@ public class ResourceGainedEffect : MonoBehaviour
     public Sprite woodSprite;
     public Sprite stoneSprite;
     public Sprite metalSprite;
-    public Sprite fishSprite;
+    public Sprite foodSprite;
     public TextMesh amount;
 
     void Start()
@@ -38,8 +38,8 @@ public class ResourceGainedEffect : MonoBehaviour
             case ResourceType.Metal:
                 renderer.sprite = metalSprite;
             break;
-            case ResourceType.Fish:
-                renderer.sprite = fishSprite;
+            case ResourceType.Food:
+                renderer.sprite = foodSprite;
             break;
 
         }
@@ -48,5 +48,6 @@ public class ResourceGainedEffect : MonoBehaviour
     public void SetAmount(int amount)
     {
         this.amount.text = "+" + amount;
+        this.amount.gameObject.GetComponent<MeshRenderer>().sortingOrder = 15;
     }
 }

@@ -49,7 +49,7 @@ MonoBehaviour:
     type: 3}
   stoneSprite: {fileID: 21300000, guid: cc9482b1da2ac6e48a925afd23391330, type: 3}
   metalSprite: {fileID: 21300000, guid: 4aabffb0e797574489a4fb22a99256ba, type: 3}
-  fishSprite: {fileID: -8913009752900401969, guid: 3825f56772a9cbc4a93e1db69cd6b3c1,
+  foodSprite: {fileID: 8123832373966212598, guid: 3825f56772a9cbc4a93e1db69cd6b3c1,
     type: 3}
   amount: {fileID: 3225586701338029910}
 --- !u!1 &6525069039747415961
