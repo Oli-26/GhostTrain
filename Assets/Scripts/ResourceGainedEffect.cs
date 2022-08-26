@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourceGainedEffect : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ResourceGainedEffect : MonoBehaviour
     public Sprite stoneSprite;
     public Sprite metalSprite;
     public Sprite fishSprite;
+    public TextMesh amount;
 
     void Start()
     {
@@ -41,5 +43,10 @@ public class ResourceGainedEffect : MonoBehaviour
             break;
 
         }
+    }
+
+    public void SetAmount(int amount)
+    {
+        this.amount.text = "+" + amount;
     }
 }

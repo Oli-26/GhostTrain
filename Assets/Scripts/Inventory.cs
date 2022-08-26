@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void GainResource(ResourceType type, int amount, Vector3 positionForEffect){
-        Instantiate(ResourceGainedEffect, positionForEffect, Quaternion.identity).GetComponent<ResourceGainedEffect>().SetResource(type);
+        NewMethod(type, positionForEffect, amount);
         
         switch(type){
             case ResourceType.Wood:
@@ -39,7 +39,14 @@ public class Inventory : MonoBehaviour
         GetComponent<UIController>().UpdateResourceValues(woodCount, stoneCount, metalCount);
     }
 
-     public void LoseResource(ResourceType type, int amount){
+    private void NewMethod(ResourceType type, Vector3 positionForEffect, int amount)
+    {
+        var resourceGainedEffect = Instantiate(ResourceGainedEffect, positionForEffect, Quaternion.identity).GetComponent<ResourceGainedEffect>();
+        resourceGainedEffect.SetResource(type);
+        resourceGainedEffect.SetAmount(amount);
+    }
+
+    public void LoseResource(ResourceType type, int amount){
         switch(type){
             case ResourceType.Wood:
                 woodCount-=amount;

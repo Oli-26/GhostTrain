@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+
 
 public class PurchaseButton : UIElement
 {
@@ -11,11 +14,36 @@ public class PurchaseButton : UIElement
     int stoneCost = 0;
     Purchaser _purchaser;
     TrainCore _trainCore;
+
+    private static Dictionary<KeyCode, PurchaseType> shortcuts = new Dictionary<KeyCode, PurchaseType>()
+    {
+        { KeyCode.G, PurchaseType.Grabber },
+        { KeyCode.R, PurchaseType.Refiner }
+        // { PurchaseType.Extension, KeyCode. },
+        // { PurchaseType.StorageExtension, KeyCode.G },
+        // { PurchaseType.ResearchExtension, KeyCode.G },
+        // { PurchaseType.LivingExtension, KeyCode.G },
+ 
+    };
+
     void Start()
     {
         gameController = GameObject.Find("Controller");
         _purchaser = gameController.GetComponent<Purchaser>();
         _trainCore = GameObject.Find("Train").GetComponent<TrainCore>();
+    }
+
+    private void OnGUI()
+    {
+        Event e = Event.current;
+        if (e.isKey)
+        {
+            Debug.Log("KeyDown:" + e.keyCode);
+            if (shortcuts[e.keyCode] == type)
+            {
+                Interact();
+            }
+        }
     }
 
     void Update()
@@ -57,6 +85,6 @@ public class PurchaseButton : UIElement
     public void DeSelect(){
 
     }
-}
+    }
 
 public enum PurchaseType {Grabber, Refiner, Extension, StorageExtension, LivingExtension, ResearchExtension}
