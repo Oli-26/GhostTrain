@@ -3752,7 +3752,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721800882}
-  m_Text: Grabber
+  m_Text: Grabber [G]
   m_OffsetZ: 150
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -6268,6 +6268,7 @@ MonoBehaviour:
   - {fileID: 1515095279}
   - {fileID: 121797510}
   - {fileID: 121797510}
+  buildUIActive: 0
   RefinerOptions: {fileID: 417199395}
   GrabberOptions: {fileID: 505572702}
   AddOnShop: {fileID: 1966102924}
