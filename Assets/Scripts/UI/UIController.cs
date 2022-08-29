@@ -6,16 +6,10 @@ using System.Linq;
 public class UIController : MonoBehaviour
 {
     public List<GameObject> baseUIParts = new List<GameObject>();
+    public GameObject middleMenuBase;
     public Dictionary<string, TextMesh> allText;
     
     public bool buildUIActive;
-    
-    public GameObject RefinerOptions;
-    public GameObject GrabberOptions;
-    public GameObject AddOnShop;
-    public GameObject ExtensionShop;
-    public GameObject LivingShop;
-    public GameObject ResearchShop;
     public Dictionary<string, GameObject> menus;
 
     public TrainCore trainCore;
@@ -208,10 +202,11 @@ public class UIController : MonoBehaviour
     }
 
     public void SetUpRefinerOptions(Refiner refiner){
-        menus["Refiner"].SetActive(true);
+        GameObject menu = menus["Refiner"];
+        menu.SetActive(true);
 
-        SpriteRenderer metalOption = GetNestedChild(RefinerOptions, new string[]{"Metal option", "Option"}).GetComponent<SpriteRenderer>();
-        SpriteRenderer toggleOption = GetNestedChild(RefinerOptions, new string[]{"ToggleRefiner"}).GetComponent<SpriteRenderer>();
+        SpriteRenderer metalOption = GetNestedChild(menu, new string[]{"Metal option", "Option"}).GetComponent<SpriteRenderer>();
+        SpriteRenderer toggleOption = GetNestedChild(menu, new string[]{"ToggleRefiner"}).GetComponent<SpriteRenderer>();
 
         metalOption.color = new Color(1f, 1f, 1f, 1f);
         toggleOption.color = new Color(1f, 1f, 1f, 1f);
@@ -227,11 +222,12 @@ public class UIController : MonoBehaviour
 
     public void SetUpGrabberOptions(Grabber grabber){
         SetAllMenusInactive();
-        menus["Grabber"].SetActive(true);
+        GameObject menu = menus["Grabber"];
+        menu.SetActive(true);
 
-        SpriteRenderer woodOption = GetNestedChild(GrabberOptions, new string[]{"Wood option", "Option"}).GetComponent<SpriteRenderer>();
-        SpriteRenderer stoneOption = GetNestedChild(GrabberOptions, new string[]{"Stone option", "Option"}).GetComponent<SpriteRenderer>();
-        SpriteRenderer noneOption = GetNestedChild(GrabberOptions, new string[]{"None option", "Option"}).GetComponent<SpriteRenderer>();
+        SpriteRenderer woodOption = GetNestedChild(menu, new string[]{"Wood option", "Option"}).GetComponent<SpriteRenderer>();
+        SpriteRenderer stoneOption = GetNestedChild(menu, new string[]{"Stone option", "Option"}).GetComponent<SpriteRenderer>();
+        SpriteRenderer noneOption = GetNestedChild(menu, new string[]{"None option", "Option"}).GetComponent<SpriteRenderer>();
 
         woodOption.color = new Color(1f, 1f, 1f, 1f);
         stoneOption.color = new Color(1f, 1f, 1f, 1f);

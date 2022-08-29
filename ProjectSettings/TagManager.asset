@@ -12,6 +12,8 @@ TagManager:
   - UIText
   - Loot
   - Menu
+  - NPC
+  - Worker
   layers:
   - Default
   - TransparentFX
