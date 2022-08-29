@@ -14,6 +14,7 @@ public class NPC : TimeEffected
     Transform _extensionBaseTransform;
     public GameObject actionMenu;
     UIController uiController;
+    Inventory invent;
 
     NPCActionType actionBeingPerformed;
     bool actionIsBeingPerformed = false;
@@ -33,9 +34,7 @@ public class NPC : TimeEffected
     {
         _transform = transform;
         uiController = FindObjectOfType<UIController>();
-        extension = transform.parent.gameObject.GetComponent<Extension>();
-        _extensionBaseTransform = extension.baseObject.transform;
-        WalkToNewTrainLocation();
+        invent = FindObjectOfType<Inventory>();
         transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = allBodySprites[Random.Range(0, allBodySprites.Count-1)];
     }
 
@@ -88,11 +87,13 @@ public class NPC : TimeEffected
     void LocateLoot(){
         List<GameObject> possibleLoot = GameObject.FindGameObjectsWithTag("Loot").Where(loot => Vector3.Distance(_transform.position, loot.transform.position) < 14f).ToList();
         List<GameObject> orderedLoot = possibleLoot.OrderBy(loot => loot.transform.position.x).ToList();
+        
 
         if(orderedLoot.Count == 0){
             actionIsBeingPerformed = false;
             Debug.Log("loot not found");
         }else{
+            invent.LoseResource(ResourceType.Food, ActionCost(NPCActionType.Loot));
             targetLoot = orderedLoot[0];
             targetLootTransform = targetLoot.transform;
             actionPhase = 1;
@@ -127,10 +128,28 @@ public class NPC : TimeEffected
     } 
 
     public void SetAction(NPCActionType actionType){
-        Debug.Log("Action set:" + actionType);
+        if(!invent.HasResource(ResourceType.Food, ActionCost(actionType))){
+            return;
+        }
+
         actionBeingPerformed = actionType;
         actionIsBeingPerformed = true;
         actionPhase = 0;
         actionMenu.SetActive(false);
+    }
+
+    public int ActionCost(NPCActionType actionType){
+        switch(actionType){
+            case NPCActionType.Loot:
+                return 2;
+            default:
+                return 0;
+        }
+    }
+
+    public void SetParentExtension(Extension parentExtension){
+        extension = parentExtension;
+        WalkToNewTrainLocation();
+        _extensionBaseTransform = parentExtension.baseObject.transform;
     }
 }

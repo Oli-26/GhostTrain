@@ -8,16 +8,28 @@ public class Inventory : MonoBehaviour
     public int stoneCount = 15;
     public int metalCount = 15;
     public int foodCount = 0;
+    public int Money = 0;
 
     public GameObject ResourceGainedEffect;
+    private TrainCore train;
 
     void Start(){
-        
+        train = FindObjectOfType<TrainCore>();
     }
 
     public void GainResource(ResourceType type, int amount, Vector3 positionForEffect){
-        NewMethod(type, positionForEffect, amount);
-        
+        int currentWeight = GetCurrentWeight();
+        int maxWeight = train.GetMaxWeight();
+
+        if(currentWeight >= maxWeight){
+            return;
+        }
+        if(currentWeight + amount > maxWeight){
+            amount = maxWeight - currentWeight;
+        }
+
+        CreateResourceGainedEffect(type, positionForEffect, amount);
+
         switch(type){
             case ResourceType.Wood:
                 woodCount+=amount;
@@ -31,15 +43,18 @@ public class Inventory : MonoBehaviour
             case ResourceType.Food:
                 foodCount+=amount;
                 break;
+            case ResourceType.Money:
+                Money += amount;
+                break;
             default:
                 Debug.Log("Resource " + type + " is not recognised");
                 break;
         }
 
-        GetComponent<UIController>().UpdateResourceValues(woodCount, stoneCount, metalCount, foodCount);
+        GetComponent<UIController>().UpdateResourceValues();
     }
 
-    private void NewMethod(ResourceType type, Vector3 positionForEffect, int amount)
+    private void CreateResourceGainedEffect(ResourceType type, Vector3 positionForEffect, int amount)
     {
         var resourceGainedEffect = Instantiate(ResourceGainedEffect, positionForEffect, Quaternion.identity).GetComponent<ResourceGainedEffect>();
         resourceGainedEffect.SetResource(type);
@@ -60,12 +75,15 @@ public class Inventory : MonoBehaviour
              case ResourceType.Food:
                 foodCount-=amount;
                 break;
+            case ResourceType.Money:
+                Money -= amount;
+                break;
             default:
                 Debug.Log("Resource " + type + " is not recognised");
                 break;
         }
 
-        GetComponent<UIController>().UpdateResourceValues(woodCount, stoneCount, metalCount, foodCount);
+        GetComponent<UIController>().UpdateResourceValues();
     }
 
     public int GetResourceAmount(ResourceType type){
@@ -78,12 +96,15 @@ public class Inventory : MonoBehaviour
                 return metalCount;
             case ResourceType.Food:
                 return foodCount;
+            case ResourceType.Money:
+                return Money;
+                break;
             default:
                 return 0;
         }
     }
 
-      public bool HasResource(ResourceType type, int amount){
+    public bool HasResource(ResourceType type, int amount){
         switch(type){
             case ResourceType.Wood:
                 return woodCount >= amount;
@@ -93,9 +114,25 @@ public class Inventory : MonoBehaviour
                 return metalCount >= amount;
             case ResourceType.Food:
                 return foodCount >= amount;
+            case ResourceType.Money:
+                return Money >= amount;
+                break;
             default:
                 return false;
         }
     }
+
+    public int GetCurrentWeight(){
+        return woodCount + stoneCount + metalCount + foodCount/2;
+    }
+
+    public bool AtMaxWeight(){
+        try{
+            return GetCurrentWeight() >= train.GetMaxWeight();
+        }catch{
+            return true;
+        }
+        
+    }
 }
-public enum ResourceType {Wood, Stone, Metal, Food}
+public enum ResourceType {Wood, Stone, Metal, Food, Money}

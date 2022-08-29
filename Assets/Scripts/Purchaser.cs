@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Purchaser : MonoBehaviour
 {
+    Inventory invent;
     
     void Start()
     {
-        
+        invent = FindObjectOfType<Inventory>();
     }
 
     void Update()
@@ -18,142 +19,65 @@ public class Purchaser : MonoBehaviour
     public bool AttemptPurchase(PurchaseType type){
         switch(type){
             case PurchaseType.Grabber:
-                return AttemptGrabberPurchase();
+                return HasResourceForPurchase(grabberCost);
             case PurchaseType.Refiner:
-                return AttemptRefinerPurchase();
+                return HasResourceForPurchase(refinerCost);
             case PurchaseType.Extension:
-                return AttemptExtensionPurchase();
+                return HasResourceForPurchase(extentionCost);
             case PurchaseType.StorageExtension:
-                return AttemptStorageExtensionPurchase();
+                return HasResourceForPurchase(storageExtentionCost);
             case PurchaseType.LivingExtension:
-                return AttemptLivingExtensionPurchase();
+                return HasResourceForPurchase(livingExtentionCost);
             case PurchaseType.ResearchExtension:
-                return AttemptResearchExtensionPurchase();
+                return HasResourceForPurchase(researchExtentionCost);
             case PurchaseType.CropPlot:
-                return AttemptCropPlotPurchase();
+                return HasResourceForPurchase(cropPlotCost);
+            case PurchaseType.Worker:
+                return HasResourceForPurchase(workerCost);
             default:
                 return false;
         }
     }
 
-    public bool AttemptGrabberPurchase(){
-        Inventory invent = GetComponent<Inventory>();
 
-        if(!invent.HasResource(ResourceType.Wood, 25)){
+    public bool HasResourceForPurchase(Price price){
+        if(!invent.HasResource(ResourceType.Wood, price.Wood)){
             return false;
         }
-        if(!invent.HasResource(ResourceType.Metal, 15)){
+        if(!invent.HasResource(ResourceType.Stone, price.Stone)){
+            return false;
+        }
+        if(!invent.HasResource(ResourceType.Metal, price.Metal)){
+            return false;
+        }
+        if(!invent.HasResource(ResourceType.Food, price.Food)){
+            return false;
+        }
+        if(!invent.HasResource(ResourceType.Money, price.Money)){
             return false;
         }
 
-        invent.LoseResource(ResourceType.Wood, 25);
-        invent.LoseResource(ResourceType.Metal, 15);
+        invent.LoseResource(ResourceType.Wood, price.Wood);
+        invent.LoseResource(ResourceType.Stone, price.Stone);
+        invent.LoseResource(ResourceType.Metal, price.Metal);
+        invent.LoseResource(ResourceType.Wood, price.Food);
+        invent.LoseResource(ResourceType.Stone, price.Money);
         return true;
     }
 
-    public bool AttemptRefinerPurchase(){
-        Inventory invent = GetComponent<Inventory>();
 
-        if(!invent.HasResource(ResourceType.Wood, 20)){
-            return false;
-        }
-        if(!invent.HasResource(ResourceType.Stone, 20)){
-            return false;
-        }
 
-        invent.LoseResource(ResourceType.Wood, 20);
-        invent.LoseResource(ResourceType.Stone, 20);
-        return true;
-    }
+    // Price set ups /////////////////////
+    // Money, Wood, Stone, Metal, Food ///
+    Price grabberCost = new Price(0, 25, 0, 15, 0);
+    Price refinerCost = new Price(0, 20, 20, 0, 0);
+    Price cropPlotCost = new Price(0, 25, 20, 0, 0);
 
-    public bool AttemptCropPlotPurchase(){
-        Inventory invent = GetComponent<Inventory>();
+    Price extentionCost = new Price(0, 50, 25, 20, 0);
+    Price storageExtentionCost = new Price(0, 50, 25, 20, 0);
+    Price livingExtentionCost = new Price(0, 50, 25, 20, 0);
+    Price researchExtentionCost = new Price(0, 50, 25, 20, 0);
 
-        if(!invent.HasResource(ResourceType.Wood, 25)){
-            return false;
-        }
-        if(!invent.HasResource(ResourceType.Stone, 20)){
-            return false;
-        }
+    Price workerCost = new Price(1, 0, 0, 0, 20);
 
-        invent.LoseResource(ResourceType.Wood, 25);
-        invent.LoseResource(ResourceType.Stone, 20);
-        return true;
-    }
-
-    public bool AttemptExtensionPurchase(){
-        Inventory invent = GetComponent<Inventory>();
-
-        if(!invent.HasResource(ResourceType.Wood, 50)){
-            return false;
-        }
-        if(!invent.HasResource(ResourceType.Stone, 25)){
-            return false;
-        }
-        if(!invent.HasResource(ResourceType.Metal, 20)){
-            return false;
-        }
-
-        invent.LoseResource(ResourceType.Wood, 50);
-        invent.LoseResource(ResourceType.Stone, 25);
-        invent.LoseResource(ResourceType.Metal, 20);
-        return true;
-    }
-
-    public bool AttemptStorageExtensionPurchase(){
-        Inventory invent = GetComponent<Inventory>();
-
-        if(!invent.HasResource(ResourceType.Wood, 50)){
-            return false;
-        }
-        if(!invent.HasResource(ResourceType.Stone, 25)){
-            return false;
-        }
-        if(!invent.HasResource(ResourceType.Metal, 20)){
-            return false;
-        }
-
-        invent.LoseResource(ResourceType.Wood, 50);
-        invent.LoseResource(ResourceType.Stone, 25);
-        invent.LoseResource(ResourceType.Metal, 20);
-        return true;
-    }
-
-    public bool AttemptLivingExtensionPurchase(){
-        Inventory invent = GetComponent<Inventory>();
-
-        if(!invent.HasResource(ResourceType.Wood, 50)){
-            return false;
-        }
-        if(!invent.HasResource(ResourceType.Stone, 25)){
-            return false;
-        }
-        if(!invent.HasResource(ResourceType.Metal, 20)){
-            return false;
-        }
-
-        invent.LoseResource(ResourceType.Wood, 50);
-        invent.LoseResource(ResourceType.Stone, 25);
-        invent.LoseResource(ResourceType.Metal, 20);
-        return true;
-    }
-
-    public bool AttemptResearchExtensionPurchase(){
-        Inventory invent = GetComponent<Inventory>();
-
-        if(!invent.HasResource(ResourceType.Wood, 50)){
-            return false;
-        }
-        if(!invent.HasResource(ResourceType.Stone, 25)){
-            return false;
-        }
-        if(!invent.HasResource(ResourceType.Metal, 20)){
-            return false;
-        }
-
-        invent.LoseResource(ResourceType.Wood, 50);
-        invent.LoseResource(ResourceType.Stone, 25);
-        invent.LoseResource(ResourceType.Metal, 20);
-        return true;
-    }
 }

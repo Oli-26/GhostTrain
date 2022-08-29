@@ -74,7 +74,7 @@ public class TerrainGenerator : MonoBehaviour
         ground.transform.parent = terrainHolder.transform;
         spawnedObjects.Add(ground);
 
-        for(int i = 0; i<45; i++){
+        for(int i = 0; i<90; i++){
             int index = Random.Range(0,TreePrefabs.Count-1);
 
             GameObject tree = Instantiate(TreePrefabs[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(1f, 4.5f), 0), Quaternion.identity);
@@ -136,7 +136,7 @@ public class TerrainGenerator : MonoBehaviour
             spawnedObjects.Add(tree);
         }
 
-         for(int i = 0; i<45; i++){
+         for(int i = 0; i<65; i++){
             int index = Random.Range(0,DesertStonePrefabs.Count-1);
 
             GameObject stone = Instantiate(StonePrefabs[index], center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(1.5f, 4.5f), 0), Quaternion.identity);

@@ -387,6 +387,8 @@ MonoBehaviour:
   otherInteractables:
   - {fileID: 4633030938843283384}
   baseObject: {fileID: 3711944920601069490}
+  NPCS: []
+  NPCPrefab: {fileID: 0}
 --- !u!1 &4633030938843283384
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotId: -1
   extentionId: -1
+  type: 2
 --- !u!65 &5303943169830693908
 BoxCollider:
   m_ObjectHideFlags: 0

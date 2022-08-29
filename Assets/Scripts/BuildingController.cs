@@ -29,6 +29,10 @@ public class BuildingController : MonoBehaviour
         return slot.GetComponent<Slot>().GetAddOn() == null;
     }
 
+    public bool CheckNewWorkerPossible(int extentionNumber){
+        return trainCore.Extensions[extentionNumber-1].GetComponent<Extension>().NPCS.Count != 2;
+    }
+
     public void ConstructAddOn(PurchaseType type, int extentionNumber, int slotNumber){
         Extension extention = trainCore.Extensions[extentionNumber-1];
         GameObject slot = extention.GetComponent<Extension>().GetSlot(slotNumber);
@@ -77,6 +81,11 @@ public class BuildingController : MonoBehaviour
         plot = Instantiate(cropPlotPrefab, slot.transform.position, Quaternion.identity);
         slot.GetComponent<Slot>().CreateAddOn(plot);
         plot.transform.parent = slot.transform;
+    }
+
+    public void CreateWorker(int extentionNumber){
+        Extension extention = trainCore.Extensions[extentionNumber-1];
+        extention.AddNPC();
     }
 
 }

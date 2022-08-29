@@ -8,6 +8,8 @@ public class TrainCore : TimeEffected
     private const int MaxExtensions = 7;
     private const float Speed = 3f;
     private const float BoostAmount = 1.5f;
+
+    private int numberOfStorageExtensions = 0;
     
     private bool _boostActive;
 
@@ -20,17 +22,13 @@ public class TrainCore : TimeEffected
     Transform _transform;
     public GameObject trainFront;
     private Extension _ghostExtension;
-
-    private Vector3 walkAreaBottomLeft;
-    private Vector3 walkAreaTopRight;
-
     public List<Extension> Extensions { get; } = new List<Extension>();
+    UIController uiController;
 
     void Start()
     {
         _transform = transform;
-        walkAreaTopRight = new Vector3(0.6f, 0.15f, 0f);
-        walkAreaBottomLeft = new Vector3(-0.6f, -0.15f, 0f);
+        uiController = FindObjectOfType<UIController>();
     }
 
     void Update()
@@ -63,6 +61,12 @@ public class TrainCore : TimeEffected
     {
         if (CanAddExtension())
         {
+
+            if(extensionType == PurchaseType.StorageExtension){
+                numberOfStorageExtensions++;
+                uiController.UpdateResourceValues();
+            }
+
             var extension = CreateExtension(GetExtensionPrefab(extensionType));
 
             Extensions.Add(extension);
@@ -73,7 +77,11 @@ public class TrainCore : TimeEffected
 
             extension.otherInteractables
                 .ForEach(interactable => interactable.SetActive(true));
-            
+
+            if(extensionType == PurchaseType.LivingExtension){
+                extension.AddNPC();
+            }
+
             if (CanAddExtension()) ShowGhostExtension(true);
         }
     }
@@ -95,8 +103,6 @@ public class TrainCore : TimeEffected
     {
         Extension extension = Instantiate(prefab, trainFront.transform.position, Quaternion.identity)
             .GetComponent<Extension>();
-
-        walkAreaBottomLeft -= new Vector3(extension.GetComponent<Extension>().baseObject.GetComponent<SpriteRenderer>().bounds.size.x/2f, 0f, 0f);
 
         Vector3 extensionPosition = new Vector3(0f, 0f, 0f);
         foreach(Extension ext in Extensions){
@@ -130,16 +136,8 @@ public class TrainCore : TimeEffected
         }
     }
 
-    public Vector3 GetTopPoint(){
-        return walkAreaTopRight;
-    }
-
-    public Vector3 GetBottomPoint(){
-        return walkAreaBottomLeft;
-    }
-
-    public Vector3 GetWorldTopPoint(){
-        return _transform.position + walkAreaTopRight;
+    public int GetMaxWeight(){
+        return 300 + numberOfStorageExtensions * 200;
     }
 
 }

@@ -17,6 +17,7 @@ public class SelectableTrainPart : UIElement
     public int slotId = -1;
     public int extentionId = -1;
     private UIController uiController;
+    public SelectableType type;
 
     void Start()
     {
@@ -77,3 +78,5 @@ public class SelectableTrainPart : UIElement
         beingUsed = true;
     }
 }
+
+public enum SelectableType {AddOnSlot, LivingExtensionMenu, ResearchExtensionMenu}

@@ -8,6 +8,9 @@ public class Extension : MonoBehaviour
     public List<GameObject> interactableUISlots = new List<GameObject>();
     public List<GameObject> otherInteractables = new List<GameObject>();
     public GameObject baseObject;
+    public List<GameObject> NPCS;
+    public GameObject NPCPrefab;
+
     void Start()
     {
         
@@ -34,7 +37,17 @@ public class Extension : MonoBehaviour
         foreach(GameObject UIElement in interactableUISlots){
             UIElement.GetComponent<SelectableTrainPart>().extentionId = id;
         }
+        foreach(GameObject UIElement in otherInteractables){
+            UIElement.GetComponent<SelectableTrainPart>().extentionId = id;
+        }
 
+    }
+
+    public void AddNPC(){
+        GameObject npc = Instantiate(NPCPrefab, baseObject.transform.position, Quaternion.identity);
+        NPCS.Add(npc);
+        npc.transform.parent = baseObject.transform;
+        npc.GetComponent<NPC>().SetParentExtension(this);
     }
 }
 

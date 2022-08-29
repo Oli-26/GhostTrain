@@ -11,6 +11,7 @@ TagManager:
   - InteractableUI
   - UIText
   - Loot
+  - Menu
   layers:
   - Default
   - TransparentFX
