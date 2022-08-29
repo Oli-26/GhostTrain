@@ -23,13 +23,13 @@ public class Purchaser : MonoBehaviour
             case PurchaseType.Refiner:
                 return HasResourceForPurchase(refinerCost);
             case PurchaseType.Extension:
-                return HasResourceForPurchase(extentionCost);
+                return HasResourceForPurchase(extensionCost);
             case PurchaseType.StorageExtension:
-                return HasResourceForPurchase(storageExtentionCost);
+                return HasResourceForPurchase(storageExtensionCost);
             case PurchaseType.LivingExtension:
-                return HasResourceForPurchase(livingExtentionCost);
+                return HasResourceForPurchase(livingExtensionCost);
             case PurchaseType.ResearchExtension:
-                return HasResourceForPurchase(researchExtentionCost);
+                return HasResourceForPurchase(researchExtensionCost);
             case PurchaseType.CropPlot:
                 return HasResourceForPurchase(cropPlotCost);
             case PurchaseType.Worker:
@@ -40,7 +40,7 @@ public class Purchaser : MonoBehaviour
     }
 
 
-    public bool HasResourceForPurchase(Price price){
+    public bool HasResourceForPurchase(Price price, bool performPurchase = true){
         if(!invent.HasResource(ResourceType.Wood, price.Wood)){
             return false;
         }
@@ -57,11 +57,14 @@ public class Purchaser : MonoBehaviour
             return false;
         }
 
-        invent.LoseResource(ResourceType.Wood, price.Wood);
-        invent.LoseResource(ResourceType.Stone, price.Stone);
-        invent.LoseResource(ResourceType.Metal, price.Metal);
-        invent.LoseResource(ResourceType.Wood, price.Food);
-        invent.LoseResource(ResourceType.Stone, price.Money);
+        if(performPurchase){
+            invent.LoseResource(ResourceType.Wood, price.Wood);
+            invent.LoseResource(ResourceType.Stone, price.Stone);
+            invent.LoseResource(ResourceType.Metal, price.Metal);
+            invent.LoseResource(ResourceType.Wood, price.Food);
+            invent.LoseResource(ResourceType.Stone, price.Money);
+        }
+
         return true;
     }
 
@@ -69,15 +72,15 @@ public class Purchaser : MonoBehaviour
 
     // Price set ups /////////////////////
     // Money, Wood, Stone, Metal, Food ///
-    Price grabberCost = new Price(0, 25, 0, 15, 0);
-    Price refinerCost = new Price(0, 20, 20, 0, 0);
-    Price cropPlotCost = new Price(0, 25, 20, 0, 0);
+    public Price grabberCost = new Price(0, 25, 0, 15, 0);
+    public Price refinerCost = new Price(0, 20, 20, 0, 0);
+    public Price cropPlotCost = new Price(0, 25, 20, 0, 0);
 
-    Price extentionCost = new Price(0, 50, 25, 20, 0);
-    Price storageExtentionCost = new Price(0, 50, 25, 20, 0);
-    Price livingExtentionCost = new Price(0, 50, 25, 20, 0);
-    Price researchExtentionCost = new Price(0, 50, 25, 20, 0);
+    public Price extensionCost = new Price(0, 50, 25, 20, 0);
+    public Price storageExtensionCost = new Price(0, 50, 25, 20, 0);
+    public Price livingExtensionCost = new Price(0, 50, 25, 20, 0);
+    public Price researchExtensionCost = new Price(0, 50, 25, 20, 0);
 
-    Price workerCost = new Price(1, 0, 0, 0, 20);
+    public Price workerCost = new Price(1, 0, 0, 0, 20);
 
 }

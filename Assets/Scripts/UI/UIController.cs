@@ -20,9 +20,14 @@ public class UIController : MonoBehaviour
 
     public TrainCore trainCore;
     Inventory invent;
+    Purchaser purchaser;
+
     public SelectableTrainPart selectedObject;
     public int selectedSlotId = -1;
     public int selectedExtentionId = -1;
+
+    Color canAffordColor = new Color(1f, 1f, 1f, 1f);
+    Color canNotAffordColor = new Color(1f, 0.5f, 0.5f, 1f);
     
     // TEXT
     TextMesh woodCountText;
@@ -37,6 +42,7 @@ public class UIController : MonoBehaviour
         SetUpText();
         SetUpMenus();
         invent = GetComponent<Inventory>();
+        purchaser = GetComponent<Purchaser>();
         UpdateResourceValues();
     }
 
@@ -111,10 +117,15 @@ public class UIController : MonoBehaviour
 
     public void LoadCorrectGUI(bool loadExtensionShop = false)
     {
+
         SetAllMenusInactive();
 
         if(loadExtensionShop){
             SetUpExtensionShop();
+            return;
+        }
+
+        if(selectedObject == null){
             return;
         }
 
@@ -130,7 +141,7 @@ public class UIController : MonoBehaviour
 
         if (selectedExtentionId == -1 || selectedSlotId == -1)
         {
-            menus["AddOns"].SetActive(true);
+            SetUpAddOnsShop();
             return;
         }
 
@@ -153,7 +164,7 @@ public class UIController : MonoBehaviour
         }
         else
         {
-            menus["AddOns"].SetActive(true);
+            SetUpAddOnsShop();
         }
     }
 
@@ -167,6 +178,33 @@ public class UIController : MonoBehaviour
         allText["Weight"].text = invent.GetCurrentWeight().ToString();
         float nonRedColors = invent.AtMaxWeight() ? 0f : 1f;
         allText["Weight"].color = new Color(1f, nonRedColors, nonRedColors, 1f);
+    }
+
+    public void SetUpAddOnsShop(){
+        GameObject menu = menus["AddOns"];
+        menu.SetActive(true);
+
+        GameObject buyGrabberButton = GetNestedChild(menu, new string[]{"Card-Grabber", "BuyButton"});
+        GameObject buyRefinerButton = GetNestedChild(menu, new string[]{"Card-Refiner", "BuyButton"});
+        GameObject buyCropPlotButton = GetNestedChild(menu, new string[]{"Card-CropPlot", "BuyButton"});
+
+        if(purchaser.HasResourceForPurchase(purchaser.grabberCost, false)){
+            buyGrabberButton.GetComponent<SpriteRenderer>().color = canAffordColor; 
+        }else{
+            buyGrabberButton.GetComponent<SpriteRenderer>().color = canNotAffordColor; 
+        }
+
+        if(purchaser.HasResourceForPurchase(purchaser.refinerCost, false)){
+            buyRefinerButton.GetComponent<SpriteRenderer>().color = canAffordColor; 
+        }else{
+            buyRefinerButton.GetComponent<SpriteRenderer>().color = canNotAffordColor; 
+        }
+
+        if(purchaser.HasResourceForPurchase(purchaser.grabberCost, false)){
+            buyCropPlotButton.GetComponent<SpriteRenderer>().color = canAffordColor; 
+        }else{
+            buyCropPlotButton.GetComponent<SpriteRenderer>().color = canNotAffordColor; 
+        }
     }
 
     public void SetUpRefinerOptions(Refiner refiner){
@@ -216,8 +254,37 @@ public class UIController : MonoBehaviour
     }
 
     public void SetUpExtensionShop(){
-        SetAllMenusInactive();
-        menus["Extensions"].SetActive(true); 
+        GameObject menu = menus["Extensions"]; 
+        menu.SetActive(true);
+
+        GameObject buyExtensionButton = GetNestedChild(menu, new string[]{"Card-AddOnExtension", "BuyButton"});
+        GameObject buyStorageButton = GetNestedChild(menu, new string[]{"Card-StorageExtension", "BuyButton"});
+        GameObject buyLivingButton = GetNestedChild(menu, new string[]{"Card-Living", "BuyButton"});
+        GameObject buyResearchButton = GetNestedChild(menu, new string[]{"Card-Research", "BuyButton"});
+        
+        if(purchaser.HasResourceForPurchase(purchaser.extensionCost, false)){
+            buyExtensionButton.GetComponent<SpriteRenderer>().color = canAffordColor; 
+        }else{
+            buyExtensionButton.GetComponent<SpriteRenderer>().color = canNotAffordColor; 
+        }
+
+        if(purchaser.HasResourceForPurchase(purchaser.storageExtensionCost, false)){
+            buyStorageButton.GetComponent<SpriteRenderer>().color = canAffordColor; 
+        }else{
+            buyStorageButton.GetComponent<SpriteRenderer>().color = canNotAffordColor; 
+        }
+
+        if(purchaser.HasResourceForPurchase(purchaser.livingExtensionCost, false)){
+            buyLivingButton.GetComponent<SpriteRenderer>().color = canAffordColor; 
+        }else{
+            buyLivingButton.GetComponent<SpriteRenderer>().color = canNotAffordColor; 
+        }
+
+        if(purchaser.HasResourceForPurchase(purchaser.researchExtensionCost, false)){
+            buyResearchButton.GetComponent<SpriteRenderer>().color = canAffordColor; 
+        }else{
+            buyResearchButton.GetComponent<SpriteRenderer>().color = canNotAffordColor; 
+        }
     }
 
     public void SetUpLivingShop(){

@@ -113,6 +113,8 @@ public class NPC : TimeEffected
 
     void OpenLoot(){
         Destroy(targetLoot);
+        invent.GainResource(new Price(Random.Range(1,4), Random.Range(0, 10), Random.Range(0,10), Random.Range(0, 10), Random.Range(0,4)), transform.position);
+        
         actionPhase = 3;
     }
 

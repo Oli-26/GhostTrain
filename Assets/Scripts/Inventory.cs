@@ -12,19 +12,21 @@ public class Inventory : MonoBehaviour
 
     public GameObject ResourceGainedEffect;
     private TrainCore train;
+    private UIController uiController;
 
     void Start(){
         train = FindObjectOfType<TrainCore>();
+        uiController = FindObjectOfType<UIController>();
     }
 
     public void GainResource(ResourceType type, int amount, Vector3 positionForEffect){
         int currentWeight = GetCurrentWeight();
         int maxWeight = train.GetMaxWeight();
 
-        if(currentWeight >= maxWeight){
+        if(type != ResourceType.Money && currentWeight >= maxWeight){
             return;
         }
-        if(currentWeight + amount > maxWeight){
+        if(type != ResourceType.Money && currentWeight + amount > maxWeight){
             amount = maxWeight - currentWeight;
         }
 
@@ -51,7 +53,9 @@ public class Inventory : MonoBehaviour
                 break;
         }
 
-        GetComponent<UIController>().UpdateResourceValues();
+        uiController.UpdateResourceValues();
+        uiController.LoadCorrectGUI();
+
     }
 
     private void CreateResourceGainedEffect(ResourceType type, Vector3 positionForEffect, int amount)
@@ -83,7 +87,8 @@ public class Inventory : MonoBehaviour
                 break;
         }
 
-        GetComponent<UIController>().UpdateResourceValues();
+        uiController.UpdateResourceValues();
+        uiController.LoadCorrectGUI();
     }
 
     public int GetResourceAmount(ResourceType type){
@@ -119,6 +124,34 @@ public class Inventory : MonoBehaviour
                 break;
             default:
                 return false;
+        }
+    }
+    
+    public void GainResource(Price resources, Vector3 position){
+        Vector3 spawnPosition = position;
+        if(resources.Money != 0){
+            GainResource(ResourceType.Money, resources.Money, spawnPosition);
+            spawnPosition += new Vector3(0.1f, 0f, 0f);
+        }
+
+        if(resources.Wood != 0){
+            GainResource(ResourceType.Wood, resources.Wood, spawnPosition);
+            spawnPosition += new Vector3(0.1f, 0f, 0f);
+        }
+
+        if(resources.Stone != 0){
+            GainResource(ResourceType.Stone, resources.Stone, spawnPosition);
+            spawnPosition += new Vector3(0.1f, 0f, 0f);
+        }
+
+        if(resources.Metal != 0){
+            GainResource(ResourceType.Metal, resources.Metal, spawnPosition);
+            spawnPosition += new Vector3(0.1f, 0f, 0f);
+        }
+
+        if(resources.Food != 0){
+            GainResource(ResourceType.Food, resources.Food, spawnPosition);
+            spawnPosition += new Vector3(0.1f, 0f, 0f);
         }
     }
 
