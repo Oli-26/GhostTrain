@@ -131,27 +131,27 @@ public class Inventory : MonoBehaviour
         Vector3 spawnPosition = position;
         if(resources.Money != 0){
             GainResource(ResourceType.Money, resources.Money, spawnPosition);
-            spawnPosition += new Vector3(0.1f, 0f, 0f);
+            spawnPosition += new Vector3(0.3f, -0.3f, 0f);
         }
 
         if(resources.Wood != 0){
             GainResource(ResourceType.Wood, resources.Wood, spawnPosition);
-            spawnPosition += new Vector3(0.1f, 0f, 0f);
+            spawnPosition += new Vector3(0.3f, -0.3f, 0f);
         }
 
         if(resources.Stone != 0){
             GainResource(ResourceType.Stone, resources.Stone, spawnPosition);
-            spawnPosition += new Vector3(0.1f, 0f, 0f);
+            spawnPosition += new Vector3(0.3f, -0.3f, 0f);
         }
 
         if(resources.Metal != 0){
             GainResource(ResourceType.Metal, resources.Metal, spawnPosition);
-            spawnPosition += new Vector3(0.1f, 0f, 0f);
+            spawnPosition += new Vector3(0.3f, -0.3f, 0f);
         }
 
         if(resources.Food != 0){
             GainResource(ResourceType.Food, resources.Food, spawnPosition);
-            spawnPosition += new Vector3(0.1f, 0f, 0f);
+            spawnPosition += new Vector3(0.3f, -0.3f, 0f);
         }
     }
 

@@ -140,6 +140,20 @@ public class NPC : TimeEffected
         actionMenu.SetActive(false);
     }
 
+    public void DirectLoot(GameObject lootToTarget){
+        if(!invent.HasResource(ResourceType.Food, ActionCost(NPCActionType.Loot))){
+            return;
+        }
+
+        actionBeingPerformed = NPCActionType.Loot;
+        actionIsBeingPerformed = true;
+        invent.LoseResource(ResourceType.Food, ActionCost(NPCActionType.Loot));
+        targetLoot = lootToTarget;
+        targetLootTransform = targetLoot.transform;
+        actionPhase = 1;
+        _transform.parent = null;
+    }
+
     public int ActionCost(NPCActionType actionType){
         switch(actionType){
             case NPCActionType.Loot:

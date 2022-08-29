@@ -51,6 +51,7 @@ MonoBehaviour:
   metalSprite: {fileID: 21300000, guid: 4aabffb0e797574489a4fb22a99256ba, type: 3}
   foodSprite: {fileID: 8123832373966212598, guid: 3825f56772a9cbc4a93e1db69cd6b3c1,
     type: 3}
+  moneySprite: {fileID: 21300000, guid: d01450930f9234749a1659bbd98f6353, type: 3}
   amount: {fileID: 3225586701338029910}
 --- !u!1 &6525069039747415961
 GameObject:

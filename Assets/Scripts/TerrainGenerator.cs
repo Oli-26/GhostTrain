@@ -10,6 +10,7 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject coreGroundPrefab;
     public List<GameObject> GrassLandLoot;
     public List<GameObject> Gardens;
+    public GameObject giantTree;
 
 
     public List<GameObject> DesertTreePrefabs;
@@ -58,7 +59,7 @@ public class TerrainGenerator : MonoBehaviour
             case BiomeType.Snow:
                 return GenerateSnowTerrain(center);
             case BiomeType.Water:
-                return GenerateWaterTerrain(center);
+                return GenerateGrassTerrain(center);
             case BiomeType.Spooky:
                 return GenerateSpookyTerrain(center);
             default:
@@ -113,6 +114,11 @@ public class TerrainGenerator : MonoBehaviour
             garden.transform.parent = terrainHolder.transform;
             spawnedObjects.Add(garden);
         }
+
+        GameObject gaintT  = Instantiate(giantTree, center + new Vector3(generateRandomNumber(0, 49f), generateRandomNumber(0.7f, 4.5f), 0), Quaternion.identity);
+        gaintT.transform.parent = terrainHolder.transform;
+        spawnedObjects.Add(gaintT);
+
         
 
         return terrainHolder;

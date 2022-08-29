@@ -12,6 +12,7 @@ public class ResourceGainedEffect : MonoBehaviour
     public Sprite stoneSprite;
     public Sprite metalSprite;
     public Sprite foodSprite;
+    public Sprite moneySprite;
     public TextMesh amount;
 
     void Start()
@@ -34,13 +35,16 @@ public class ResourceGainedEffect : MonoBehaviour
                 break;
             case ResourceType.Stone:
                 renderer.sprite = stoneSprite;
-            break;
+                break;
             case ResourceType.Metal:
                 renderer.sprite = metalSprite;
-            break;
+                break;
             case ResourceType.Food:
                 renderer.sprite = foodSprite;
-            break;
+                break;
+            case ResourceType.Money:
+                renderer.sprite = moneySprite;
+                break;
 
         }
     }
