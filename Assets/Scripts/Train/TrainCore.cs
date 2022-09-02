@@ -59,6 +59,7 @@ public class TrainCore : TimeEffected
 
     public void AddExtension(PurchaseType extensionType)
     {
+        Debug.Log("Extended");
         if (CanAddExtension())
         {
 

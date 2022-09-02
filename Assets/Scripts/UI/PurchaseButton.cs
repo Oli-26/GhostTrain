@@ -7,24 +7,12 @@ using UnityEngine.UIElements;
 
 public class PurchaseButton : UIElement
 {
-    public PurchaseType type;
+    public PurchaseType Type;
+    public KeyCode Shortcut { get; set; } = KeyCode.None;
+
     GameObject gameController;
-    int metalCost = 0;
-    int woodCost = 10;
-    int stoneCost = 0;
     Purchaser _purchaser;
     TrainCore _trainCore;
-
-    private static Dictionary<KeyCode, PurchaseType> shortcuts = new Dictionary<KeyCode, PurchaseType>()
-    {
-        { KeyCode.G, PurchaseType.Grabber },
-        { KeyCode.R, PurchaseType.Refiner }
-        // { PurchaseType.Extension, KeyCode. },
-        // { PurchaseType.StorageExtension, KeyCode.G },
-        // { PurchaseType.ResearchExtension, KeyCode.G },
-        // { PurchaseType.LivingExtension, KeyCode.G },
- 
-    };
 
     void Start()
     {
@@ -36,65 +24,73 @@ public class PurchaseButton : UIElement
     private void OnGUI()
     {
         Event e = Event.current;
-        if (e.isKey)
+        if (e.isKey && e.keyCode!= KeyCode.None && Shortcut == e.keyCode)
         {
-            Debug.Log("KeyDown:" + e.keyCode);
-            if (shortcuts.ContainsKey(e.keyCode) && shortcuts[e.keyCode] == type)
-            {
-                Interact();
-            }
+            Debug.Log("KeyDown:" + e.keyCode + " Shortcut:" + Shortcut);
+            Interact();
         }
     }
 
     void Update()
     {
-        
     }
-    
+
     private void OnMouseUpAsButton()
     {
         Interact();
     }
 
-    public void Interact(){
+    public void Interact()
+    {
+        Debug.Log("Called:" + Type);
         UIController UI = gameController.GetComponent<UIController>();
-        if(type == PurchaseType.Extension || type == PurchaseType.StorageExtension || type == PurchaseType.LivingExtension || type == PurchaseType.ResearchExtension){
-            if (_purchaser.AttemptPurchase(type))
+        if (Type == PurchaseType.Extension || Type == PurchaseType.StorageExtension ||
+            Type == PurchaseType.LivingExtension || Type == PurchaseType.ResearchExtension)
+        {
+            if (_purchaser.AttemptPurchase(Type))
             {
-                _trainCore.AddExtension(type);
+                _trainCore.AddExtension(Type);
             }
-            
+
             return;
         }
 
-        if(type == PurchaseType.Worker){
-            if(!gameController.GetComponent<BuildingController>().CheckNewWorkerPossible(UI.selectedExtentionId)){
+        if (Type == PurchaseType.Worker)
+        {
+            if (!gameController.GetComponent<BuildingController>().CheckNewWorkerPossible(UI.selectedExtentionId))
+            {
                 return;
             }
-            if(gameController.GetComponent<Purchaser>().AttemptPurchase(type)){
+
+            if (gameController.GetComponent<Purchaser>().AttemptPurchase(Type))
+            {
                 gameController.GetComponent<BuildingController>().CreateWorker(UI.selectedExtentionId);
                 gameController.GetComponent<UIController>().LoadCorrectGUI();
-            } 
+            }
         }
 
-        if(UI.selectedSlotId != -1 && UI.selectedExtentionId != -1){
-            if(!gameController.GetComponent<BuildingController>().CheckBuildIsPossible(UI.selectedExtentionId, UI.selectedSlotId)){
+        if (UI.selectedSlotId != -1 && UI.selectedExtentionId != -1)
+        {
+            if (!gameController.GetComponent<BuildingController>()
+                .CheckBuildIsPossible(UI.selectedExtentionId, UI.selectedSlotId))
+            {
                 return;
             }
-            if(gameController.GetComponent<Purchaser>().AttemptPurchase(type)){
-                gameController.GetComponent<BuildingController>().ConstructAddOn(type, UI.selectedExtentionId, UI.selectedSlotId);
+
+            if (gameController.GetComponent<Purchaser>().AttemptPurchase(Type))
+            {
+                gameController.GetComponent<BuildingController>()
+                    .ConstructAddOn(Type, UI.selectedExtentionId, UI.selectedSlotId);
                 gameController.GetComponent<UIController>().LoadCorrectGUI();
-            } 
+            }
         }
     }
 
-    public void Select(){
-
+    public void Select()
+    {
     }
 
-    public void DeSelect(){
-
+    public void DeSelect()
+    {
     }
-    }
-
-public enum PurchaseType {Grabber, Refiner, Extension, StorageExtension, LivingExtension, ResearchExtension, CropPlot, Worker}
+}

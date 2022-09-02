@@ -3392,7 +3392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70bc2ebcc20329438d9cc8a9c39e2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 7
+  Type: 0
 --- !u!212 &311738513
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5502,7 +5502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70bc2ebcc20329438d9cc8a9c39e2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
+  Type: 5
 --- !u!1 &532297853
 GameObject:
   m_ObjectHideFlags: 0
@@ -5730,7 +5730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70bc2ebcc20329438d9cc8a9c39e2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  Type: 3
 --- !u!212 &561846616
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8305,7 +8305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70bc2ebcc20329438d9cc8a9c39e2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  Type: 0
 --- !u!58 &815726010
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13258,6 +13258,8 @@ MonoBehaviour:
   selectedObject: {fileID: 0}
   selectedSlotId: -1
   selectedExtentionId: -1
+  PurchaseUICard: {fileID: 1063348141980077320, guid: c924c6867eadf5044aa0ed12eed52480,
+    type: 3}
 --- !u!114 &1426132486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13677,7 +13679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70bc2ebcc20329438d9cc8a9c39e2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  Type: 3
 --- !u!1 &1447631326
 GameObject:
   m_ObjectHideFlags: 0
@@ -14102,7 +14104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70bc2ebcc20329438d9cc8a9c39e2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 6
+  Type: 0
 --- !u!58 &1472525539
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -14877,7 +14879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70bc2ebcc20329438d9cc8a9c39e2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 7
+  Type: 0
 --- !u!212 &1525511334
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16201,7 +16203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70bc2ebcc20329438d9cc8a9c39e2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  Type: 2
 --- !u!212 &1719142160
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16469,7 +16471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70bc2ebcc20329438d9cc8a9c39e2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  Type: 0
 --- !u!58 &1724166974
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEditor;
 
 public class UIController : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class UIController : MonoBehaviour
     public SelectableTrainPart selectedObject;
     public int selectedSlotId = -1;
     public int selectedExtentionId = -1;
+    
+    public GameObject PurchaseUICard;
 
     Color canAffordColor = new Color(1f, 1f, 1f, 1f);
     Color canNotAffordColor = new Color(1f, 0.5f, 0.5f, 1f);
@@ -57,6 +60,10 @@ public class UIController : MonoBehaviour
         foreach(GameObject menu in allMenus){
             menus.Add(menu.GetComponent<Menu>().UITag, menu);
         }
+
+        var componentType = Instantiate(PurchaseUICard, menus["AddOns"].transform.position, Quaternion.identity).GetComponent<PurchaseUICard>();
+        componentType.transform.SetParent(menus["AddOns"].transform);
+        componentType.Initialise(PurchaseType.Grabber, "Grabber", new Price(0, 25, 0, 15, 0),  (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Sprites/SciFiFurniture1.1.png", typeof(Sprite)), KeyCode.G);
     }
 
     void Update()
